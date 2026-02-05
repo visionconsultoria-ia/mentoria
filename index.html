@@ -69,32 +69,93 @@ box-shadow:0 20px 40px rgba(0,0,0,.2);
 border:4px solid rgba(255,255,255,.1)
 }
 
-/* NOVAS SEÇÕES ESTILO PAPAI FINANCEIRO COM SUA PALETA */
-.feature-grid {
+.pain-section{
+background:#fff;
+padding:60px 0;
+border-bottom:1px solid #eee
+}
+.pain-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+margin-top:40px
+}
+.pain-card{
+padding:30px;
+border-left:4px solid var(--danger);
+background:#fff5f5;
+border-radius:0 15px 15px 0
+}
+.pain-card h4{
+color:var(--danger);
+margin-bottom:10px
+}
+
+.bio-section{
+padding:60px 0;
+display:flex;
+align-items:center;
+gap:50px
+}
+.bio-content{flex:1}
+.bio-stats{
+flex:0 0 300px;
+background:var(--primary);
+padding:40px;
+border-radius:20px;
+color:white;
+text-align:center
+}
+.bio-stats h3{
+font-size:3.5rem;
+font-weight:800;
+margin-bottom:5px
+}
+
+.section-padding{padding:60px 0}
+.section-title{text-align:center;margin-bottom:40px}
+.section-title h2{
+font-size:2.2rem;
+font-weight:800;
+color:var(--dark)
+}
+
+/* NOVAS SEÇÕES TÉCNICAS */
+.modules-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
-    margin-top: 40px;
 }
-.feature-card {
-    background: white;
-    padding: 30px;
-    border-radius: 20px;
-    border-bottom: 5px solid var(--primary);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+.module-item {
+    background: #fff;
+    padding: 25px;
+    border-radius: 15px;
+    border: 1px solid #eee;
+    position: relative;
 }
-.feature-card i {
-    font-size: 2.5rem;
+.module-number {
     color: var(--primary);
-    margin-bottom: 20px;
+    font-weight: 800;
+    font-size: 0.9rem;
+    display: block;
+    margin-bottom: 10px;
 }
 
-.pain-section{background:#fff;padding:60px 0;border-bottom:1px solid #eee}
-.pain-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;margin-top:40px}
-.pain-card{padding:30px;border-left:4px solid var(--danger);background:#fff5f5;border-radius:0 15px 15px 0}
-.pain-card h4{color:var(--danger);margin-bottom:10px}
+.for-whom-box {
+    background: var(--dark);
+    color: white;
+    padding: 40px;
+    border-radius: 30px;
+}
+.check-item {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+    align-items: flex-start;
+}
+.check-item i { color: var(--accent); margin-top: 5px; }
 
-/* TESTEMUNHOS ROLÁVEIS */
+/* CARROSSEL */
 .testimonial-wrapper { position: relative; max-width: 1000px; margin: 0 auto; }
 .testimonial-carousel {
     display: flex;
@@ -126,10 +187,7 @@ border:4px solid rgba(255,255,255,.1)
 .faq-item summary { padding: 20px; font-weight: 700; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; }
 .faq-content { padding: 0 20px 20px; color: #555; }
 
-.section-padding{padding:60px 0}
-.section-title{text-align:center;margin-bottom:40px}
-
-.cta-final{background:var(--primary);color:white;text-align:center;border-radius:30px;padding:50px 20px}
+.cta-final{ background:var(--primary); color:white; text-align:center; border-radius:30px; padding:50px 20px }
 .cta-btn{
 background:var(--accent);
 color:#1a1a1a;
@@ -144,16 +202,17 @@ border: none;
 cursor: pointer;
 }
 
-.whatsapp-float{position:fixed;bottom:20px;right:20px;background-color:#25d366;color:white;width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:999;}
+.whatsapp-float{ position:fixed; bottom:20px; right:20px; background-color:#25d366; color:white; width:60px; height:60px; border-radius:50%; display:flex; align-items:center; justify-content:center; z-index:999; }
 
 @media (max-width:850px){
 .hero-grid{grid-template-columns:1fr;text-align:center}
-.hero-image-container{margin-top:30px}
 .hero-text h1{font-size:2.3rem}
+.bio-section{flex-direction:column;text-align:center}
 .carousel-btn { display: none; }
 }
 </style>
 </head>
+
 <body>
 
 <a href="https://wa.me/551992491010?text=Quero%20saber%20mais" class="whatsapp-float" target="_blank">
@@ -207,73 +266,82 @@ cursor: pointer;
 
 <section class="section-padding">
     <div class="container">
-        <div class="section-title">
-            <h2>A Solução Completa para sua Família</h2>
-            <p>Tudo o que você precisa para dominar suas finanças de uma vez por todas.</p>
-        </div>
-        <div class="feature-grid">
-            <div class="feature-card">
-                <i class="fas fa-bullseye"></i>
-                <h3>Diagnóstico de Fluxo</h3>
-                <p>Identificamos exatamente por onde seu dinheiro está escapando e como estancar o vazamento.</p>
-            </div>
-            <div class="feature-card">
-                <i class="fas fa-shield-alt"></i>
-                <h3>Blindagem Patrimonial</h3>
-                <p>Aprenda a criar sua reserva de segurança e proteger sua família contra imprevistos.</p>
-            </div>
-            <div class="feature-card">
-                <i class="fas fa-hand-holding-usd"></i>
-                <h3>Plano de Investimento</h3>
-                <p>Saia da poupança e aprenda a fazer o dinheiro trabalhar para você com segurança.</p>
+        <div class="for-whom-box">
+            <h2 style="color: var(--accent); margin-bottom: 30px; text-align: center;">Esta Mentoria é para você que...</h2>
+            <div class="feature-grid" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));">
+                <div class="check-item"><i class="fas fa-check-circle"></i> <p>Quer parar de brigar por dinheiro dentro de casa.</p></div>
+                <div class="check-item"><i class="fas fa-check-circle"></i> <p>Deseja ter uma reserva para imprevistos e emergências.</p></div>
+                <div class="check-item"><i class="fas fa-check-circle"></i> <p>Busca clareza para realizar sonhos como viagens e bens.</p></div>
+                <div class="check-item"><i class="fas fa-check-circle"></i> <p>Sente que o dinheiro some mesmo ganhando um bom salário.</p></div>
             </div>
         </div>
     </div>
 </section>
 
-<section class="section-padding" style="background: var(--dark); color: white;">
+<section class="bio-section container">
+<div class="bio-content">
+<h2>Eu já estive no seu lugar...</h2>
+<p>O Farol Familiar não é uma planilha complexa. É um sistema de clareza mental e financeira.</p>
+<p>Minha missão é ser a luz que guia suas finanças para fora do caos.</p>
+</div>
+<div class="bio-stats">
+<h3>+500</h3>
+<p>Famílias Transformadas</p>
+</div>
+</section>
+
+<section class="section-padding" style="background: #f4f4f9;">
     <div class="container">
         <div class="section-title">
-            <h2 style="color: var(--accent);">Esta mentoria é para você que:</h2>
+            <h2>Como funciona a Mentoria</h2>
+            <p>Um passo a passo lógico para a sua liberdade financeira.</p>
         </div>
-        <div class="feature-grid">
-            <div style="padding: 20px; border-left: 2px solid var(--accent);">
-                <p>✅ Quer parar de brigar por dinheiro com o parceiro(a).</p>
+        <div class="modules-grid">
+            <div class="module-item">
+                <span class="module-number">MÓDULO 01</span>
+                <h3>Mentalidade Rica</h3>
+                <p>Identificando e removendo as travas emocionais que te fazem gastar por impulso.</p>
             </div>
-            <div style="padding: 20px; border-left: 2px solid var(--accent);">
-                <p>✅ Deseja dar um futuro digno e confortável para seus filhos.</p>
+            <div class="module-item">
+                <span class="module-number">MÓDULO 02</span>
+                <h3>O Farol de Fluxo</h3>
+                <p>Configuração do sistema automático que rastreia cada centavo sem esforço.</p>
             </div>
-            <div style="padding: 20px; border-left: 2px solid var(--accent);">
-                <p>✅ Sente que ganha bem, mas nunca vê a cor do dinheiro no final do mês.</p>
+            <div class="module-item">
+                <span class="module-number">MÓDULO 03</span>
+                <h3>Paz no Lar</h3>
+                <p>Estratégias de comunicação financeira para casais e educação para os filhos.</p>
             </div>
-            <div style="padding: 20px; border-left: 2px solid var(--accent);">
-                <p>✅ Quer ter clareza e paz mental ao abrir o aplicativo do banco.</p>
+            <div class="module-item">
+                <span class="module-number">MÓDULO 04</span>
+                <h3>Rota do Investidor</h3>
+                <p>Onde colocar seu dinheiro para render mais que a poupança com segurança total.</p>
             </div>
         </div>
     </div>
 </section>
 
-<section class="section-padding" style="background: #f9f9ff;">
+<section class="section-padding" style="background: #fff;">
     <div class="container">
         <div class="section-title">
-            <h2>Resultados Reais</h2>
+            <h2>Quem seguiu o Farol hoje vive em paz</h2>
         </div>
         <div class="testimonial-wrapper">
             <button class="carousel-btn btn-prev" onclick="scrollCarousel(-1)"><i class="fas fa-chevron-left"></i></button>
             <div class="testimonial-carousel" id="carousel">
                 <div class="testi-item">
                     <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Ana">
-                    <p>"Em 2 meses consegui quitar 3 dívidas e ainda sobrou para jantar fora com meus filhos."</p>
+                    <p>"Em 2 meses consegui quitar 3 dívidas e ainda sobrou para o lazer."</p>
                     <h5>Ana Paula S.</h5>
                 </div>
                 <div class="testi-item">
                     <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Ricardo">
-                    <p>"O sistema de organização automática é bizarro. Hoje gasto 5 minutos por semana."</p>
+                    <p>"O sistema de organização é bizarro. Hoje gasto 5 minutos por semana."</p>
                     <h5>Ricardo M.</h5>
                 </div>
                 <div class="testi-item">
                     <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Mariana">
-                    <p>"Meu marido e eu paramos de brigar por dinheiro. Trouxe clareza total."</p>
+                    <p>"Meu marido e eu paramos de brigar por dinheiro. Clareza total."</p>
                     <h5>Mariana & Lucas</h5>
                 </div>
             </div>
@@ -290,11 +358,11 @@ cursor: pointer;
         <div class="faq-container">
             <details class="faq-item">
                 <summary>Quanto tempo tenho de acesso?</summary>
-                <div class="faq-content">O acesso ao sistema Farol Familiar é vitalício, incluindo todas as atualizações futuras.</div>
+                <div class="faq-content">O acesso ao sistema Farol Familiar e às aulas é vitalício.</div>
             </details>
             <details class="faq-item">
-                <summary>E se eu não me adaptar ao método?</summary>
-                <div class="faq-content">Você tem 7 dias de garantia incondicional. Se não gostar, devolvemos 100% do seu dinheiro.</div>
+                <summary>E se eu não me adaptar?</summary>
+                <div class="faq-content">Você tem 7 dias de garantia incondicional para arrependimento.</div>
             </details>
         </div>
     </div>
@@ -303,7 +371,7 @@ cursor: pointer;
 <section class="container section-padding">
 <div class="cta-final">
 <h2>Retome o controle da sua vida hoje.</h2>
-<p style="margin-bottom:30px">Acesso imediato ao sistema Farol Familiar.</p>
+<p style="margin-bottom:20px">Acesso imediato ao sistema Farol Familiar.</p>
 <a href="https://pay.herospark.com/sistema-financeiro-pf-vision-499415" class="cta-btn">QUERO MEU ACESSO AGORA</a>
 </div>
 </section>
