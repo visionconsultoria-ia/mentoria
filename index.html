@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=5.0">
 <title>Gabriela Vieira - Mentoria</title>
 
 <link rel="icon" href="favicon.ico" type="image/x-icon">
@@ -12,67 +12,81 @@
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
 n.callMethod.apply(n,arguments):n.queue.push(arguments)};
 if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window,document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init','COLE_SEU_ID_DO_PIXEL_AQUI'); 
-fbq('track','PageView');
+n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;
+s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
+(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','COLE_SEU_ID_DO_PIXEL_AQUI');fbq('track','PageView');
 </script>
 
 <noscript>
 <img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=COLE_SEU_ID_DO_PIXEL_AQUI&ev=PageView&noscript=1"/>
+src="https://www.facebook.com/tr?id=COLE_SEU_ID_DO_PIXEL_AQUI&ev=PageView&noscript=1">
 </noscript>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-:root{--primary:#5a4fcf;--secondary:#8c7eff;--accent:#f7b32b;--white:#fff;--dark:#1a1a1a;--danger:#ff4d4d}
+:root{--primary:#5a4fcf;--secondary:#8c7eff;--accent:#f7b32b;--dark:#1a1a1a;--danger:#ff4d4d}
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Inter',sans-serif;background:#f4f4f9;color:#333;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body{font-family:Inter,sans-serif;background:#f4f4f9;color:#333;line-height:1.6;overflow-x:hidden}
+
 header{background:#fff;padding:15px 0;position:fixed;width:100%;top:0;z-index:1000;box-shadow:0 2px 10px rgba(0,0,0,.05)}
 .container{max-width:1100px;margin:0 auto;padding:0 20px}
 .flex-header{display:flex;justify-content:space-between;align-items:center}
-.hero{background:linear-gradient(135deg,#4e44b3 0%,#8c7eff 100%);padding:140px 0 80px;color:#fff}
+
+.hero{background:linear-gradient(135deg,#4e44b3,#8c7eff);padding:140px 0 80px;color:#fff}
 .hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
-.hero-text h1{font-size:3.5rem;line-height:1.1;font-weight:800;margin-bottom:20px;letter-spacing:-2px}
+.hero-text h1{font-size:3.5rem;font-weight:800;margin-bottom:20px;letter-spacing:-2px}
 .hero-text p{font-size:1.25rem;opacity:.9;margin-bottom:35px}
-.hero-image-container img{width:100%;max-width:420px;border-radius:30px;box-shadow:0 20px 40px rgba(0,0,0,.2);border:4px solid rgba(255,255,255,.1)}
+.hero-image-container img{width:100%;max-width:420px;border-radius:30px;box-shadow:0 20px 40px rgba(0,0,0,.2)}
+
 .pain-section{background:#fff;padding:60px 0;border-bottom:1px solid #eee}
 .pain-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;margin-top:40px}
 .pain-card{padding:30px;border-left:4px solid var(--danger);background:#fff5f5;border-radius:0 15px 15px 0}
 .pain-card h4{color:var(--danger);margin-bottom:10px}
+
 .bio-section{padding:60px 0;display:flex;align-items:center;gap:50px}
 .bio-content{flex:1}
 .bio-stats{flex:0 0 300px;background:var(--primary);padding:40px;border-radius:20px;color:#fff;text-align:center}
-.bio-stats h3{font-size:3.5rem;font-weight:800;margin-bottom:5px}
+.bio-stats h3{font-size:3.5rem;font-weight:800}
+
 .section-padding{padding:60px 0}
 .section-title{text-align:center;margin-bottom:40px}
 .section-title h2{font-size:2.2rem;font-weight:800;color:var(--dark)}
+
 .testimonials-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
 .testi-card{background:#fff;padding:25px;border-radius:20px;box-shadow:0 5px 15px rgba(0,0,0,.05)}
+
 .faq-container{max-width:800px;margin:0 auto}
 .faq-item{background:#fff;margin-bottom:12px;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.05)}
 .faq-item summary{padding:18px;font-weight:700;cursor:pointer;list-style:none;display:flex;justify-content:space-between}
 .faq-item summary::after{content:'+';color:var(--primary)}
 .faq-content{padding:0 18px 18px;color:#666;font-size:.95rem}
+
 .cta-final{background:var(--primary);color:#fff;text-align:center;border-radius:30px;padding:50px 20px}
-.cta-btn{background:var(--accent);color:#1a1a1a;padding:20px 40px;border-radius:50px;text-decoration:none;font-weight:800;display:inline-block;transition:.2s;text-transform:uppercase}
-.whatsapp-float{position:fixed;bottom:20px;right:20px;background:#25d366;color:#fff;width:60px;height:60px;border-radius:50px;display:flex;align-items:center;justify-content:center;z-index:999;text-decoration:none;font-weight:bold}
+.cta-btn{background:var(--accent);color:#1a1a1a;padding:20px 40px;border-radius:50px;text-decoration:none;font-weight:800;display:inline-block;text-transform:uppercase}
+
+.whatsapp-float{position:fixed;bottom:20px;right:20px;background:#25d366;color:#fff;width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:999;text-decoration:none;font-weight:bold}
+
+footer{text-align:center;padding:40px 20px;color:#888;font-size:.8rem}
+
 @media(max-width:850px){
 .hero-grid{grid-template-columns:1fr;text-align:center}
 .hero-text h1{font-size:2.3rem}
 .hero-text p{font-size:1.1rem}
-.bio-section{flex-direction:column;text-align:center;gap:30px}
-.bio-stats{width:100%;max-width:280px;margin:0 auto;padding:30px}
+.bio-section{flex-direction:column;text-align:center}
+.bio-stats{max-width:280px;margin:auto}
 .section-title h2{font-size:1.8rem}
 }
 </style>
 </head>
 
 <body>
-<a href="https://wa.me/5551992491010" class="whatsapp-float" target="_blank">WP</a>
+
+<a href="https://wa.me/5551992491010?text=Quero%20saber%20mais%20sobre%20a%20mentoria" 
+   class="whatsapp-float" target="_blank">
+   WP
+</a>
 
 <header>
 <div class="container flex-header">
@@ -90,14 +104,64 @@ header{background:#fff;padding:15px 0;position:fixed;width:100%;top:0;z-index:10
 <a href="#planos" class="cta-btn">QUERO MEU ACESSO</a>
 </div>
 <div class="hero-image-container">
-<img src="https://lh3.googleusercontent.com/d/1hPY42JIjxt4uLHghCgWHqlSdUW3yjZ2a" alt="Gabriela Vieira - Farol Familiar">
+<img src="https://lh3.googleusercontent.com/d/1hPY42JIjxt4uLHghCgWHqlSdUW3yjZ2a">
 </div>
 </div>
 </div>
 </section>
 
-<footer style="text-align:center;padding:40px 20px;color:#888;font-size:.8rem">
-© 2026 Farol Familiar | Gabriela Vieira.
-</footer>
+<section class="pain-section">
+<div class="container">
+<div class="section-title"><h2 style="color:var(--danger)">Você se sente assim hoje?</h2></div>
+<div class="pain-grid">
+<div class="pain-card"><h4>Dinheiro que some</h4><p>Você trabalha duro, mas não sabe para onde foi.</p></div>
+<div class="pain-card"><h4>Efeito Bola de Neve</h4><p>Dívidas acumulam e não diminuem.</p></div>
+<div class="pain-card"><h4>Medo do Extrato</h4><p>Ansiedade toda vez que abre o banco.</p></div>
+</div>
+</div>
+</section>
+
+<section class="container">
+<div class="bio-section">
+<div class="bio-content">
+<h2>A mente por trás do sistema</h2>
+<p><strong>Gabriela Vieira</strong>, economista formada pela <strong>UFSC</strong>.</p>
+<p>Criadora do <strong>Farol Familiar</strong>.</p>
+</div>
+<div class="bio-stats">
+<h3>+10k</h3>
+<p>Usuários</p>
+</div>
+</div>
+</section>
+
+<section class="container section-padding" style="background:#f0f0f5;border-radius:40px">
+<div class="section-title"><h2>Quem usa, não vive sem</h2></div>
+<div class="testimonials-grid">
+<div class="testi-card"><p>"Quite 3 cartões em 4 meses."</p><strong>Marcos</strong></div>
+<div class="testi-card"><p>"Paz mental total."</p><strong>Ana</strong></div>
+<div class="testi-card"><p>"Comecei a investir."</p><strong>Ricardo</strong></div>
+</div>
+</section>
+
+<section class="container section-padding">
+<div class="section-title"><h2>Dúvidas Frequentes</h2></div>
+<div class="faq-container">
+<details class="faq-item"><summary>É difícil?</summary><div class="faq-content">Não.</div></details>
+<details class="faq-item"><summary>É seguro?</summary><div class="faq-content">Sim.</div></details>
+<details class="faq-item"><summary>Garantia?</summary><div class="faq-content">7 dias.</div></details>
+</div>
+</section>
+
+<section id="planos" class="container section-padding">
+<div class="cta-final">
+<h2>Recupere sua liberdade</h2>
+<p>Acesso vitalício</p>
+<a href="URL_DE_VENDAS" class="cta-btn">ADQUIRIR AGORA</a>
+</div>
+</section>
+
+<footer>© 2026 Farol Familiar | Gabriela Vieira</footer>
+
 </body>
 </html>
