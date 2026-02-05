@@ -186,15 +186,20 @@ animation: pulse 2s infinite;
 
 /* SELOS DE SEGURANÇA */
 .security-seals { display: flex; justify-content: center; gap: 20px; margin-top: 20px; opacity: 0.7; font-size: 0.7rem; color: var(--dark); }
-.security-seals div { display: flex; align-items: center; gap: 5px; }
+.security-seals div { display: flex; align-items: center; gap: 5px; white-space: nowrap; }
+
+/* AJUSTE CTA FINAL */
+.cta-final { text-align: center; background: var(--primary); padding: 60px 20px; border-radius: 40px; color: white; }
 
 @media (max-width:850px){
     .hero-grid{grid-template-columns:1fr;text-align:center}
     .hero-text h1{font-size:2.5rem}
+    .security-seals { justify-content: center !important; flex-wrap: wrap; gap: 10px; }
     .bio-section{flex-direction:column;text-align:center}
     .carousel-btn { display: none; }
     .sticky-cta { display: flex; }
     .whatsapp-float { bottom: 90px; }
+    .hero { clip-path: none; padding: 140px 0 60px; }
 }
 </style>
 </head>
@@ -471,13 +476,11 @@ animation: pulse 2s infinite;
 </footer>
 
 <script>
-// Carrossel
 function scrollCarousel(direction) {
     const carousel = document.getElementById('carousel');
     carousel.scrollBy({ left: direction * 320, behavior: 'smooth' });
 }
 
-// Reveal Animation
 function reveal() {
   var reveals = document.querySelectorAll(".reveal");
   for (var i = 0; i < reveals.length; i++) {
@@ -490,7 +493,7 @@ function reveal() {
   }
 }
 window.addEventListener("scroll", reveal);
-reveal(); // Iniciar no load
+reveal();
 </script>
 
 </body>
