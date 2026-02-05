@@ -163,7 +163,6 @@ color:var(--dark)
     margin-bottom: 15px;
 }
 
-/* BOTÕES DO CARROSSEL */
 .carousel-btn {
     position: absolute;
     top: 50%;
@@ -185,7 +184,50 @@ color:var(--dark)
 .btn-next { right: -10px; }
 
 @media (max-width: 1100px) {
-    .carousel-btn { display: none; } /* Esconde botões no mobile para não atrapalhar o touch */
+    .carousel-btn { display: none; }
+}
+
+/* ESTILO DO FAQ COMPLETO */
+.faq-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+.faq-item {
+    background: #fff;
+    margin-bottom: 15px;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+    border: 1px solid #eee;
+    overflow: hidden;
+}
+.faq-item summary {
+    padding: 20px;
+    font-weight: 700;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: 0.3s;
+}
+.faq-item summary:hover {
+    background: #f8f7ff;
+}
+.faq-item summary::after {
+    content: '\f078';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    color: var(--primary);
+    font-size: 0.8rem;
+    transition: 0.3s;
+}
+.faq-item[open] summary::after {
+    transform: rotate(180deg);
+}
+.faq-content {
+    padding: 0 20px 20px;
+    color: #555;
+    line-height: 1.6;
 }
 
 .cta-final{
@@ -297,7 +339,6 @@ z-index:999;
 
         <div class="testimonial-wrapper">
             <button class="carousel-btn btn-prev" onclick="scrollCarousel(-1)"><i class="fas fa-chevron-left"></i></button>
-            
             <div class="testimonial-carousel" id="carousel">
                 <div class="testi-item">
                     <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Ana">
@@ -324,8 +365,60 @@ z-index:999;
                     <small>Servidor Público</small>
                 </div>
             </div>
-
             <button class="carousel-btn btn-next" onclick="scrollCarousel(1)"><i class="fas fa-chevron-right"></i></button>
+        </div>
+    </div>
+</section>
+
+<section class="section-padding">
+    <div class="container">
+        <div class="section-title">
+            <h2>Perguntas Frequentes</h2>
+            <p>Tire suas últimas dúvidas sobre o Farol Familiar.</p>
+        </div>
+        
+        <div class="faq-container">
+            <details class="faq-item">
+                <summary>O Farol Familiar é uma planilha de Excel?</summary>
+                <div class="faq-content">
+                    É muito mais que uma planilha. É um sistema completo com metodologia guiada. Você não vai apenas anotar gastos, você vai aprender a automatizar sua organização para que o controle financeiro não tome mais que 5 minutos da sua semana.
+                </div>
+            </details>
+
+            <details class="faq-item">
+                <summary>Eu não entendo nada de finanças ou tecnologia. Vou conseguir?</summary>
+                <div class="faq-content">
+                    Com certeza! O sistema foi desenhado para ser intuitivo e "à prova de erros". Se você sabe usar o WhatsApp, você consegue aplicar o Farol Familiar. Além disso, temos tutoriais passo a passo.
+                </div>
+            </details>
+
+            <details class="faq-item">
+                <summary>Minha situação financeira está um caos, serve para mim?</summary>
+                <div class="faq-content">
+                    O Farol Familiar foi criado justamente para quem está no caos. Ele ajuda a estancar os vazamentos de dinheiro invisíveis e cria um plano real de saída de dívidas, focado na sua realidade atual.
+                </div>
+            </details>
+
+            <details class="faq-item">
+                <summary>Quanto tempo preciso dedicar por dia?</summary>
+                <div class="faq-content">
+                    A ideia do método é te dar liberdade, não te escravizar. No início, você levará alguns minutos para configurar, mas depois, a manutenção leva menos de 5 a 10 minutos por semana.
+                </div>
+            </details>
+
+            <details class="faq-item">
+                <summary>O pagamento é seguro? Terei acesso por quanto tempo?</summary>
+                <div class="faq-content">
+                    O pagamento é processado pela HeroSpark, uma das maiores e mais seguras plataformas de ensino do Brasil. Seu acesso é imediato e você terá acesso vitalício aos materiais e atualizações.
+                </div>
+            </details>
+
+            <details class="faq-item">
+                <summary>E se eu não gostar ou não me adaptar?</summary>
+                <div class="faq-content">
+                    Você tem uma garantia incondicional de 7 dias. Se por qualquer motivo você achar que o Farol Familiar não é para você, basta pedir o reembolso e devolvemos 100% do seu dinheiro sem perguntas.
+                </div>
+            </details>
         </div>
     </div>
 </section>
@@ -345,7 +438,7 @@ z-index:999;
 <script>
 function scrollCarousel(direction) {
     const carousel = document.getElementById('carousel');
-    const scrollAmount = 320; // Largura do card + gap
+    const scrollAmount = 320;
     carousel.scrollBy({
         left: direction * scrollAmount,
         behavior: 'smooth'
