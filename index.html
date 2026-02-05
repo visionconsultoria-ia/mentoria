@@ -30,7 +30,6 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* BARRA DE URGÊNCIA */
         .top-bar {
             background: var(--danger);
             color: white;
@@ -48,7 +47,6 @@
 
         .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
 
-        /* HERO - MOCKUP COLADO NO TOPO */
         .hero {
             background: linear-gradient(135deg, #4e44b3 0%, #8c7eff 100%);
             padding: 140px 0 80px;
@@ -100,7 +98,6 @@
 
         .hero-text .highlight { color: var(--accent); }
 
-        /* BOTÃO WHATSAPP CORRIGIDO */
         .whatsapp-float {
             position: fixed;
             bottom: 80px;
@@ -139,7 +136,6 @@
             100% { box-shadow: 0 0 0 0 rgba(247, 179, 43, 0); }
         }
 
-        /* SEÇÕES */
         .section-padding { padding: 80px 0; }
         .section-title { text-align: center; margin-bottom: 50px; }
         .section-title h2 { font-size: 2.5rem; font-weight: 800; color: var(--dark); }
@@ -162,7 +158,6 @@
         .module-item { background: #fff; padding: 30px; border-radius: 20px; border: 1px solid #eee; text-align: center; }
         .module-number { color: var(--primary); font-weight: 800; display: block; margin-bottom: 10px; font-size: 0.9rem; }
 
-        /* DEPOIMENTOS */
         .testimonial-wrapper { position: relative; max-width: 1000px; margin: 0 auto; }
         .testimonial-carousel { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 20px; padding: 20px 10px; scrollbar-width: none; }
         .testi-item { flex: 0 0 320px; scroll-snap-align: center; background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); text-align: center; border: 1px solid #eee; }
@@ -172,12 +167,29 @@
         .btn-prev { left: -20px; }
         .btn-next { right: -20px; }
 
-        /* FAQ */
         .faq-container { max-width: 850px; margin: 0 auto; }
         .faq-item { background: #fff; margin-bottom: 15px; border-radius: 15px; border: 1px solid #eee; }
         .faq-item summary { padding: 20px; font-weight: 700; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; }
         .faq-item summary::after { content: '\f078'; font-family: 'Font Awesome 6 Free'; font-weight: 900; }
         .faq-content { padding: 0 20px 20px; color: #555; border-top: 1px solid #f9f9f9; padding-top: 15px; }
+
+        /* NOVA SEÇÃO FINAL */
+        .cta-final-box { 
+            background: linear-gradient(135deg, #1a1a1a 0%, #333 100%); 
+            padding: 80px 40px; 
+            border-radius: 40px; 
+            text-align: center; 
+            color: white; 
+            margin-top: 50px;
+        }
+        .security-icons { 
+            display: flex; 
+            justify-content: center; 
+            gap: 30px; 
+            margin-top: 30px; 
+            opacity: 0.7; 
+            font-size: 0.8rem;
+        }
 
         .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
@@ -263,40 +275,55 @@
 
     <section class="section-padding reveal">
         <div class="container">
-            <div class="section-title"><h2>Quem Seguiu o Farol Vive em Paz (Resultados)</h2></div>
+            <div class="section-title"><h2>Quem Seguiu o Farol Vive em Paz</h2></div>
             <div class="testimonial-wrapper">
                 <button class="carousel-btn btn-prev" onclick="scrollCarousel(-1)"><i class="fas fa-chevron-left"></i></button>
                 <div class="testimonial-carousel" id="carousel">
-                    <div class="testi-item"><img src="https://randomuser.me/api/portraits/women/44.jpg" alt="1"><h5>Ana Paula S.</h5><p>"Em apenas 2 meses consegui quitar 3 dívidas de cartão e ainda sobrou para o lazer em família. O método funciona de verdade!"</p></div>
-                    <div class="testi-item"><img src="https://randomuser.me/api/portraits/men/32.jpg" alt="2"><h5>Ricardo M.</h5><p>"O sistema de organização é incrível. Hoje gasto apenas 5 minutos por semana para conferir tudo e dormir tranquilo."</p></div>
-                    <div class="testi-item"><img src="https://randomuser.me/api/portraits/women/68.jpg" alt="3"><h5>Mariana & Lucas</h5><p>"Meu marido e eu finalmente paramos de brigar por causa de boletos. Temos clareza total dos nossos sonhos agora."</p></div>
-                    <div class="testi-item"><img src="https://randomuser.me/api/portraits/men/85.jpg" alt="4"><h5>Carlos Eduardo</h5><p>"Achei que o problema era o meu salário baixo, mas na verdade era apenas falta de um método claro de fluxo."</p></div>
-                    <div class="testi-item"><img src="https://randomuser.me/api/portraits/women/12.jpg" alt="5"><h5>Fernanda Lima</h5><p>"Minha reserva de emergência está pronta pela primeira vez em 10 anos de casada. O Farol foi minha luz."</p></div>
+                    <div class="testi-item"><img src="https://randomuser.me/api/portraits/women/44.jpg" alt="1"><h5>Ana Paula S.</h5><p>"Em apenas 2 meses consegui quitar 3 dívidas de cartão e ainda sobrou para o lazer em família."</p></div>
+                    <div class="testi-item"><img src="https://randomuser.me/api/portraits/men/32.jpg" alt="2"><h5>Ricardo M.</h5><p>"O sistema de organização é incrível. Hoje gasto apenas 5 minutos por semana para conferir tudo."</p></div>
+                    <div class="testi-item"><img src="https://randomuser.me/api/portraits/women/68.jpg" alt="3"><h5>Mariana & Lucas</h5><p>"Meu marido e eu finalmente paramos de brigar por causa de boletos. Temos clareza total agora."</p></div>
+                    <div class="testi-item"><img src="https://randomuser.me/api/portraits/men/85.jpg" alt="4"><h5>Carlos Eduardo</h5><p>"Achei que o problema era o meu salário baixo, mas era falta de um método claro de fluxo."</p></div>
+                    <div class="testi-item"><img src="https://randomuser.me/api/portraits/women/12.jpg" alt="5"><h5>Fernanda Lima</h5><p>"Minha reserva de emergência está pronta pela primeira vez em 10 anos. O Farol foi minha luz."</p></div>
                     <div class="testi-item"><img src="https://randomuser.me/api/portraits/men/45.jpg" alt="6"><h5>Jorge A.</h5><p>"Finalmente sei para onde vai cada real. O controle é libertador e me permitiu voltar a investir."</p></div>
-                    <div class="testi-item"><img src="https://randomuser.me/api/portraits/women/22.jpg" alt="7"><h5>Beatriz Santos</h5><p>"O suporte da Gabriela é diferenciado. Ela realmente pega na mão e não deixa a gente desistir do processo."</p></div>
-                    <div class="testi-item"><img src="https://randomuser.me/api/portraits/men/60.jpg" alt="8"><h5>Marcos & Silvia</h5><p>"Recomendo para todo casal que quer construir um patrimônio sólido sem abrir mão da qualidade de vida."</p></div>
-                    <div class="testi-item"><img src="https://randomuser.me/api/portraits/women/33.jpg" alt="9"><h5>Juliana P.</h5><p>"Minhas noites de sono voltaram ao normal. Não tenho mais medo de atender o telefone ou abrir o banco."</p></div>
-                    <div class="testi-item"><img src="https://randomuser.me/api/portraits/men/11.jpg" alt="10"><h5>Rodrigo F.</h5><p>"Saí do vermelho absoluto para meus primeiros investimentos em menos de 90 dias seguindo o passo a passo."</p></div>
+                    <div class="testi-item"><img src="https://randomuser.me/api/portraits/women/22.jpg" alt="7"><h5>Beatriz Santos</h5><p>"O suporte da Gabriela é diferenciado. Ela realmente pega na mão e não deixa a gente desistir."</p></div>
+                    <div class="testi-item"><img src="https://randomuser.me/api/portraits/men/60.jpg" alt="8"><h5>Marcos & Silvia</h5><p>"Recomendo para todo casal que quer construir um patrimônio sólido sem abrir mão da qualidade."</p></div>
+                    <div class="testi-item"><img src="https://randomuser.me/api/portraits/women/33.jpg" alt="9"><h5>Juliana P.</h5><p>"Minhas noites de sono voltaram ao normal. Não tenho mais medo de atender o telefone."</p></div>
+                    <div class="testi-item"><img src="https://randomuser.me/api/portraits/men/11.jpg" alt="10"><h5>Rodrigo F.</h5><p>"Saí do vermelho absoluto para meus primeiros investimentos em menos de 90 dias."</p></div>
                 </div>
                 <button class="carousel-btn btn-next" onclick="scrollCarousel(1)"><i class="fas fa-chevron-right"></i></button>
             </div>
         </div>
     </section>
 
-    <section class="section-padding reveal" style="background: #fff;">
+    <section class="section-padding reveal">
         <div class="container">
             <div class="section-title"><h2>Dúvidas Frequentes (FAQ)</h2></div>
             <div class="faq-container">
-                <details class="faq-item"><summary>1. O Farol Familiar é apenas uma planilha de Excel?</summary><div class="faq-content">Não. O Farol é um método completo de transformação financeira que inclui ferramentas automáticas, videoaulas explicativas e suporte para sua implementação.</div></details>
-                <details class="faq-item"><summary>2. Tenho dívidas muito altas. A mentoria realmente serve para mim?</summary><div class="faq-content">Sim. O primeiro passo do método é focado justamente em estancar vazamentos de dinheiro e organizar o pagamento de dívidas de forma estratégica e rápida.</div></details>
-                <details class="faq-item"><summary>3. Não entendo nada de tecnologia. Vou conseguir usar o sistema?</summary><div class="faq-content">Sim! O sistema foi desenhado para ser intuitivo. Além disso, oferecemos tutoriais passo a passo em vídeo mostrando onde clicar e o que preencher.</div></details>
-                <details class="faq-item"><summary>4. Quanto tempo preciso dedicar por dia à mentoria?</summary><div class="faq-content">Após a configuração inicial, o método exige apenas de 5 a 10 minutos por semana para conferência e manutenção do seu fluxo financeiro.</div></details>
-                <details class="faq-item"><summary>5. O acesso ao curso e às ferramentas é vitalício?</summary><div class="faq-content">Sim! Uma vez que você entra para a Mentoria Farol Familiar, o acesso ao conteúdo e às atualizações das ferramentas é seu para sempre.</div></details>
-                <details class="faq-item"><summary>6. Meu parceiro(a) também precisa assistir às aulas?</summary><div class="faq-content">É o ideal para que o casal fale a mesma língua, mas você aprenderá como liderar o processo e trazer clareza para a casa mesmo começando sozinho(a).</div></details>
-                <details class="faq-item"><summary>7. Por que o Farol é diferente de aplicativos de finanças?</summary><div class="faq-content">Diferente de apps que apenas registram o que você já gastou (olham para o passado), o Farol foca no planejamento e na previsão do seu futuro financeiro.</div></details>
-                <details class="faq-item"><summary>8. Como eu recebo os dados de acesso após a compra?</summary><div class="faq-content">Imediatamente após a confirmação do pagamento, você receberá um e-mail automático da plataforma HeroSpark com seu login e senha exclusivos.</div></details>
-                <details class="faq-item"><summary>9. Existe alguma garantia de satisfação?</summary><div class="faq-content">Sim, você tem 7 dias de garantia incondicional. Se por qualquer motivo não gostar do conteúdo, devolvemos 100% do seu investimento sem perguntas.</div></details>
-                <details class="faq-item"><summary>10. O Farol também ensina sobre investimentos?</summary><div class="faq-content">Sim, temos um módulo bônus focado em ensinar onde colocar seu dinheiro para render com segurança total, saindo da armadilha da poupança comum.</div></details>
+                <details class="faq-item"><summary>1. O Farol Familiar é apenas uma planilha de Excel?</summary><div class="faq-content">Não. O Farol é um método completo de transformação financeira que inclui ferramentas automáticas e videoaulas.</div></details>
+                <details class="faq-item"><summary>2. Tenho dívidas muito altas. A mentoria serve para mim?</summary><div class="faq-content">Sim. O primeiro passo é focado em estancar vazamentos e organizar o pagamento de dívidas.</div></details>
+                <details class="faq-item"><summary>3. Não entendo nada de tecnologia. Vou conseguir usar?</summary><div class="faq-content">Sim! O sistema é intuitivo e oferecemos tutoriais passo a passo em vídeo.</div></details>
+                <details class="faq-item"><summary>4. Quanto tempo preciso dedicar por dia?</summary><div class="faq-content">Após a configuração, o método exige apenas de 5 a 10 minutos por semana para conferência.</div></details>
+                <details class="faq-item"><summary>5. O acesso é vitalício?</summary><div class="faq-content">Sim! Uma vez que você entra, o acesso ao conteúdo e às atualizações é seu para sempre.</div></details>
+                <details class="faq-item"><summary>6. Meu parceiro(a) também precisa participar?</summary><div class="faq-content">É o ideal, mas você aprenderá como liderar o processo mesmo começando sozinho(a).</div></details>
+                <details class="faq-item"><summary>7. Por que é diferente de aplicativos de finanças?</summary><div class="faq-content">Diferente de apps que olham para o passado, o Farol foca na previsão do seu futuro.</div></details>
+                <details class="faq-item"><summary>8. Como recebo os dados de acesso?</summary><div class="faq-content">Imediatamente após o pagamento via e-mail automático da HeroSpark.</div></details>
+                <details class="faq-item"><summary>9. Existe garantia?</summary><div class="faq-content">Sim, você tem 7 dias de garantia incondicional com 100% de reembolso.</div></details>
+                <details class="faq-item"><summary>10. Ensina sobre investimentos?</summary><div class="faq-content">Sim, temos um módulo bônus focado em ensinar onde investir com segurança total.</div></details>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding reveal">
+        <div class="container">
+            <div class="cta-final-box">
+                <h2 style="font-size: 2.5rem; margin-bottom: 20px;">Retome o Controle da Sua Vida Hoje!</h2>
+                <p style="font-size: 1.2rem; margin-bottom: 30px; opacity: 0.9;">Não deixe para amanhã a paz financeira que você pode ter agora.</p>
+                <a href="https://pay.herospark.com/sistema-financeiro-pf-vision-499415" class="cta-btn">QUERO MEU ACESSO IMEDIATO</a>
+                <div class="security-icons">
+                    <span><i class="fas fa-lock"></i> Pagamento Seguro</span>
+                    <span><i class="fas fa-shield-alt"></i> 7 Dias de Garantia</span>
+                    <span><i class="fas fa-check-circle"></i> Acesso Instantâneo</span>
+                </div>
             </div>
         </div>
     </section>
