@@ -49,7 +49,7 @@ overflow-x:hidden;
 
 .container{max-width:1100px;margin:0 auto;padding:0 20px}
 
-/* NOVO HERO BASEADO NA IMAGEM - LAYOUT MOCKUP */
+/* HERO */
 .hero{
 background: linear-gradient(135deg,#4e44b3 0%,#8c7eff 100%);
 padding: 160px 0 100px;
@@ -87,13 +87,13 @@ letter-spacing: -1.5px;
 
 .hero-image-container { position: relative; display: flex; justify-content: center; }
 .hero-image-container img {
-    width: 130%; 
-    max-width: 750px;
+    width: 140%; 
+    max-width: 800px;
     filter: drop-shadow(0 20px 50px rgba(0,0,0,0.3));
-    transform: rotate(-2deg);
+    /* Removida rotação para não cortar seu mockup novo */
 }
 
-/* BOTÃO COM PULSO E SEM TRAÇO */
+/* BOTÃO */
 .cta-btn{
 background:var(--accent);
 color:#1a1a1a;
@@ -137,11 +137,8 @@ animation: pulse 2s infinite;
 .section-title{text-align:center;margin-bottom:50px}
 .section-title h2{font-size:2.5rem;font-weight:800;color:var(--dark)}
 
-/* MÓDULOS CENTRALIZADOS */
 .modules-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
 .module-item { background: #fff; padding: 25px; border-radius: 15px; border: 1px solid #eee; transition: .3s; text-align: center; }
-.module-item h3, .module-item p { text-align: center; }
-.module-item:hover { transform: translateY(-5px); border-color: var(--secondary); }
 .module-number { color: var(--primary); font-weight: 800; font-size: 0.9rem; display: block; margin-bottom: 10px; }
 
 .for-whom-box { background: var(--dark); color: white; padding: 60px 40px; border-radius: 40px; box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
@@ -187,11 +184,9 @@ animation: pulse 2s infinite;
 
 .whatsapp-float{ position:fixed; bottom:80px; right:20px; background-color:#25d366; color:white; width:60px; height:60px; border-radius:50%; display:flex; align-items:center; justify-content:center; z-index:999; box-shadow: 0 4px 15px rgba(0,0,0,0.2); text-decoration: none !important; }
 
-/* SELOS DE SEGURANÇA */
 .security-seals { display: flex; justify-content: center; gap: 20px; margin-top: 20px; opacity: 0.7; font-size: 0.7rem; color: var(--dark); }
 .security-seals div { display: flex; align-items: center; gap: 5px; white-space: nowrap; }
 
-/* AJUSTE CTA FINAL */
 .cta-final { text-align: center; background: var(--primary); padding: 60px 20px; border-radius: 40px; color: white; display: flex; flex-direction: column; align-items: center; }
 
 @media (max-width:850px){
@@ -203,11 +198,7 @@ animation: pulse 2s infinite;
     .security-seals { justify-content: center !important; flex-wrap: wrap; margin: 20px auto 0; }
     .bio-section{flex-direction:column; text-align:center}
     .bio-stats{ width: 100%; max-width: 300px; margin: 0 auto; text-align: center; }
-    .carousel-btn { display: flex; width: 35px; height: 35px; }
-    .btn-prev { left: 5px; }
-    .btn-next { right: 5px; }
     .sticky-cta { display: flex; }
-    .whatsapp-float { bottom: 90px; }
 }
 </style>
 </head>
@@ -237,7 +228,7 @@ animation: pulse 2s infinite;
 </div>
 </div>
 <div class="hero-image-container">
-    <img src="http://googleusercontent.com/profile/picture/4" alt="Mockup Sistema Farol Familiar" style="filter: drop-shadow(0 30px 60px rgba(0,0,0,0.4));">
+    <img src="https://lh3.googleusercontent.com/u/0/d/1dgYCi_4MMkjzd-93i84DyUdQzBDiQCqI=w1000-h1000-iv1" alt="Mockup Farol Familiar">
 </div>
 </div>
 </div>
@@ -428,18 +419,6 @@ animation: pulse 2s infinite;
             <details class="faq-item"><summary>10. O Farol ensina a investir?</summary><div class="faq-content">Sim, temos um módulo exclusivo sobre investimentos seguros para fazer seu dinheiro render.</div></details>
         </div>
     </div>
-</section>
-
-<section class="container section-padding reveal">
-<div class="cta-final">
-<h2>Retome o controle da sua vida hoje.</h2>
-<p style="margin-bottom:20px">Acesso imediato ao sistema Farol Familiar.</p>
-<a href="https://pay.herospark.com/sistema-financeiro-pf-vision-499415" class="cta-btn">QUERO MEU ACESSO AGORA</a>
-<div class="security-seals" style="color: white; margin-top: 30px;">
-    <div><i class="fas fa-lock"></i> Pagamento 100% Criptografado</div>
-    <div><i class="fas fa-check-double"></i> Acesso Liberado na Hora</div>
-</div>
-</div>
 </section>
 
 <footer style="text-align:center;padding:60px 20px;color:#888;font-size:.8rem; background: #eee;">
