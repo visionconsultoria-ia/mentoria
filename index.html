@@ -8,11 +8,11 @@
 <link rel="icon" href="favicon.ico" type="image/x-icon">
 <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 
+<!-- Pixel Meta -->
 <script>
 !function(f,b,e,v,n,t,s){
 if(f.fbq)return;
-n=f.fbq=function(){
-n.callMethod?
+n=f.fbq=function(){n.callMethod?
 n.callMethod.apply(n,arguments):n.queue.push(arguments)};
 if(!f._fbq)f._fbq=n;
 n.push=n;n.loaded=!0;n.version='2.0';
@@ -21,7 +21,7 @@ t=b.createElement(e);t.async=!0;
 t.src=v;
 s=b.getElementsByTagName(e)[0];
 s.parentNode.insertBefore(t,s)
-}(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
+}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
 fbq('init','COLE_SEU_ID_DO_PIXEL_AQUI');
 fbq('track','PageView');
 </script>
@@ -38,18 +38,16 @@ src="https://www.facebook.com/tr?id=COLE_SEU_ID_DO_PIXEL_AQUI&ev=PageView&noscri
 --primary:#5a4fcf;
 --secondary:#8c7eff;
 --accent:#f7b32b;
---white:#fff;
 --dark:#1a1a1a;
 --danger:#ff4d4d
 }
 *{margin:0;padding:0;box-sizing:border-box}
 body{
 font-family:'Inter',sans-serif;
-background-color:#f4f4f9;
+background:#f4f4f9;
 color:#333;
 line-height:1.6;
-overflow-x:hidden;
--webkit-font-smoothing:antialiased
+overflow-x:hidden
 }
 header{
 background:#fff;
@@ -64,9 +62,9 @@ box-shadow:0 2px 10px rgba(0,0,0,.05)
 .flex-header{display:flex;justify-content:space-between;align-items:center}
 
 .hero{
-background:linear-gradient(135deg,#4e44b3 0%,#8c7eff 100%);
+background:linear-gradient(135deg,#4e44b3,#8c7eff);
 padding:140px 0 80px;
-color:white
+color:#fff
 }
 .hero-grid{
 display:grid;
@@ -76,22 +74,31 @@ align-items:center
 }
 .hero-text h1{
 font-size:3.5rem;
-line-height:1.1;
 font-weight:800;
 margin-bottom:20px;
 letter-spacing:-2px
 }
 .hero-text p{
 font-size:1.25rem;
-opacity:.9;
-margin-bottom:35px
+margin-bottom:35px;
+opacity:.9
 }
 .hero-image-container img{
 width:100%;
 max-width:420px;
 border-radius:30px;
-box-shadow:0 20px 40px rgba(0,0,0,.2);
-border:4px solid rgba(255,255,255,.1)
+box-shadow:0 20px 40px rgba(0,0,0,.2)
+}
+
+.cta-btn{
+background:var(--accent);
+color:#1a1a1a;
+padding:20px 40px;
+border-radius:50px;
+text-decoration:none;
+font-weight:800;
+display:inline-block;
+text-transform:uppercase
 }
 
 .pain-section{
@@ -111,39 +118,27 @@ border-left:4px solid var(--danger);
 background:#fff5f5;
 border-radius:0 15px 15px 0
 }
-.pain-card h4{
-color:var(--danger);
-margin-bottom:10px
-}
+.pain-card h4{color:var(--danger);margin-bottom:10px}
 
 .bio-section{
 padding:60px 0;
 display:flex;
-align-items:center;
-gap:50px
+gap:50px;
+align-items:center
 }
 .bio-content{flex:1}
 .bio-stats{
-flex:0 0 300px;
 background:var(--primary);
+color:#fff;
 padding:40px;
 border-radius:20px;
-color:white;
 text-align:center
 }
-.bio-stats h3{
-font-size:3.5rem;
-font-weight:800;
-margin-bottom:5px
-}
+.bio-stats h3{font-size:3.5rem}
 
 .section-padding{padding:60px 0}
 .section-title{text-align:center;margin-bottom:40px}
-.section-title h2{
-font-size:2.2rem;
-font-weight:800;
-color:var(--dark)
-}
+.section-title h2{font-size:2.2rem;font-weight:800}
 
 .testimonials-grid{
 display:grid;
@@ -156,11 +151,10 @@ padding:25px;
 border-radius:20px;
 box-shadow:0 5px 15px rgba(0,0,0,.05)
 }
-.user-info{margin-top:15px}
 
 .faq-container{max-width:800px;margin:0 auto}
 .faq-item{
-background:white;
+background:#fff;
 margin-bottom:12px;
 border-radius:12px;
 box-shadow:0 2px 8px rgba(0,0,0,.05)
@@ -173,68 +167,55 @@ list-style:none;
 display:flex;
 justify-content:space-between
 }
-.faq-item summary::after{
-content:'+';
-color:var(--primary)
-}
-.faq-content{
-padding:0 18px 18px;
-color:#666;
-font-size:.95rem
-}
+.faq-item summary::after{content:'+';color:var(--primary)}
+.faq-content{padding:0 18px 18px;color:#666}
 
 .cta-final{
 background:var(--primary);
-color:white;
+color:#fff;
 text-align:center;
 border-radius:30px;
 padding:50px 20px
 }
-.cta-btn{
-background:var(--accent);
-color:#1a1a1a;
-padding:20px 40px;
-border-radius:50px;
-text-decoration:none;
-font-weight:800;
-display:inline-block;
-transition:.2s;
-text-transform:uppercase
-}
 
+/* WhatsApp */
 .whatsapp-float{
 position:fixed;
 bottom:20px;
 right:20px;
-background-color:#25d366;
-color:white;
 width:60px;
 height:60px;
-border-radius:50px;
+background:#25d366;
+border-radius:50%;
 display:flex;
 align-items:center;
 justify-content:center;
-z-index:999;
-text-decoration:none;
-font-weight:bold
+z-index:9999;
+box-shadow:0 10px 20px rgba(0,0,0,.25)
+}
+
+@media(max-width:850px){
+.hero-grid{grid-template-columns:1fr;text-align:center}
+.hero-text h1{font-size:2.3rem}
+.bio-section{flex-direction:column;text-align:center}
 }
 </style>
 </head>
 
 <body>
 
+<!-- WhatsApp -->
 <a href="https://wa.me/551992491010?text=Quero%20saber%20mais%20sobre%20a%20mentoria"
 class="whatsapp-float" target="_blank" aria-label="WhatsApp">
-<svg width="30" height="30" viewBox="0 0 32 32" fill="white" xmlns="http://www.w3.org/2000/svg">
-<path d="M19.11 17.2c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.66.15-.2.3-.76.96-.93 1.15-.17.2-.35.22-.65.07-.3-.15-1.25-.46-2.38-1.47-.88-.79-1.47-1.76-1.64-2.06-.17-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.66-1.6-.9-2.2-.24-.58-.48-.5-.66-.5h-.56c-.2 0-.52.07-.8.37-.27.3-1.05 1.02-1.05 2.5s1.08 2.9 1.23 3.1c.15.2 2.13 3.25 5.16 4.56.72.3 1.28.48 1.72.61.72.23 1.37.2 1.88.12.57-.08 1.75-.71 2-1.4.25-.7.25-1.3.18-1.4-.07-.1-.27-.15-.57-.3zM16.02 3C8.83 3 3 8.82 3 16c0 2.54.74 5.02 2.13 7.14L3 29l6.03-2.05A12.95 12.95 0 0016.02 29C23.2 29 29 23.18 29 16S23.2 3 16.02 3z"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="28" height="28" fill="#fff">
+<path d="M380.9 97.1C339-3.7 256.3-21.3 198.6-3.1 118.3 22.6 68.8 95.3 68.8 174.8c0 30.1 7.8 59.6 22.6 85.6L64 448l190.8-50.1c24.6 13.4 52.1 20.5 80.1 20.5h.1c95.6 0 173.3-77.7 173.3-173.3 0-48.2-18.8-93.5-52.4-127z"/>
 </svg>
 </a>
 
 <header>
 <div class="container flex-header">
 <div style="font-weight:800;font-size:1.3rem;color:var(--primary)">FAROL FAMILIAR</div>
-<a href="https://pay.herospark.com/sistema-financeiro-pf-vision-499415"
-class="cta-btn" style="padding:10px 20px;font-size:.75rem">QUERO ACESSO</a>
+<a href="https://pay.herospark.com/sistema-financeiro-pf-vision-499415" class="cta-btn" style="padding:10px 20px;font-size:.75rem">QUERO ACESSO</a>
 </div>
 </header>
 
@@ -243,13 +224,11 @@ class="cta-btn" style="padding:10px 20px;font-size:.75rem">QUERO ACESSO</a>
 <div class="hero-grid">
 <div class="hero-text">
 <h1>Pare de perder dinheiro para o invisível.</h1>
-<p>O sistema Farol Familiar organiza cada centavo automaticamente, eliminando dívidas e gerando lucro real.</p>
-<a href="https://pay.herospark.com/sistema-financeiro-pf-vision-499415"
-class="cta-btn">QUERO MEU ACESSO</a>
+<p>Organize suas finanças, elimine dívidas e gere lucro real.</p>
+<a href="https://pay.herospark.com/sistema-financeiro-pf-vision-499415" class="cta-btn">QUERO MEU ACESSO</a>
 </div>
 <div class="hero-image-container">
-<img src="https://lh3.googleusercontent.com/d/1hPY42JIjxt4uLHghCgWHqlSdUW3yjZ2a"
-alt="Gabriela Vieira - Farol Familiar">
+<img src="https://lh3.googleusercontent.com/d/1hPY42JIjxt4uLHghCgWHqlSdUW3yjZ2a" alt="Gabriela Vieira">
 </div>
 </div>
 </div>
@@ -257,22 +236,11 @@ alt="Gabriela Vieira - Farol Familiar">
 
 <section class="pain-section">
 <div class="container">
-<div class="section-title">
-<h2 style="color:var(--danger)">Você se sente assim hoje?</h2>
-</div>
+<div class="section-title"><h2 style="color:var(--danger)">Você se sente assim?</h2></div>
 <div class="pain-grid">
-<div class="pain-card">
-<h4>Dinheiro que some</h4>
-<p>Você trabalha duro, mas chega no dia 15 e não sabe para onde foi seu salário.</p>
-</div>
-<div class="pain-card">
-<h4>Efeito Bola de Neve</h4>
-<p>As dívidas só aumentam e você sente que está apenas trocando seis por meia dúzia.</p>
-</div>
-<div class="pain-card">
-<h4>Medo do Extrato</h4>
-<p>A ansiedade no peito toda vez que precisa abrir o app do banco.</p>
-</div>
+<div class="pain-card"><h4>Dinheiro que some</h4><p>O salário acaba antes do mês.</p></div>
+<div class="pain-card"><h4>Dívidas crescentes</h4><p>Cartões viraram bola de neve.</p></div>
+<div class="pain-card"><h4>Ansiedade financeira</h4><p>Medo de abrir o app do banco.</p></div>
 </div>
 </div>
 </section>
@@ -280,64 +248,44 @@ alt="Gabriela Vieira - Farol Familiar">
 <section class="container">
 <div class="bio-section">
 <div class="bio-content">
-<h2 style="margin-bottom:20px">A Mente por trás do Sistema</h2>
-<p><strong>Gabriela Vieira</strong> é economista formada pela <strong>UFSC</strong>, com especialização em engenharia financeira.</p>
-<p>Transformou ferramentas complexas no <strong>Farol Familiar</strong>, um sistema simples e poderoso.</p>
+<h2>A mente por trás do sistema</h2>
+<p><strong>Gabriela Vieira</strong>, economista formada pela UFSC.</p>
+<p>Criadora do <strong>Farol Familiar</strong>.</p>
 </div>
 <div class="bio-stats">
 <h3>+10k</h3>
-<p>Usuários do Sistema</p>
+<p>Usuários</p>
 </div>
 </div>
 </section>
 
 <section class="container section-padding" style="background:#f0f0f5;border-radius:40px">
-<div class="section-title"><h2>Quem usa, não vive sem</h2></div>
+<div class="section-title"><h2>Depoimentos</h2></div>
 <div class="testimonials-grid">
-<div class="testi-card">
-<p>"Quitei 3 cartões em 4 meses. O sistema faz tudo sozinho."</p>
-<div class="user-info"><strong>Marcos Silva</strong></div>
-</div>
-<div class="testi-card">
-<p>"Paz mental. Sei exatamente quanto vou ter na conta."</p>
-<div class="user-info"><strong>Ana Paula</strong></div>
-</div>
-<div class="testi-card">
-<p>"Saí do vermelho para meu primeiro investimento."</p>
-<div class="user-info"><strong>Ricardo M.</strong></div>
-</div>
+<div class="testi-card"><p>"Sistema absurdo de bom."</p><strong>Marcos</strong></div>
+<div class="testi-card"><p>"Hoje tenho controle total."</p><strong>Ana</strong></div>
+<div class="testi-card"><p>"Saí do vermelho."</p><strong>Ricardo</strong></div>
 </div>
 </section>
 
 <section class="container section-padding">
 <div class="section-title"><h2>Dúvidas Frequentes</h2></div>
 <div class="faq-container">
-<details class="faq-item">
-<summary>É difícil de usar?</summary>
-<div class="faq-content">Não! Se você usa WhatsApp, sabe usar o sistema.</div>
-</details>
-<details class="faq-item">
-<summary>Meus dados estão seguros?</summary>
-<div class="faq-content">Sim. Não armazenamos senhas bancárias.</div>
-</details>
-<details class="faq-item">
-<summary>E se eu não gostar?</summary>
-<div class="faq-content">7 dias de garantia total.</div>
-</details>
+<details class="faq-item"><summary>É difícil?</summary><div class="faq-content">Não.</div></details>
+<details class="faq-item"><summary>Tem garantia?</summary><div class="faq-content">7 dias.</div></details>
 </div>
 </section>
 
 <section class="container section-padding">
 <div class="cta-final">
-<h2>Recupere sua liberdade.</h2>
-<p style="margin-bottom:30px">Acesso vitalício ao Farol Familiar.</p>
-<a href="https://pay.herospark.com/sistema-financeiro-pf-vision-499415"
-class="cta-btn">ADQUIRIR AGORA</a>
+<h2>Recupere sua liberdade financeira</h2>
+<p style="margin-bottom:30px">Acesso vitalício</p>
+<a href="https://pay.herospark.com/sistema-financeiro-pf-vision-499415" class="cta-btn">ADQUIRIR AGORA</a>
 </div>
 </section>
 
-<footer style="text-align:center;padding:40px 20px;color:#888;font-size:.8rem">
-© 2026 Farol Familiar | Gabriela Vieira.
+<footer style="text-align:center;padding:40px;color:#888;font-size:.8rem">
+© 2026 Farol Familiar | Gabriela Vieira
 </footer>
 
 </body>
