@@ -47,22 +47,14 @@ overflow-x:hidden;
     letter-spacing: 1px;
 }
 
-header{
-background:rgba(255,255,255,0.95);
-backdrop-filter: blur(10px);
-padding:15px 0;
-position:fixed;
-width:100%;
-top:35px; /* Abaixo da top-bar */
-z-index:1000;
-box-shadow:0 2px 10px rgba(0,0,0,.05)
-}
+/* REMOVIDO HEADER A PEDIDO */
+
 .container{max-width:1100px;margin:0 auto;padding:0 20px}
 .flex-header{display:flex;justify-content:space-between;align-items:center}
 
 .hero{
 background:linear-gradient(135deg,#4e44b3 0%,#8c7eff 100%);
-padding:180px 0 80px;
+padding:120px 0 80px; /* Ajustado para compensar falta de header */
 color:white;
 clip-path: ellipse(150% 100% at 50% 0%);
 }
@@ -189,24 +181,34 @@ animation: pulse 2s infinite;
 .security-seals div { display: flex; align-items: center; gap: 5px; white-space: nowrap; }
 
 /* AJUSTE CTA FINAL */
-.cta-final { text-align: center; background: var(--primary); padding: 60px 20px; border-radius: 40px; color: white; }
+.cta-final { 
+    text-align: center; 
+    background: var(--primary); 
+    padding: 60px 20px; 
+    border-radius: 40px; 
+    color: white; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 
 @media (max-width:850px){
     .hero-grid{grid-template-columns:1fr;text-align:center}
     .hero-text h1{font-size:2.5rem}
-    .security-seals { justify-content: center !important; flex-wrap: wrap; gap: 10px; }
+    .security-seals { justify-content: center !important; flex-wrap: wrap; gap: 15px; }
     .bio-section{flex-direction:column;text-align:center}
     .carousel-btn { display: none; }
     .sticky-cta { display: flex; }
     .whatsapp-float { bottom: 90px; }
-    .hero { clip-path: none; padding: 140px 0 60px; }
+    .hero { clip-path: none; padding: 80px 0 60px; }
 }
 </style>
 </head>
 
 <body>
 
-<div class="top-bar">Atenção: Apenas 12 vagas disponíveis para a turma de Fevereiro!</div>
+<div class="top-bar">As inscrições encerram em: <span id="timer">15:00</span></div>
 
 <a href="https://wa.me/551992491010?text=Quero%20saber%20mais" class="whatsapp-float" target="_blank">
 <i class="fa-brands fa-whatsapp fa-2x"></i>
@@ -216,13 +218,6 @@ animation: pulse 2s infinite;
     <a href="https://pay.herospark.com/sistema-financeiro-pf-vision-499415" class="cta-btn" style="width: 100%; text-align: center; padding: 15px;">QUERO MEU ACESSO</a>
 </div>
 
-<header>
-<div class="container flex-header">
-<div style="font-weight:800;font-size:1.3rem;color:var(--primary)">FAROL FAMILIAR</div>
-<a href="https://pay.herospark.com/sistema-financeiro-pf-vision-499415" class="cta-btn" style="padding:10px 25px;font-size:.75rem; animation: none;">QUERO ACESSO</a>
-</div>
-</header>
-
 <section class="hero">
 <div class="container">
 <div class="hero-grid">
@@ -230,7 +225,7 @@ animation: pulse 2s infinite;
 <h1>Pare de perder dinheiro para o invisível.</h1>
 <p>O sistema Farol Familiar organiza cada centavo automaticamente, eliminando dívidas e gerando lucro real.</p>
 <a href="https://pay.herospark.com/sistema-financeiro-pf-vision-499415" class="cta-btn">QUERO MEU ACESSO</a>
-<div class="security-seals" style="color: white; justify-content: flex-start;">
+<div class="security-seals" style="color: white; justify-content: center;">
     <div><i class="fas fa-shield-alt"></i> Compra 100% Segura</div>
     <div><i class="fas fa-undo"></i> 7 Dias de Garantia</div>
 </div>
@@ -494,6 +489,26 @@ function reveal() {
 }
 window.addEventListener("scroll", reveal);
 reveal();
+
+// SCRIPT DO CRONÔMETRO
+function startTimer(duration, display) {
+    var timer = duration, minutes, seconds;
+    setInterval(function () {
+        minutes = parseInt(timer / 60, 10);
+        seconds = parseInt(timer % 60, 10);
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+        display.textContent = minutes + ":" + seconds;
+        if (--timer < 0) {
+            timer = duration;
+        }
+    }, 1000);
+}
+window.onload = function () {
+    var fifteenMinutes = 60 * 15,
+        display = document.querySelector('#timer');
+    startTimer(fifteenMinutes, display);
+};
 </script>
 
 </body>
