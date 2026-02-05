@@ -18,9 +18,10 @@
 --accent:#f7b32b;
 --white:#fff;
 --dark:#1a1a1a;
---danger:#ff4d4d
+--danger:#ff4d4d;
+--success:#25d366
 }
-*{margin:0;padding:0;box-sizing:border-box}
+*{margin:0;padding:0;box-sizing:border-box;scroll-behavior: smooth;}
 body{
 font-family:'Inter',sans-serif;
 background-color:#f4f4f9;
@@ -29,12 +30,30 @@ line-height:1.6;
 overflow-x:hidden;
 -webkit-font-smoothing:antialiased
 }
+
+/* BARRA DE URGÊNCIA */
+.top-bar {
+    background: var(--danger);
+    color: white;
+    text-align: center;
+    padding: 8px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1100;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
 header{
-background:#fff;
+background:rgba(255,255,255,0.95);
+backdrop-filter: blur(10px);
 padding:15px 0;
 position:fixed;
 width:100%;
-top:0;
+top:35px; /* Abaixo da top-bar */
 z-index:1000;
 box-shadow:0 2px 10px rgba(0,0,0,.05)
 }
@@ -43,8 +62,9 @@ box-shadow:0 2px 10px rgba(0,0,0,.05)
 
 .hero{
 background:linear-gradient(135deg,#4e44b3 0%,#8c7eff 100%);
-padding:140px 0 80px;
-color:white
+padding:180px 0 80px;
+color:white;
+clip-path: ellipse(150% 100% at 50% 0%);
 }
 .hero-grid{
 display:grid;
@@ -72,126 +92,7 @@ box-shadow:0 20px 40px rgba(0,0,0,.2);
 border:4px solid rgba(255,255,255,.1)
 }
 
-.pain-section{
-background:#fff;
-padding:60px 0;
-border-bottom:1px solid #eee
-}
-.pain-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:20px;
-margin-top:40px
-}
-.pain-card{
-padding:30px;
-border-left:4px solid var(--danger);
-background:#fff5f5;
-border-radius:0 15px 15px 0
-}
-.pain-card h4{
-color:var(--danger);
-margin-bottom:10px
-}
-
-.bio-section{
-padding:60px 0;
-display:flex;
-align-items:center;
-gap:50px
-}
-.bio-content{flex:1}
-.bio-stats{
-flex:0 0 300px;
-background:var(--primary);
-padding:40px;
-border-radius:20px;
-color:white;
-text-align:center
-}
-.bio-stats h3{
-font-size:3.5rem;
-font-weight:800;
-margin-bottom:5px
-}
-
-.section-padding{padding:60px 0}
-.section-title{text-align:center;margin-bottom:40px}
-.section-title h2{
-font-size:2.2rem;
-font-weight:800;
-color:var(--dark)
-}
-
-.modules-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-}
-.module-item {
-    background: #fff;
-    padding: 25px;
-    border-radius: 15px;
-    border: 1px solid #eee;
-    position: relative;
-}
-.module-number {
-    color: var(--primary);
-    font-weight: 800;
-    font-size: 0.9rem;
-    display: block;
-    margin-bottom: 10px;
-}
-
-.for-whom-box {
-    background: var(--dark);
-    color: white;
-    padding: 40px;
-    border-radius: 30px;
-}
-.check-item {
-    display: flex;
-    gap: 15px;
-    margin-bottom: 15px;
-    align-items: flex-start;
-}
-.check-item i { color: var(--accent); margin-top: 5px; }
-
-/* TESTIMONIALS EXPANDIDO (10 ITENS) */
-.testimonial-wrapper { position: relative; max-width: 1000px; margin: 0 auto; }
-.testimonial-carousel {
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
-    gap: 20px;
-    padding: 20px 10px;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-}
-.testimonial-carousel::-webkit-scrollbar { display: none; }
-.testi-item { flex: 0 0 300px; scroll-snap-align: center; background: white; padding: 25px; border-radius: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); text-align: center; border: 1px solid #eee; }
-.testi-item img { width: 70px; height: 70px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; border: 3px solid var(--secondary); }
-
-.carousel-btn {
-    position: absolute;
-    top: 50%; transform: translateY(-50%);
-    background: var(--primary); color: white;
-    width: 40px; height: 40px; border-radius: 50%; border: none; cursor: pointer; z-index: 10;
-    display: flex; align-items: center; justify-content: center;
-}
-.btn-prev { left: -10px; }
-.btn-next { right: -10px; }
-
-/* FAQ EXPANDIDO (10 PERGUNTAS) */
-.faq-container { max-width: 850px; margin: 0 auto; }
-.faq-item { background: #fff; margin-bottom: 15px; border-radius: 15px; border: 1px solid #eee; overflow: hidden; }
-.faq-item summary { padding: 20px; font-weight: 700; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; }
-.faq-item summary::after { content: '+'; font-size: 1.5rem; color: var(--primary); }
-.faq-item[open] summary::after { content: '-'; }
-.faq-content { padding: 0 20px 20px; color: #555; font-size: 0.95rem; line-height: 1.7; }
-
-.cta-final{ background:var(--primary); color:white; text-align:center; border-radius:30px; padding:50px 20px }
+/* BOTÃO COM PULSO */
 .cta-btn{
 background:var(--accent);
 color:#1a1a1a;
@@ -200,33 +101,120 @@ border-radius:50px;
 text-decoration:none;
 font-weight:800;
 display:inline-block;
-transition:.2s;
+transition:.3s;
 text-transform:uppercase;
 border: none;
 cursor: pointer;
+animation: pulse 2s infinite;
+}
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(247, 179, 43, 0.7); }
+    70% { box-shadow: 0 0 0 15px rgba(247, 179, 43, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(247, 179, 43, 0); }
+}
+.cta-btn:hover { transform: scale(1.05); background: #e5a31a; }
+
+.pain-section{background:#fff;padding:80px 0;border-bottom:1px solid #eee}
+.pain-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;margin-top:40px}
+.pain-card{padding:30px;border-left:4px solid var(--danger);background:#fff5f5;border-radius:0 15px 15px 0}
+.pain-card h4{color:var(--danger);margin-bottom:10px}
+
+/* SEÇÃO BÔNUS */
+.bonus-section { background: #fff; padding: 80px 0; }
+.bonus-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-top: 40px; }
+.bonus-card { background: #f9f9ff; border: 2px dashed var(--secondary); padding: 30px; border-radius: 20px; position: relative; }
+.bonus-tag { background: var(--success); color: white; padding: 4px 12px; border-radius: 5px; font-size: 0.7rem; font-weight: 800; position: absolute; top: -12px; left: 20px; }
+.bonus-price { text-decoration: line-through; color: #888; font-size: 0.9rem; }
+
+.bio-section{padding:80px 0;display:flex;align-items:center;gap:50px}
+.bio-content{flex:1}
+.bio-stats{flex:0 0 300px;background:var(--primary);padding:40px;border-radius:20px;color:white;text-align:center}
+.bio-stats h3{font-size:3.5rem;font-weight:800;margin-bottom:5px}
+
+.section-padding{padding:80px 0}
+.section-title{text-align:center;margin-bottom:50px}
+.section-title h2{font-size:2.5rem;font-weight:800;color:var(--dark)}
+
+.modules-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+.module-item { background: #fff; padding: 25px; border-radius: 15px; border: 1px solid #eee; transition: .3s; }
+.module-item:hover { transform: translateY(-5px); border-color: var(--secondary); }
+.module-number { color: var(--primary); font-weight: 800; font-size: 0.9rem; display: block; margin-bottom: 10px; }
+
+.for-whom-box { background: var(--dark); color: white; padding: 60px 40px; border-radius: 40px; box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
+.check-item { display: flex; gap: 15px; margin-bottom: 15px; align-items: flex-start; }
+.check-item i { color: var(--accent); margin-top: 5px; }
+
+/* TESTIMONIALS */
+.testimonial-wrapper { position: relative; max-width: 1000px; margin: 0 auto; }
+.testimonial-carousel { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 20px; padding: 20px 10px; scrollbar-width: none; }
+.testimonial-carousel::-webkit-scrollbar { display: none; }
+.testi-item { flex: 0 0 320px; scroll-snap-align: center; background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); text-align: center; border: 1px solid #eee; }
+.testi-item img { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; border: 3px solid var(--secondary); }
+
+.carousel-btn { position: absolute; top: 50%; transform: translateY(-50%); background: var(--primary); color: white; width: 45px; height: 45px; border-radius: 50%; border: none; cursor: pointer; z-index: 10; display: flex; align-items: center; justify-content: center; transition: .3s; }
+.carousel-btn:hover { background: var(--secondary); }
+.btn-prev { left: -20px; }
+.btn-next { right: -20px; }
+
+/* FAQ */
+.faq-container { max-width: 850px; margin: 0 auto; }
+.faq-item { background: #fff; margin-bottom: 15px; border-radius: 15px; border: 1px solid #eee; }
+.faq-item summary { padding: 20px; font-weight: 700; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+.faq-item summary::after { content: '\f078'; font-family: 'Font Awesome 6 Free'; font-weight: 900; transition: .3s; }
+.faq-item[open] summary::after { transform: rotate(180deg); }
+.faq-content { padding: 0 20px 20px; color: #555; border-top: 1px solid #f9f9f9; padding-top: 15px; }
+
+/* REVEAL ON SCROLL */
+.reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+.reveal.active { opacity: 1; transform: translateY(0); }
+
+/* STICKY MOBILE CTA */
+.sticky-cta {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: white;
+    padding: 10px 20px;
+    box-shadow: 0 -5px 20px rgba(0,0,0,0.1);
+    display: none;
+    z-index: 1050;
+    justify-content: center;
 }
 
-.whatsapp-float{ position:fixed; bottom:20px; right:20px; background-color:#25d366; color:white; width:60px; height:60px; border-radius:50%; display:flex; align-items:center; justify-content:center; z-index:999; }
+.whatsapp-float{ position:fixed; bottom:80px; right:20px; background-color:#25d366; color:white; width:60px; height:60px; border-radius:50%; display:flex; align-items:center; justify-content:center; z-index:999; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+
+/* SELOS DE SEGURANÇA */
+.security-seals { display: flex; justify-content: center; gap: 20px; margin-top: 20px; opacity: 0.7; font-size: 0.7rem; color: var(--dark); }
+.security-seals div { display: flex; align-items: center; gap: 5px; }
 
 @media (max-width:850px){
-.hero-grid{grid-template-columns:1fr;text-align:center}
-.hero-text h1{font-size:2.3rem}
-.bio-section{flex-direction:column;text-align:center}
-.carousel-btn { display: none; }
+    .hero-grid{grid-template-columns:1fr;text-align:center}
+    .hero-text h1{font-size:2.5rem}
+    .bio-section{flex-direction:column;text-align:center}
+    .carousel-btn { display: none; }
+    .sticky-cta { display: flex; }
+    .whatsapp-float { bottom: 90px; }
 }
 </style>
 </head>
 
 <body>
 
+<div class="top-bar">Atenção: Apenas 12 vagas disponíveis para a turma de Fevereiro!</div>
+
 <a href="https://wa.me/551992491010?text=Quero%20saber%20mais" class="whatsapp-float" target="_blank">
-<i class="fa-brands fa-whatsapp"></i>
+<i class="fa-brands fa-whatsapp fa-2x"></i>
 </a>
+
+<div class="sticky-cta">
+    <a href="https://pay.herospark.com/sistema-financeiro-pf-vision-499415" class="cta-btn" style="width: 100%; text-align: center; padding: 15px;">QUERO MEU ACESSO</a>
+</div>
 
 <header>
 <div class="container flex-header">
 <div style="font-weight:800;font-size:1.3rem;color:var(--primary)">FAROL FAMILIAR</div>
-<a href="https://pay.herospark.com/sistema-financeiro-pf-vision-499415" class="cta-btn" style="padding:10px 20px;font-size:.75rem">QUERO ACESSO</a>
+<a href="https://pay.herospark.com/sistema-financeiro-pf-vision-499415" class="cta-btn" style="padding:10px 25px;font-size:.75rem; animation: none;">QUERO ACESSO</a>
 </div>
 </header>
 
@@ -237,6 +225,10 @@ cursor: pointer;
 <h1>Pare de perder dinheiro para o invisível.</h1>
 <p>O sistema Farol Familiar organiza cada centavo automaticamente, eliminando dívidas e gerando lucro real.</p>
 <a href="https://pay.herospark.com/sistema-financeiro-pf-vision-499415" class="cta-btn">QUERO MEU ACESSO</a>
+<div class="security-seals" style="color: white; justify-content: flex-start;">
+    <div><i class="fas fa-shield-alt"></i> Compra 100% Segura</div>
+    <div><i class="fas fa-undo"></i> 7 Dias de Garantia</div>
+</div>
 </div>
 <div class="hero-image-container">
 <img src="https://lh3.googleusercontent.com/d/1hPY42JIjxt4uLHghCgWHqlSdUW3yjZ2a" alt="Gabriela Vieira">
@@ -245,7 +237,7 @@ cursor: pointer;
 </div>
 </section>
 
-<section class="pain-section">
+<section class="pain-section reveal">
 <div class="container">
 <div class="section-title">
 <h2 style="color:var(--danger)">Até quando você vai viver para pagar boletos?</h2>
@@ -268,11 +260,11 @@ cursor: pointer;
 </div>
 </section>
 
-<section class="section-padding">
+<section class="section-padding reveal">
     <div class="container">
         <div class="for-whom-box">
             <h2 style="color: var(--accent); margin-bottom: 30px; text-align: center;">Esta Mentoria é para você que...</h2>
-            <div class="feature-grid" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));">
+            <div class="feature-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px;">
                 <div class="check-item"><i class="fas fa-check-circle"></i> <p>Quer parar de brigar por dinheiro dentro de casa.</p></div>
                 <div class="check-item"><i class="fas fa-check-circle"></i> <p>Deseja ter uma reserva para imprevistos e emergências.</p></div>
                 <div class="check-item"><i class="fas fa-check-circle"></i> <p>Busca clareza para realizar sonhos como viagens e bens.</p></div>
@@ -282,7 +274,30 @@ cursor: pointer;
     </div>
 </section>
 
-<section class="bio-section container">
+<section class="bonus-section reveal">
+    <div class="container">
+        <div class="section-title">
+            <h2>Bônus Exclusivos Para Você</h2>
+            <p>Se você entrar hoje, ainda leva esses materiais sem custo adicional:</p>
+        </div>
+        <div class="bonus-grid">
+            <div class="bonus-card">
+                <span class="bonus-tag">GRÁTIS</span>
+                <h3>Guia da Blindagem Bancária</h3>
+                <p>Como configurar suas contas para que os bancos não cobrem taxas abusivas.</p>
+                <p class="bonus-price">Valor individual: R$ 97,00</p>
+            </div>
+            <div class="bonus-card">
+                <span class="bonus-tag">GRÁTIS</span>
+                <h3>Planner Familiar 2026</h3>
+                <p>Um mapa visual para você imprimir e planejar as metas da família.</p>
+                <p class="bonus-price">Valor individual: R$ 47,00</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="bio-section container reveal">
 <div class="bio-content">
 <h2>Eu já estive no seu lugar...</h2>
 <p>O Farol Familiar não é uma planilha complexa. É um sistema de clareza mental e financeira.</p>
@@ -294,7 +309,7 @@ cursor: pointer;
 </div>
 </section>
 
-<section class="section-padding" style="background: #f4f4f9;">
+<section class="section-padding reveal" style="background: #f4f4f9;">
     <div class="container">
         <div class="section-title">
             <h2>Como funciona a Mentoria</h2>
@@ -325,7 +340,7 @@ cursor: pointer;
     </div>
 </section>
 
-<section class="section-padding" style="background: #fff;">
+<section class="section-padding reveal" style="background: #fff;">
     <div class="container">
         <div class="section-title">
             <h2>Quem seguiu o Farol hoje vive em paz</h2>
@@ -350,7 +365,7 @@ cursor: pointer;
                 </div>
                 <div class="testi-item">
                     <img src="https://randomuser.me/api/portraits/men/85.jpg" alt="Carlos">
-                    <p>"Achei que o problema era meu salário, mas era falta de método. Mudou tudo."</p>
+                    <p>"Achei que o problema era meu salário, mas era falta de método."</p>
                     <h5>Carlos Eduardo</h5>
                 </div>
                 <div class="testi-item">
@@ -365,22 +380,22 @@ cursor: pointer;
                 </div>
                 <div class="testi-item">
                     <img src="https://randomuser.me/api/portraits/women/22.jpg" alt="Beatriz">
-                    <p>"O suporte da Gabriela é incrível. Me senti pegada pela mão no processo."</p>
+                    <p>"O suporte da Gabriela é incrível. Me senti pegada pela mão."</p>
                     <h5>Beatriz Santos</h5>
                 </div>
                 <div class="testi-item">
                     <img src="https://randomuser.me/api/portraits/men/60.jpg" alt="Marcos">
-                    <p>"Recomendo para todo casal que quer construir patrimônio de verdade."</p>
+                    <p>"Recomendo para todo casal que quer construir patrimônio."</p>
                     <h5>Marcos & Silvia</h5>
                 </div>
                 <div class="testi-item">
                     <img src="https://randomuser.me/api/portraits/women/33.jpg" alt="Juliana">
-                    <p>"Minhas noites de sono voltaram. Não tenho mais medo de abrir o app do banco."</p>
+                    <p>"Minhas noites de sono voltaram. Não tenho mais medo do banco."</p>
                     <h5>Juliana P.</h5>
                 </div>
                 <div class="testi-item">
                     <img src="https://randomuser.me/api/portraits/men/11.jpg" alt="Rodrigo">
-                    <p>"Saí do vermelho absoluto para meus primeiros investimentos em 90 dias."</p>
+                    <p>"Saí do vermelho absoluto para investimentos em 90 dias."</p>
                     <h5>Rodrigo F.</h5>
                 </div>
             </div>
@@ -389,7 +404,7 @@ cursor: pointer;
     </div>
 </section>
 
-<section class="section-padding" style="background: #f4f4f9;">
+<section class="section-padding reveal">
     <div class="container">
         <div class="section-title">
             <h2>Dúvidas Frequentes</h2>
@@ -401,7 +416,7 @@ cursor: pointer;
             </details>
             <details class="faq-item">
                 <summary>2. Tenho dívidas muito altas. A mentoria serve para mim?</summary>
-                <div class="faq-content">Sim. O primeiro passo do método é focado em estancar vazamentos e organizar o pagamento de dívidas de forma estratégica.</div>
+                <div class="faq-content">Sim. O primeiro passo do método é focado em estancar vazamentos e organizar o pagamento de dívidas estrategicamente.</div>
             </details>
             <details class="faq-item">
                 <summary>3. Não entendo nada de tecnologia. Vou conseguir usar?</summary>
@@ -417,7 +432,7 @@ cursor: pointer;
             </details>
             <details class="faq-item">
                 <summary>6. Meu parceiro precisa participar?</summary>
-                <div class="faq-content">É o ideal, mas você aprenderá como liderar o processo e trazer clareza para a família mesmo sozinha(o).</div>
+                <div class="faq-content">É o ideal, mas você aprenderá como liderar o processo e trazer clareza mesmo sozinha(o).</div>
             </details>
             <details class="faq-item">
                 <summary>7. Por que o Farol é diferente de outros apps?</summary>
@@ -439,23 +454,43 @@ cursor: pointer;
     </div>
 </section>
 
-<section class="container section-padding">
+<section class="container section-padding reveal">
 <div class="cta-final">
 <h2>Retome o controle da sua vida hoje.</h2>
 <p style="margin-bottom:20px">Acesso imediato ao sistema Farol Familiar.</p>
 <a href="https://pay.herospark.com/sistema-financeiro-pf-vision-499415" class="cta-btn">QUERO MEU ACESSO AGORA</a>
+<div class="security-seals" style="color: white; margin-top: 30px;">
+    <div><i class="fas fa-lock"></i> Pagamento 100% Criptografado</div>
+    <div><i class="fas fa-check-double"></i> Acesso Liberado na Hora</div>
+</div>
 </div>
 </section>
 
-<footer style="text-align:center;padding:40px 20px;color:#888;font-size:.8rem; background: #eee;">
-© 2026 Farol Familiar | Gabriela Vieira.
+<footer style="text-align:center;padding:60px 20px;color:#888;font-size:.8rem; background: #eee;">
+© 2026 Farol Familiar | Gabriela Vieira. <br> Todos os direitos reservados.
 </footer>
 
 <script>
+// Carrossel
 function scrollCarousel(direction) {
     const carousel = document.getElementById('carousel');
     carousel.scrollBy({ left: direction * 320, behavior: 'smooth' });
 }
+
+// Reveal Animation
+function reveal() {
+  var reveals = document.querySelectorAll(".reveal");
+  for (var i = 0; i < reveals.length; i++) {
+    var windowHeight = window.innerHeight;
+    var elementTop = reveals[i].getBoundingClientRect().top;
+    var elementVisible = 150;
+    if (elementTop < windowHeight - elementVisible) {
+      reveals[i].classList.add("active");
+    }
+  }
+}
+window.addEventListener("scroll", reveal);
+reveal(); // Iniciar no load
 </script>
 
 </body>
