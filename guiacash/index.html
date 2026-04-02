@@ -1,1 +1,238 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Guia Cash - Controle Financeiro Inteligente</title>
 
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            /* Nova paleta Guia Cash: Verde Dinheiro e Azul Profissional */
+            --primary: #10b981; 
+            --secondary: #0f172a;
+            --accent: #f59e0b;
+            --white: #fff;
+            --dark: #0f172a;
+            --danger: #ef4444;
+            --success: #22c55e;
+            --gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .top-bar {
+            background: var(--danger);
+            color: white;
+            text-align: center;
+            padding: 10px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1100;
+            text-transform: uppercase;
+        }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+        .hero {
+            background: var(--gradient);
+            padding: 100px 0 80px; 
+            color: white;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            letter-spacing: -2px;
+        }
+
+        .hero .highlight { color: var(--primary); }
+
+        .hero p {
+            font-size: 1.25rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            opacity: 0.9;
+        }
+
+        /* BOTAO WHATSAPP */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            background-color: #25d366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .checkout-float {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background-color: var(--primary);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 50px;
+            text-decoration: none !important;
+            font-weight: 800;
+            z-index: 1000;
+            display: none;
+            animation: pulse-small 2s infinite;
+        }
+
+        @keyframes pulse-small {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .cta-btn {
+            background: var(--primary);
+            color: #fff;
+            padding: 22px 50px;
+            border-radius: 50px;
+            text-decoration: none !important;
+            font-weight: 800;
+            display: inline-block;
+            transition: .3s;
+            text-transform: uppercase;
+            box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3);
+        }
+
+        .section-padding { padding: 80px 0; }
+        .section-title { text-align: center; margin-bottom: 50px; }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 40px;
+            border-radius: 24px;
+            border: 1px solid #e2e8f0;
+            transition: 0.3s;
+        }
+
+        .feature-card i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .reveal { opacity: 0; transform: translateY(30px); transition: 0.8s all ease; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">Oferta de Lançamento Guia Cash: <span id="timer">15:00</span></div>
+
+    <a href="https://wa.me/555192491010" class="whatsapp-float" target="_blank">
+        <i class="fa-brands fa-whatsapp fa-2x"></i>
+    </a>
+
+    <a href="#" class="checkout-float" id="checkoutFloat">
+        <i class="fas fa-rocket"></i> TESTAR GUIA CASH
+    </a>
+
+    <section class="hero">
+        <div class="container">
+            <h1>O <span class="highlight">Guia Cash</span> chegou para simplificar sua vida.</h1>
+            <p>A evolução do Farol Familiar. Uma metodologia testada para quem quer sair do caos financeiro e começar a investir em tempo recorde.</p>
+            <a href="#" class="cta-btn">QUERO TESTAR O GUIA CASH</a>
+        </div>
+    </section>
+
+    <section class="section-padding reveal">
+        <div class="container">
+            <div class="section-title">
+                <h2>Por que mudar para o Guia Cash?</h2>
+            </div>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <i class="fas fa-bolt"></i>
+                    <h3>Mais Rápido</h3>
+                    <p>Interface otimizada para você gastar menos de 5 minutos por semana cuidando das suas contas.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Foco em Lucro</h3>
+                    <p>Não apenas anote gastos. Aprenda a estratégia de dividendos e faça o dinheiro trabalhar para você.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h3>100% Mobile Friendly</h3>
+                    <p>Acesse de qualquer lugar, direto no seu celular, com a nova integração Gabi AI.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer style="text-align:center; padding:60px 20px; background:#0f172a; color:#94a3b8; font-size:0.8rem;">
+        © 2026 Guia Cash | Vision Consultoria. Todos os direitos reservados.
+    </footer>
+
+    <script>
+        function startTimer(duration, display) {
+            var timer = duration, minutes, seconds;
+            setInterval(function () {
+                minutes = parseInt(timer / 60, 10);
+                seconds = parseInt(timer % 60, 10);
+                display.textContent = (minutes < 10 ? "0" + minutes : minutes) + ":" + (seconds < 10 ? "0" + seconds : seconds);
+                if (--timer < 0) { timer = duration; }
+            }, 1000);
+        }
+
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            const checkoutBtn = document.getElementById('checkoutFloat');
+            if (window.scrollY > 400) {
+                checkoutBtn.style.display = 'flex';
+            } else {
+                checkoutBtn.style.display = 'none';
+            }
+            for (var i = 0; i < reveals.length; i++) {
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                if (elementTop < window.innerHeight - 100) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+
+        window.onload = function () {
+            startTimer(60 * 15, document.querySelector('#timer'));
+            window.addEventListener("scroll", reveal);
+            reveal();
+        };
+    </script>
+</body>
+</html>
