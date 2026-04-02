@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #1abc9c; /* Verde Água Guia Cash */
+            --primary: #1abc9c; /* Verde Água / Teal Guia Cash */
             --dark: #1e293b;
             --text: #334155;
             --bg: #f1f5f9;
@@ -39,16 +39,13 @@
             padding-bottom: 30px;
         }
 
-        .logo-box {
-            display: inline-block;
-            background: var(--dark);
-            color: var(--primary);
-            padding: 10px 25px;
-            border-radius: 8px;
-            font-weight: 800;
-            font-size: 22px;
-            letter-spacing: -1px;
-            margin-bottom: 15px;
+        .logo-wrapper {
+            margin-bottom: 20px;
+        }
+
+        .logo-img {
+            max-width: 180px; /* Ajuste o tamanho do logo aqui */
+            height: auto;
         }
 
         h1 {
@@ -57,6 +54,7 @@
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1px;
+            margin-top: 15px;
         }
 
         .subtitle {
@@ -150,6 +148,7 @@
         @media (max-width: 600px) {
             .container { padding: 30px 20px; }
             h1 { font-size: 20px; }
+            .logo-img { max-width: 140px; }
         }
     </style>
 </head>
@@ -157,7 +156,9 @@
 
     <div class="container">
         <header>
-            <div class="logo-box">GUIA CASH</div>
+            <div class="logo-wrapper">
+                <img src="https://raw.githubusercontent.com/visionconsultoria-ia/visioneducacao/main/guia-cash-logo.png" alt="Logo Guia Cash" class="logo-img">
+            </div>
             <h1>Termos de Uso e Política de Responsabilidade</h1>
             <div class="subtitle">VISION EDUCAÇÃO</div>
             <div class="last-update">Última atualização: 27/03/2026</div>
