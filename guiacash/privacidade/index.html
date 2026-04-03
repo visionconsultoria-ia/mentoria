@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Política de Privacidade - Guia Cash</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --teal: #1abc9c;
+            --purple: #6b46c1;
+            --dark: #0f172a;
+            --text: #334155;
+            --bg: #f8fafc;
+            --gradient: linear-gradient(135deg, var(--purple) 0%, var(--teal) 100%);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            padding: 40px 20px;
+        }
+
+        .top-bar {
+            height: 6px;
+            width: 100%;
+            background: var(--gradient);
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 60px;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.06);
+            position: relative;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 40px;
+        }
+
+        .logo-wrapper { margin-bottom: 25px; }
+        
+        /* Ajustei para o nome exato do arquivo que vi no seu GitHub */
+        .logo-img { max-width: 200px; height: auto; }
+
+        h1 {
+            color: var(--dark);
+            font-size: 28px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
+            margin-top: 15px;
+        }
+
+        .subtitle {e
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+            font-size: 16px;
+            margin-top: 8px;
+            letter-spacing: 1px;
+        }
+
+        .last-update {
+            font-size: 14px;
+            color: #94a3b8;
+            margin-top: 12px;
+            font-weight: 500;
+        }
+
+        .content section { margin-bottom: 40px; }
+
+        h2 {
+            font-size: 19px;
+            color: var(--dark);
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+        }
+
+        h2::before {
+            content: '';
+            display: inline-block;
+            width: 5px;
+            height: 22px;
+            background: var(--gradient);
+            margin-right: 14px;
+            border-radius: 4px;
+        }
+
+        p { font-size: 16px; margin-bottom: 16px; text-align: justify; }
+
+        ul { list-style: none; padding-left: 20px; margin-bottom: 16px; }
+        ul li { margin-bottom: 8px; position: relative; padding-left: 15px; }
+        ul li::before {
+            content: "•";
+            color: var(--purple);
+            font-weight: bold;
+            font-size: 18px;
+            position: absolute;
+            left: -5px;
+            top: -2px;
+        }
+
+        .important-box {
+            background: #f1f5f9;
+            padding: 25px;
+            border-radius: 12px;
+            border-left: 4px solid var(--purple);
+            margin: 30px 0;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            color: #64748b;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        footer span {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar"></div>
+    <div class="container">
+        <header>
+            <div class="logo-wrapper">
+                <img src="../guia-cash-logo.png" alt="Logo Guia Cash" class="logo-img">
+            </div>
+            <h1>Política de Privacidade e Proteção de Dados</h1>
+            <div class="subtitle">VISION EDUCAÇÃO E CAPACITAÇÃO</div>
+            <div class="last-update">Última atualização: 03/04/2026</div>
+        </header>
+
+        <div class="content">
+            <section>
+                <h2>1. COMPROMISSO COM A PRIVACIDADE</h2>
+                <p>A Vision Capacita valoriza a sua privacidade. Esta política descreve como coletamos, usamos e protegemos suas informações ao utilizar o sistema Guia Cash, em total conformidade com a Lei Geral de Proteção de Dados (LGPD - Lei nº 13.709/2018).</p>
+            </section>
+
+            <section>
+                <h2>2. INFORMAÇÕES QUE COLETAMOS</h2>
+                <p>Para o funcionamento do ecossistema Guia Cash, coletamos:</p>
+                <ul>
+                    <li><strong>Dados de Identificação:</strong> Nome e endereço de e-mail fornecidos durante o cadastro ou via login social (Google).</li>
+                    <li><strong>Dados Financeiros:</strong> Informações inseridas voluntariamente pelo usuário (receitas, despesas, ativos e passivos).</li>
+                    <li><strong>Dados de Uso:</strong> Informações sobre como você interage com o sistema e automações via WhatsApp/Telegram.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>3. USO DE DADOS DO GOOGLE</h2>
+                <div class="important-box">
+                    <p><strong>Atenção:</strong> Se você optar por conectar sua conta Google ao Guia Cash, utilizaremos apenas os escopos estritamente necessários para:</p>
+                    <ul>
+                        <li>Autenticação segura do usuário.</li>
+                        <li>Sincronização de dados financeiros em planilhas do Google Sheets sob sua propriedade.</li>
+                        <li>Operação de automações autorizadas através do Google Apps Script.</li>
+                    </ul>
+                    <p>O Guia Cash <strong>não lê, armazena ou compartilha</strong> seus e-mails privados ou outros dados não relacionados à funcionalidade financeira do sistema.</p>
+                </div>
+            </section>
+
+            <section>
+                <h2>4. FINALIDADE DO TRATAMENTO</h2>
+                <p>Seus dados são processados exclusivamente para:</p>
+                <ul>
+                    <li>Operacionalizar as funcionalidades de cálculo e dashboard do Guia Cash.</li>
+                    <li>Permitir o funcionamento da inteligência "Nazaré" em seus diagnósticos financeiros.</li>
+                    <li>Prestar suporte técnico e comunicações sobre atualizações do sistema.</li>
+                    <li>Garantir a segurança da sua conta e prevenir fraudes.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>5. COMPARTILHAMENTO DE DADOS</h2>
+                <p>A Vision Capacita <strong>não comercializa</strong> seus dados pessoais ou financeiros com terceiros. O compartilhamento ocorre apenas quando necessário para:</p>
+                <ul>
+                    <li>Provedores de infraestrutura e hospedagem (Cloud).</li>
+                    <li>APIs de integração autorizadas por você (ex: WhatsApp/Gateway de Pagamento).</li>
+                    <li>Cumprimento de ordens judiciais ou legais.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>6. SEUS DIREITOS (LGPD)</h2>
+                <p>Como titular dos dados, você tem direito a:</p>
+                <ul>
+                    <li>Confirmar a existência de tratamento e acessar seus dados.</li>
+                    <li>Corrigir dados incompletos ou inexatos.</li>
+                    <li>Solicitar a exclusão definitiva dos seus dados de nossos servidores a qualquer momento.</li>
+                    <li>Revogar o consentimento de acesso às contas de terceiros (Google/WhatsApp).</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>7. CONTATO</h2>
+                <p>Para qualquer dúvida sobre sua privacidade ou para exercer seus direitos, entre em contato através do e-mail: <strong>contato@visioncapacita.com.br</strong></p>
+            </section>
+        </div>
+
+        <footer>
+            &copy; 2026 Vision Educação e Capacitação - Sistema <span>Guia Cash</span><br>
+            Proteção de Dados em Conformidade com a LGPD.
+        </footer>
+    </div>
+</body>
+</html>
