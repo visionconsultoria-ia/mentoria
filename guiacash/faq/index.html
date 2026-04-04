@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - Perguntas Frequentes - Guia Cash</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --teal: #1abc9c; 
+            --purple: #6b46c1; 
+            --dark: #0f172a;
+            --text: #334155;
+            --bg: #f8fafc;
+            --gradient: linear-gradient(135deg, var(--purple) 0%, var(--teal) 100%);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            padding: 40px 20px;
+        }
+
+        .top-bar {
+            height: 6px;
+            width: 100%;
+            background: var(--gradient);
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 60px;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.06);
+            position: relative;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 40px;
+        }
+
+        .logo-img {
+            max-width: 200px;
+            height: auto;
+            margin-bottom: 25px;
+        }
+
+        h1 {
+            color: var(--dark);
+            font-size: 28px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
+            margin-top: 15px;
+        }
+
+        .subtitle {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+            font-size: 16px;
+            margin-top: 8px;
+            letter-spacing: 1px;
+        }
+
+        /* FAQ Style */
+        .faq-item {
+            margin-bottom: 15px;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question {
+            padding: 20px 25px;
+            background: #fff;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 700;
+            color: var(--dark);
+            font-size: 17px;
+            user-select: none;
+        }
+
+        .faq-question:hover {
+            background: #fdfdfd;
+        }
+
+        .faq-question::after {
+            content: '+';
+            color: var(--purple);
+            font-size: 22px;
+            font-weight: 400;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-question::after {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            padding: 0 25px;
+            background: #fff;
+            transition: all 0.3s ease;
+            color: var(--text);
+            font-size: 16px;
+            border-top: 0 solid #eee;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            padding: 20px 25px;
+            border-top: 1px solid #eee;
+        }
+
+        .highlight { color: var(--purple); font-weight: 600; }
+
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            color: #64748b;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        footer span {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+
+        @media (max-width: 600px) {
+            .container { padding: 40px 20px; }
+            h1 { font-size: 22px; }
+            .faq-question { font-size: 15px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar"></div>
+    <div class="container">
+        <header>
+            <div class="logo-wrapper">
+                <img src="../guia-cash-logo.png" alt="Logo Guia Cash" class="logo-img">
+            </div>
+            <h1>Dúvidas Frequentes (FAQ)</h1>
+            <div class="subtitle">SUPORTE E FUNCIONAMENTO GUIA CASH</div>
+        </header>
+
+        <div class="content">
+            
+            <div class="faq-item">
+                <div class="faq-question">O que é o sistema Guia Cash?</div>
+                <div class="faq-answer">
+                    O Guia Cash é um ecossistema financeiro integrado que une suas finanças pessoais (PF) e empresariais (PJ) em um único dashboard no Google Sheets. Ele utiliza automações avançadas e a inteligência <span class="highlight">Nazaré</span> para gerar diagnósticos de saúde real do seu patrimônio.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">O que é a "Nazaré"?</div>
+                <div class="faq-answer">
+                    Nazaré é o motor de inteligência e lógica proprietária do sistema. Ela analisa os dados inseridos, identifica padrões de consumo e gera os "insights" que você vê nas abas Farol Familiar e Resultados PJ.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Por que preciso clicar em "Ativar Sistema"?</div>
+                <div class="faq-answer">
+                    A ativação é necessária para que o Google Apps Script configure os <span class="highlight">gatilhos (triggers)</span> automáticos. São esses gatilhos que garantem que sua planilha se expanda sozinha e que os dados do WhatsApp cheguem corretamente.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Como funciona o lançamento via WhatsApp?</div>
+                <div class="faq-answer">
+                    Através da integração com a <span class="highlight">Evolution API</span>, você pode enviar textos ou áudios relatando uma despesa ou ganho. Nossa IA interpreta a intenção, categoriza o valor e insere automaticamente na sua planilha em tempo real.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Minha planilha parou de expandir linhas, o que fazer?</div>
+                <div class="faq-answer">
+                    Vá ao menu <span class="highlight">🧭 Guia Cash</span> e clique em <span class="highlight">🔄 Sincronizar Sistema</span>. Isso irá resetar os gatilhos de expansão automática que garantem que você nunca fique sem espaço para lançamentos.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">O sistema é seguro? Onde ficam meus dados?</div>
+                <div class="faq-answer">
+                    Seus dados financeiros ficam hospedados na sua conta do Google (Google Sheets). A Vision Educação acessa apenas tecnicamente a estrutura para suporte e manutenção da inteligência Nazaré, conforme descrito em nossos Termos de Serviço.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Posso importar extratos bancários?</div>
+                <div class="faq-answer">
+                    Sim! O sistema está preparado para receber dados via importação manual de extratos (OFX/CSV) ou através das integrações automáticas que configuramos no seu ambiente.
+                </div>
+            </div>
+
+        </div>
+
+        <footer>
+            © 2026 Vision Educação e Capacitação - Sistema <span>Guia Cash</span><br>
+            A inteligência financeira para sua família e empresa.
+        </footer>
+    </div>
+
+    <script>
+        // Script simples para abrir/fechar o FAQ
+        document.querySelectorAll('.faq-question').forEach(item => {
+            item.addEventListener('click', () => {
+                const parent = item.parentElement;
+                if (parent.classList.contains('active')) {
+                    parent.classList.remove('active');
+                } else {
+                    document.querySelectorAll('.faq-item').forEach(child => child.classList.remove('active'));
+                    parent.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
