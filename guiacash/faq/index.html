@@ -3,17 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FAQ Premium - Guia Cash</title>
+    <title>FAQ - Central de Ajuda Guia Cash</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --pf-blue: #2e3192;
-            --pj-teal: #134f5c;
-            --accent-purple: #6b61d0;
-            --danger: #e74c3c;
-            --success: #27ae60;
-            --bg: #f4f7f9;
-            --dark: #1e293b;
+            --teal: #1abc9c; 
+            --purple: #6b46c1; 
+            --dark: #0f172a;
+            --text: #334155;
+            --bg: #f8fafc;
+            --gradient: linear-gradient(135deg, var(--purple) 0%, var(--teal) 100%);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -21,227 +20,248 @@
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--bg);
-            color: var(--dark);
-            line-height: 1.6;
-            padding: 20px;
+            color: var(--text);
+            line-height: 1.7;
+            padding: 40px 20px;
+        }
+
+        .top-bar {
+            height: 6px;
+            width: 100%;
+            background: var(--gradient);
+            position: absolute;
+            top: 0;
+            left: 0;
         }
 
         .container {
-            max-width: 1000px;
+            max-width: 950px;
             margin: 0 auto;
-            background: #fff;
-            border-radius: 12px;
-            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
-            overflow: hidden;
+            background: #ffffff;
+            padding: 50px;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.06);
+            position: relative;
         }
 
-        .header {
-            background: linear-gradient(135deg, var(--pf-blue), var(--pj-teal));
-            color: white;
-            padding: 40px;
+        header {
             text-align: center;
-        }
-
-        .header h1 { font-size: 28px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
-        .header p { opacity: 0.9; font-weight: 300; margin-top: 10px; }
-
-        .section-nav {
-            display: flex;
-            background: #f8fafc;
+            margin-bottom: 40px;
             border-bottom: 1px solid #e2e8f0;
-            overflow-x: auto;
+            padding-bottom: 30px;
         }
 
-        .nav-btn {
-            padding: 15px 25px;
-            border: none;
-            background: none;
-            font-weight: 700;
-            font-size: 13px;
-            color: #64748b;
-            cursor: pointer;
-            text-transform: uppercase;
-            white-space: nowrap;
-        }
-
-        .nav-btn.active { color: var(--pf-blue); border-bottom: 3px solid var(--pf-blue); }
-
-        .faq-content { padding: 30px; }
-
-        .category-group { margin-bottom: 40px; }
-        .category-header { 
-            display: flex; 
-            align-items: center; 
+        .logo-img {
+            max-width: 180px;
+            height: auto;
             margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #f1f5f9;
         }
-        .category-header h2 { font-size: 18px; color: var(--dark); font-weight: 800; }
-        
-        .faq-card {
-            background: #fff;
+
+        h1 {
+            color: var(--dark);
+            font-size: 26px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
+        }
+
+        .subtitle {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 1px;
+            margin-top: 5px;
+        }
+
+        .category-title {
+            font-size: 13px;
+            font-weight: 800;
+            color: var(--purple);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin: 35px 0 15px 5px;
+            display: flex;
+            align-items: center;
+        }
+
+        .category-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: #e2e8f0;
+            margin-left: 15px;
+        }
+
+        .faq-item {
+            margin-bottom: 12px;
             border: 1px solid #e2e8f0;
-            border-radius: 8px;
-            margin-bottom: 10px;
-            transition: all 0.2s ease;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #fff;
+            transition: border-color 0.3s ease;
         }
 
-        .faq-card:hover { border-color: var(--accent-purple); box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        .faq-item:hover { border-color: var(--teal); }
 
-        .faq-trigger {
-            width: 100%;
-            padding: 20px;
-            text-align: left;
-            background: none;
-            border: none;
+        .faq-question {
+            padding: 18px 25px;
+            cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            cursor: pointer;
             font-weight: 700;
-            font-size: 15px;
             color: var(--dark);
+            font-size: 15px;
+            user-select: none;
         }
+
+        .faq-question::after {
+            content: '+';
+            color: var(--purple);
+            font-size: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-question::after { transform: rotate(45deg); }
 
         .faq-answer {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.3s ease-out;
-            padding: 0 20px;
+            padding: 0 25px;
+            transition: all 0.3s ease;
+            color: var(--text);
+            font-size: 14.5px;
             background: #fcfdfe;
-            font-size: 14px;
-            color: #475569;
         }
 
-        .faq-card.open .faq-answer { max-height: 500px; padding-bottom: 20px; }
-        .faq-card.open .faq-trigger { color: var(--accent-purple); }
-
-        .badge { padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 800; margin-left: 10px; }
-        .badge-pf { background: #e0e7ff; color: var(--pf-blue); }
-        .badge-pj { background: #ccfbf1; color: var(--pj-teal); }
-        .badge-script { background: #fef3c7; color: #92400e; }
-
-        .btn-ref {
-            display: inline-block;
-            padding: 4px 10px;
-            background: #f1f5f9;
-            border-radius: 4px;
-            font-family: monospace;
-            font-weight: bold;
-            font-size: 12px;
-            border: 1px solid #cbd5e1;
+        .faq-item.active .faq-answer {
+            max-height: 800px;
+            padding: 20px 25px;
+            border-top: 1px solid #f1f5f9;
         }
 
-        footer { text-align: center; padding: 30px; color: #94a3b8; font-size: 12px; }
+        .highlight { color: var(--purple); font-weight: 700; }
+        .tag-pj { background: #134f5c; color: white; padding: 2px 8px; border-radius: 4px; font-size: 10px; margin-left: 10px; font-weight: 800; }
+        .tag-pf { background: #2e3192; color: white; padding: 2px 8px; border-radius: 4px; font-size: 10px; margin-left: 10px; font-weight: 800; }
+        .tag-script { background: #fef3c7; color: #92400e; padding: 2px 8px; border-radius: 4px; font-size: 10px; margin-left: 10px; font-weight: 800; }
+
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            color: #64748b;
+            font-size: 13px;
+        }
+
+        footer span { font-weight: 800; color: var(--dark); }
+
+        @media (max-width: 600px) {
+            .container { padding: 30px 15px; }
+            h1 { font-size: 20px; }
+        }
     </style>
 </head>
 <body>
+    <div class="top-bar"></div>
+    <div class="container">
+        <header>
+            <img src="../guia-cash-logo.png" alt="Logo Guia Cash" class="logo-img">
+            <h1>Central de Ajuda & FAQ</h1>
+            <div class="subtitle">SISTEMA INTEGRADO DE INTELIGÊNCIA FINANCEIRA</div>
+        </header>
 
-<div class="container">
-    <div class="header">
-        <h1>Central de Inteligência Guia Cash</h1>
-        <p>Domine a gestão integrada entre suas finanças Pessoais e Empresariais</p>
+        <div class="content">
+            
+            <div class="category-title">🚀 Lançamentos e Automação</div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Para que servem os botões de Importação? <span class="tag-script">AUTOMATIZAÇÃO</span></div>
+                <div class="faq-answer">
+                    Nas abas de <span class="tag-pf">Despesas PF</span> ou <span class="tag-pj">Saídas PJ</span>, você possui dois motores de busca: <br><br>
+                    1. <b>Importar Fatura:</b> Lê arquivos de cartões de crédito e preenche os campos automaticamente.<br>
+                    2. <b>Importar Extrato:</b> Processa arquivos OFX ou CSV de contas bancárias.<br>
+                    Após clicar, o sistema processa os dados e os organiza em modo de rascunho para sua revisão.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">O que faz o botão "Organizar Dados"?</div>
+                <div class="faq-answer">
+                    Este botão é essencial para a manutenção da sua planilha. Ele executa um script que limpa linhas em branco, padroniza a fonte <b>Inter</b> em todas as células e ordena os lançamentos da <b>data mais recente para a mais antiga</b>, garantindo que os gráficos de Dashboard reflitam a realidade sem erros de leitura.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Qual a diferença visual entre PF e PJ?</div>
+                <div class="faq-answer">
+                    O sistema utiliza um código de cores rigoroso para evitar confusão patrimonial:<br>
+                    - <span class="highlight" style="color:#2e3192">Azul (PF):</span> Focado em custos de vida, rendas pessoais e objetivos familiares.<br>
+                    - <span class="highlight" style="color:#134f5c">Teal/Verde (PJ):</span> Focado em operação empresarial, impostos, fornecedores e DRE.
+                </div>
+            </div>
+
+            <div class="category-title">🧠 Inteligência e Diagnóstico</div>
+
+            <div class="faq-item">
+                <div class="faq-question">Como a "Nazaré" calcula o meu risco financeiro?</div>
+                <div class="faq-answer">
+                    A Nazaré é o motor por trás do <span class="highlight">Exame Financeiro</span>. Ela cruza dados de Renda Bruta vs. Custo Fixo para gerar indicadores como <b>Poder de Reação</b> (sua capacidade de quitar dívidas rápido) e <b>Liquidez de Sobrevivência</b> (quanto tempo você vive com o que tem guardado). Tudo isso alimenta a "Bússola" visual de risco.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Como ler o Dashboard de Resultados PJ?</div>
+                <div class="faq-answer">
+                    Diferente de um simples fluxo de caixa, o Dashboard PJ apresenta um <b>DRE detalhado</b>. Ele foca em KPIs como o <span class="highlight">EBIT</span> (seu lucro antes de juros e impostos), <span class="highlight">Ticket Médio</span> e o <b>Ponto de Equilíbrio</b> (o quanto sua empresa precisa faturar apenas para não ter prejuízo).
+                </div>
+            </div>
+
+            <div class="category-title">🎯 Dívidas e Objetivos</div>
+
+            <div class="faq-item">
+                <div class="faq-question">Como o Mapa de Dívidas se conecta aos Objetivos?</div>
+                <div class="faq-answer">
+                    Ao listar suas dívidas no <span class="highlight">Mapa de Dívidas</span>, o sistema calcula o saldo devedor real. Esse valor é enviado automaticamente para a aba <span class="highlight">Objetivos</span>, onde você pode acompanhar o progresso da meta "Quitação de Dívidas" em tempo real através de barras de porcentagem automáticas.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Como funciona a meta do Fundo de Reserva?</div>
+                <div class="faq-answer">
+                    O Guia Cash calcula sua média de gastos mensais e sugere um valor ideal para sua reserva de emergência (ex: 6 meses de custo fixo). Você insere o que já possui investido, e o sistema mostra visualmente o quanto falta para atingir sua <b>Paz Financeira</b>.
+                </div>
+            </div>
+
+            <div class="category-title">⚙️ Manutenção do Sistema</div>
+
+            <div class="faq-item">
+                <div class="faq-question">A planilha parou de atualizar. O que fazer?</div>
+                <div class="faq-answer">
+                    Vá ao menu personalizado <span class="highlight">🧭 Guia Cash</span> no topo do Google Sheets e selecione <span class="highlight">🔄 Sincronizar Sistema</span>. Isso reinicia os gatilhos de Apps Script que conectam o robô do WhatsApp e as automações de dashboard.
+                </div>
+            </div>
+
+        </div>
+
+        <footer>
+            © 2026 <span>Vision Educação e Capacitação</span><br>
+            Desenvolvido para o Sistema Guia Cash - Todos os direitos reservados.
+        </footer>
     </div>
 
-    <div class="faq-content">
-        
-        <div class="category-group">
-            <div class="category-header">
-                <h2>🚀 Lançamentos e Automação</h2>
-            </div>
-
-            <div class="faq-card">
-                <button class="faq-trigger">Como funcionam os botões de Importação? <span class="badge badge-script">SCRIPT</span></button>
-                <div class="faq-answer">
-                    O Guia Cash possui integração para leitura de dados bancários. <br><br>
-                    1. <b>Importar Fatura:</b> Use para arquivos CSV/Excel de cartões de crédito. O sistema mapeia as colunas automaticamente.<br>
-                    2. <b>Importar Extrato:</b> Ideal para arquivos de conta corrente (OFX/CSV). <br>
-                    3. <b>Importante:</b> Após importar, o sistema mantém os dados em modo de rascunho até que você valide as categorias.
-                </div>
-            </div>
-
-            <div class="faq-card">
-                <button class="faq-trigger">Para que serve o botão "Organizar Dados"?</button>
-                <div class="faq-answer">
-                    Este botão executa uma rotina de limpeza e ordenação. Ele remove linhas vazias acidentais, padroniza as fontes para <span class="btn-ref">Inter</span> e ordena todos os seus lançamentos por <b>Data (da mais recente para a antiga)</b>, garantindo que os dashboards leiam os dados sem erros.
-                </div>
-            </div>
-
-            <div class="faq-card">
-                <button class="faq-trigger">Qual a diferença entre os lançamentos PF e PJ?</button>
-                <div class="faq-answer">
-                    O sistema é visualmente dividido para evitar confusão:<br>
-                    - <span class="badge badge-pf">AZUL (PF):</span> Categorias voltadas a custo de vida (Moradia, Alimentação, Lazer).<br>
-                    - <span class="badge badge-pj">VERDE/TEAL (PJ):</span> Categorias de negócio (Impostos, Custos Diretos, Marketing, RH).<br>
-                    As categorias do <b>PJ</b> alimentam diretamente o <span class="btn-ref">DRE</span> na aba Resultados PJ.
-                </div>
-            </div>
-        </div>
-
-        <div class="category-group">
-            <div class="category-header">
-                <h2>📊 Diagnóstico e Indicadores</h2>
-            </div>
-
-            <div class="faq-card">
-                <button class="faq-trigger">O que é a "Bússola" no Exame Financeiro?</button>
-                <div class="faq-answer">
-                    É o seu termômetro de risco. Ela cruza 6 indicadores principais, como <b>Comprometimento de Caixa</b> e <b>Nível de Alavancagem</b>. 
-                    - Se o ponteiro estiver no <span style="color:var(--success); font-weight:bold;">Verde</span>, você tem folga real.<br>
-                    - Se estiver no <span style="color:var(--danger); font-weight:bold;">Vermelho</span>, o sistema indica que sua dívida ou custo fixo ultrapassou sua capacidade de geração de renda.
-                </div>
-            </div>
-
-            <div class="faq-card">
-                <button class="faq-trigger">Como o Mapa de Dívidas ajuda na quitação?</button>
-                <div class="faq-answer">
-                    Ao preencher o credor e a taxa de juros na aba <span class="btn-ref">Mapa de Dívidas</span>, o sistema calcula o <b>Custo Efetivo</b>. Ele envia automaticamente o valor total atualizado para a aba <span class="btn-ref">Objetivos</span>, criando uma meta de quitação que se atualiza conforme você paga as parcelas.
-                </div>
-            </div>
-        </div>
-
-        <div class="category-group">
-            <div class="category-header">
-                <h2>⚙️ Operacional e Erros</h2>
-            </div>
-
-            <div class="faq-card">
-                <button class="faq-trigger">Onde vejo o lucro real da minha empresa?</button>
-                <div class="faq-answer">
-                    Na aba <span class="btn-ref">Resultados PJ</span>. O gráfico de <b>Jornada do Resultado</b> mostra exatamente onde seu dinheiro "escapou" (Impostos -> Custos -> Despesas Operacionais) até chegar no Lucro Líquido. Se houver retiradas para o PF, o sistema mostrará o indicador "Lucro com Interferência PF".
-                </div>
-            </div>
-
-            <div class="faq-card">
-                <button class="faq-trigger">Posso personalizar as categorias de Gastos/Rendas?</button>
-                <div class="faq-answer">
-                    Sim, as colunas <span class="btn-ref">TIPO</span> e <span class="btn-ref">SUBTIPO</span> são baseadas em validação de dados. Para alterar, você deve acessar a aba de configurações ocultas ou editar o intervalo de validação. Recomenda-se manter o padrão para não quebrar os gráficos do Dashboard.
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-    <footer>
-        Guia Cash v2.0 - Sistema de Inteligência Financeira<br>
-        Desenvolvido por <strong>Vision Consultoria</strong>
-    </footer>
-</div>
-
-<script>
-    document.querySelectorAll('.faq-trigger').forEach(trigger => {
-        trigger.addEventListener('click', () => {
-            const card = trigger.parentElement;
-            const isOpen = card.classList.contains('open');
-            
-            // Fecha todos os outros
-            document.querySelectorAll('.faq-card').forEach(c => c.classList.remove('open'));
-            
-            // Abre o atual se não estava aberto
-            if (!isOpen) card.classList.add('open');
+    <script>
+        document.querySelectorAll('.faq-question').forEach(item => {
+            item.addEventListener('click', () => {
+                const parent = item.parentElement;
+                if (parent.classList.contains('active')) {
+                    parent.classList.remove('active');
+                } else {
+                    document.querySelectorAll('.faq-item').forEach(child => child.classList.remove('active'));
+                    parent.classList.add('active');
+                }
+            });
         });
-    });
-</script>
-
+    </script>
 </body>
 </html>
