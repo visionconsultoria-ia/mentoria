@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FAQ - Perguntas Frequentes - Guia Cash</title>
+    <title>FAQ - Central de Ajuda Guia Cash</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -35,10 +35,10 @@
         }
 
         .container {
-            max-width: 900px;
+            max-width: 950px;
             margin: 0 auto;
             background: #ffffff;
-            padding: 60px;
+            padding: 50px;
             border-radius: 16px;
             box-shadow: 0 10px 40px rgba(0,0,0,0.06);
             position: relative;
@@ -46,24 +46,23 @@
 
         header {
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 40px;
             border-bottom: 1px solid #e2e8f0;
-            padding-bottom: 40px;
+            padding-bottom: 30px;
         }
 
         .logo-img {
-            max-width: 200px;
+            max-width: 180px;
             height: auto;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
 
         h1 {
             color: var(--dark);
-            font-size: 28px;
+            font-size: 26px;
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: -0.5px;
-            margin-top: 15px;
         }
 
         .subtitle {
@@ -71,87 +70,98 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             font-weight: 700;
-            font-size: 16px;
-            margin-top: 8px;
+            font-size: 14px;
             letter-spacing: 1px;
+            margin-top: 5px;
         }
 
-        /* FAQ Style */
+        /* FAQ Estilizado */
+        .category-title {
+            font-size: 13px;
+            font-weight: 800;
+            color: var(--purple);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin: 30px 0 15px 5px;
+            display: flex;
+            align-items: center;
+        }
+
+        .category-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: #e2e8f0;
+            margin-left: 15px;
+        }
+
         .faq-item {
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             border: 1px solid #e2e8f0;
             border-radius: 12px;
             overflow: hidden;
-            transition: all 0.3s ease;
+            background: #fff;
+            transition: border-color 0.3s ease;
         }
 
+        .faq-item:hover { border-color: var(--teal); }
+
         .faq-question {
-            padding: 20px 25px;
-            background: #fff;
+            padding: 18px 25px;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
             font-weight: 700;
             color: var(--dark);
-            font-size: 17px;
+            font-size: 16px;
             user-select: none;
-        }
-
-        .faq-question:hover {
-            background: #fdfdfd;
         }
 
         .faq-question::after {
             content: '+';
             color: var(--purple);
-            font-size: 22px;
-            font-weight: 400;
+            font-size: 20px;
             transition: transform 0.3s ease;
         }
 
-        .faq-item.active .faq-question::after {
-            transform: rotate(45deg);
-        }
+        .faq-item.active .faq-question::after { transform: rotate(45deg); }
 
         .faq-answer {
             max-height: 0;
             overflow: hidden;
             padding: 0 25px;
-            background: #fff;
             transition: all 0.3s ease;
             color: var(--text);
-            font-size: 16px;
-            border-top: 0 solid #eee;
+            font-size: 15px;
+            background: #fcfdfe;
         }
 
         .faq-item.active .faq-answer {
-            max-height: 500px;
+            max-height: 600px;
             padding: 20px 25px;
-            border-top: 1px solid #eee;
+            border-top: 1px solid #f1f5f9;
         }
 
-        .highlight { color: var(--purple); font-weight: 600; }
+        .highlight { color: var(--purple); font-weight: 700; }
+        .tag-pj { background: #134f5c; color: white; padding: 2px 8px; border-radius: 4px; font-size: 10px; margin-left: 10px; }
+        .tag-pf { background: var(--purple); color: white; padding: 2px 8px; border-radius: 4px; font-size: 10px; margin-left: 10px; }
 
         footer {
             text-align: center;
             margin-top: 50px;
             color: #64748b;
-            font-size: 14px;
-            font-weight: 500;
+            font-size: 13px;
         }
 
         footer span {
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-weight: 700;
+            font-weight: 800;
+            color: var(--dark);
         }
 
         @media (max-width: 600px) {
-            .container { padding: 40px 20px; }
-            h1 { font-size: 22px; }
-            .faq-question { font-size: 15px; }
+            .container { padding: 30px 15px; }
+            h1 { font-size: 20px; }
         }
     </style>
 </head>
@@ -159,74 +169,86 @@
     <div class="top-bar"></div>
     <div class="container">
         <header>
-            <div class="logo-wrapper">
-                <img src="../guia-cash-logo.png" alt="Logo Guia Cash" class="logo-img">
-            </div>
-            <h1>Dúvidas Frequentes (FAQ)</h1>
-            <div class="subtitle">SUPORTE E FUNCIONAMENTO GUIA CASH</div>
+            <img src="../guia-cash-logo.png" alt="Logo Guia Cash" class="logo-img">
+            <h1>Central de Ajuda & FAQ</h1>
+            <div class="subtitle">SISTEMA INTEGRADO DE INTELIGÊNCIA FINANCEIRA</div>
         </header>
 
         <div class="content">
             
+            <div class="category-title">Conceitos e Integração</div>
+            
             <div class="faq-item">
-                <div class="faq-question">O que é o sistema Guia Cash?</div>
+                <div class="faq-question">Como funciona a integração PF + PJ?</div>
                 <div class="faq-answer">
-                    O Guia Cash é um ecossistema financeiro integrado que une suas finanças pessoais (PF) e empresariais (PJ) em um único dashboard no Google Sheets. Ele utiliza automações avançadas e a inteligência <span class="highlight">Nazaré</span> para gerar diagnósticos de saúde real do seu patrimônio.
+                    O Guia Cash consolida seus dados no <span class="highlight">Farol Familiar</span>. Ele extrai o lucro real da sua empresa (PJ) e o cruza com seu custo de vida (PF). Isso permite saber se o seu negócio realmente sustenta seu padrão de vida ou se você está "pagando para trabalhar".
                 </div>
             </div>
 
             <div class="faq-item">
-                <div class="faq-question">O que é a "Nazaré"?</div>
+                <div class="faq-question">O que é a "Nazaré" e os Diagnósticos?</div>
                 <div class="faq-answer">
-                    Nazaré é o motor de inteligência e lógica proprietária do sistema. Ela analisa os dados inseridos, identifica padrões de consumo e gera os "insights" que você vê nas abas Farol Familiar e Resultados PJ.
+                    A Nazaré é o motor de cálculo que alimenta o <span class="highlight">Exame Financeiro</span>. Ela utiliza indicadores de Capacidade de Sustentação, Poder de Reação e Liquidez de Sobrevivência para gerar uma "Bússola" que indica seu nível de risco financeiro atual.
+                </div>
+            </div>
+
+            <div class="category-title">Gestão de Dívidas e Objetivos</div>
+
+            <div class="faq-item">
+                <div class="faq-question">Como usar o Mapa Inteligente das Dívidas?</div>
+                <div class="faq-answer">
+                    Basta inserir os dados dos seus empréstimos (Valor inicial, parcela, juros). O sistema calcula automaticamente o saldo real devedor e alimenta a aba <span class="highlight">Objetivos</span>, criando uma meta automática de "Quitação Total" com barras de progresso em tempo real.
                 </div>
             </div>
 
             <div class="faq-item">
-                <div class="faq-question">Por que preciso clicar em "Ativar Sistema"?</div>
+                <div class="faq-question">O que é o Fundo de Reserva Automático?</div>
                 <div class="faq-answer">
-                    A ativação é necessária para que o Google Apps Script configure os <span class="highlight">gatilhos (triggers)</span> automáticos. São esses gatilhos que garantem que sua planilha se expanda sozinha e que os dados do WhatsApp cheguem corretamente.
+                    Na aba Objetivos, o sistema analisa sua média de gastos mensais e projeta quanto você precisa ter guardado para sua segurança. Você preenche quanto já possui, e o Guia Cash mostra o percentual de alcance e quanto tempo falta para a sua paz financeira.
+                </div>
+            </div>
+
+            <div class="category-title">Finanças da Empresa (PJ)</div>
+
+            <div class="faq-item">
+                <div class="faq-question">Como ler o dashboard de Resultados PJ?</div>
+                <div class="faq-answer">
+                    O dashboard PJ utiliza métricas de <span class="highlight">DRE (Demonstração de Resultados)</span>. Ele foca em indicadores críticos como o <span class="highlight">EBIT</span> (Lucro Operacional), Ponto de Equilíbrio e Ticket Médio. Ele separa o que é Receita Bruta, Impostos e Despesas Operacionais para mostrar a saúde real do seu CNPJ.
                 </div>
             </div>
 
             <div class="faq-item">
-                <div class="faq-question">Como funciona o lançamento via WhatsApp?</div>
+                <div class="faq-question">O que significa "Lucro Real com Interferência PF"?</div>
                 <div class="faq-answer">
-                    Através da integração com a <span class="highlight">Evolution API</span>, você pode enviar textos ou áudios relatando uma despesa ou ganho. Nossa IA interpreta a intenção, categoriza o valor e insere automaticamente na sua planilha em tempo real.
+                    É um indicador exclusivo que mostra o lucro da empresa subtraindo as retiradas feitas para cobrir gastos pessoais. Isso ajuda a entender se a "mistura de contas" está prejudicando o crescimento do seu negócio.
+                </div>
+            </div>
+
+            <div class="category-title">Operacional e Dados</div>
+
+            <div class="faq-item">
+                <div class="faq-question">Como importar extratos e faturas?</div>
+                <div class="faq-answer">
+                    Nas abas de inserção (<span class="tag-pf">Despesas PF</span> ou <span class="tag-pj">Saídas PJ</span>), você encontrará botões específicos no topo. Eles permitem importar arquivos bancários ou faturas de cartão de crédito. Após importar, use o botão <span class="highlight">Organizar Dados</span> para manter a planilha limpa e funcional.
                 </div>
             </div>
 
             <div class="faq-item">
-                <div class="faq-question">Minha planilha parou de expandir linhas, o que fazer?</div>
+                <div class="faq-question">Minha planilha está lenta ou com erros, o que fazer?</div>
                 <div class="faq-answer">
-                    Vá ao menu <span class="highlight">🧭 Guia Cash</span> e clique em <span class="highlight">🔄 Sincronizar Sistema</span>. Isso irá resetar os gatilhos de expansão automática que garantem que você nunca fique sem espaço para lançamentos.
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question">O sistema é seguro? Onde ficam meus dados?</div>
-                <div class="faq-answer">
-                    Seus dados financeiros ficam hospedados na sua conta do Google (Google Sheets). A Vision Educação acessa apenas tecnicamente a estrutura para suporte e manutenção da inteligência Nazaré, conforme descrito em nossos Termos de Serviço.
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question">Posso importar extratos bancários?</div>
-                <div class="faq-answer">
-                    Sim! O sistema está preparado para receber dados via importação manual de extratos (OFX/CSV) ou através das integrações automáticas que configuramos no seu ambiente.
+                    Acesse o menu superior <span class="highlight">🧭 Guia Cash</span> e clique em <span class="highlight">🔄 Sincronizar Sistema</span>. Este comando renova os gatilhos do Apps Script e garante que as automações de expansão de linhas e conexão com o robô de WhatsApp estejam ativas.
                 </div>
             </div>
 
         </div>
 
         <footer>
-            © 2026 Vision Educação e Capacitação - Sistema <span>Guia Cash</span><br>
-            A inteligência financeira para sua família e empresa.
+            © 2026 <span>Vision Educação e Capacitação</span><br>
+            Desenvolvido para o Sistema Guia Cash - Todos os direitos reservados.
         </footer>
     </div>
 
     <script>
-        // Script simples para abrir/fechar o FAQ
         document.querySelectorAll('.faq-question').forEach(item => {
             item.addEventListener('click', () => {
                 const parent = item.parentElement;
