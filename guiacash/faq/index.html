@@ -147,14 +147,22 @@
         .tag-pf { background: #2e3192; color: white; padding: 2px 8px; border-radius: 4px; font-size: 10px; margin-left: 10px; font-weight: 800; }
         .tag-script { background: #fef3c7; color: #92400e; padding: 2px 8px; border-radius: 4px; font-size: 10px; margin-left: 10px; font-weight: 800; }
 
+        /* Estilo do Rodapé seguindo os Termos */
         footer {
             text-align: center;
             margin-top: 50px;
             color: #64748b;
-            font-size: 13px;
+            font-size: 14px;
+            font-weight: 500;
         }
 
-        footer span { font-weight: 800; color: var(--dark); }
+        footer span {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+            font-size: 14px;
+        }
 
         @media (max-width: 600px) {
             .container { padding: 30px 15px; }
@@ -244,8 +252,8 @@
         </div>
 
         <footer>
-            © 2026 <span>Vision Educação e Capacitação</span><br>
-            Desenvolvido para o Sistema Guia Cash - Todos os direitos reservados.
+            © 2026 Vision Educação e Capacitação - Sistema <span>Guia Cash</span><br>
+            Todos os direitos reservados.
         </footer>
     </div>
 
