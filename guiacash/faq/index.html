@@ -35,10 +35,10 @@
         }
 
         .container {
-            max-width: 950px;
+            max-width: 900px; /* Igual à Política */
             margin: 0 auto;
             background: #ffffff;
-            padding: 50px;
+            padding: 60px; /* Igual à Política */
             border-radius: 16px;
             box-shadow: 0 10px 40px rgba(0,0,0,0.06);
             position: relative;
@@ -46,23 +46,25 @@
 
         header {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 50px; /* Igual à Política */
             border-bottom: 1px solid #e2e8f0;
-            padding-bottom: 30px;
+            padding-bottom: 40px; /* Igual à Política */
         }
 
-        .logo-img {
-            max-width: 180px;
-            height: auto;
-            margin-bottom: 20px;
+        .logo-wrapper { margin-bottom: 25px; }
+        
+        .logo-img { 
+            max-width: 200px; /* Aumentado conforme solicitado */
+            height: auto; 
         }
 
         h1 {
             color: var(--dark);
-            font-size: 26px;
+            font-size: 28px; /* Aumentado conforme solicitado */
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: -0.5px;
+            margin-top: 15px;
         }
 
         .subtitle {
@@ -70,11 +72,13 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             font-weight: 700;
-            font-size: 14px;
+            font-size: 16px;
+            margin-top: 8px;
             letter-spacing: 1px;
-            margin-top: 5px;
+            display: block;
         }
 
+        /* Estilos específicos do FAQ dentro do layout grande */
         .category-title {
             font-size: 13px;
             font-weight: 800;
@@ -132,7 +136,7 @@
             padding: 0 25px;
             transition: all 0.3s ease;
             color: var(--text);
-            font-size: 14.5px;
+            font-size: 15px;
             background: #fcfdfe;
         }
 
@@ -147,7 +151,6 @@
         .tag-pf { background: #2e3192; color: white; padding: 2px 8px; border-radius: 4px; font-size: 10px; margin-left: 10px; font-weight: 800; }
         .tag-script { background: #fef3c7; color: #92400e; padding: 2px 8px; border-radius: 4px; font-size: 10px; margin-left: 10px; font-weight: 800; }
 
-        /* Estilo do Rodapé seguindo os Termos */
         footer {
             text-align: center;
             margin-top: 50px;
@@ -161,12 +164,12 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             font-weight: 700;
-            font-size: 14px;
         }
 
         @media (max-width: 600px) {
             .container { padding: 30px 15px; }
-            h1 { font-size: 20px; }
+            h1 { font-size: 22px; }
+            .logo-img { max-width: 160px; }
         }
     </style>
 </head>
@@ -174,13 +177,14 @@
     <div class="top-bar"></div>
     <div class="container">
         <header>
-            <img src="../guia-cash-logo.png" alt="Logo Guia Cash" class="logo-img">
+            <div class="logo-wrapper">
+                <img src="../guia-cash-logo.png" alt="Logo Guia Cash" class="logo-img">
+            </div>
             <h1>Central de Ajuda & FAQ</h1>
             <div class="subtitle">VISION EDUCAÇÃO E CAPACITAÇÃO</div>
         </header>
 
         <div class="content">
-            
             <div class="category-title">🚀 Lançamentos e Automação</div>
             
             <div class="faq-item">
@@ -218,37 +222,11 @@
             </div>
 
             <div class="faq-item">
-                <div class="faq-question">Como ler a aba de Resultados PJ?</div>
-                <div class="faq-answer">
-                    Diferente de um simples fluxo de caixa, apresentamos um <b>DRE detalhado</b>. Ele foca em KPIs como o <span class="highlight">EBIT</span>, <span class="highlight">Ticket Médio</span> e o <b>Ponto de Equilíbrio</b> da sua empresa.
-                </div>
-            </div>
-
-            <div class="category-title">🎯 Dívidas e Objetivos</div>
-
-            <div class="faq-item">
-                <div class="faq-question">Como o Mapa de Dívidas se conecta aos Objetivos?</div>
-                <div class="faq-answer">
-                    Ao listar suas dívidas, o sistema calcula o saldo devedor real e alimenta automaticamente a aba <span class="highlight">Objetivos</span>, criando uma meta de "Quitação Total" com barras de progresso.
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question">Como funciona a meta do Fundo de Reserva?</div>
-                <div class="faq-answer">
-                    O Guia Cash projeta o valor ideal para sua segurança (ex: 6 meses de custo fixo). Você insere o valor investido e o sistema mostra quanto falta para atingir sua <b>Paz Financeira</b>.
-                </div>
-            </div>
-
-            <div class="category-title">⚙️ Manutenção do Sistema</div>
-
-            <div class="faq-item">
                 <div class="faq-question">A planilha parou de atualizar. O que fazer?</div>
                 <div class="faq-answer">
                     Acesse o menu <span class="highlight">🧭 Guia Cash</span> e selecione <span class="highlight">🔄 Sincronizar Sistema</span>. Isso reinicia os gatilhos do Apps Script e a conexão com o WhatsApp.
                 </div>
             </div>
-
         </div>
 
         <footer>
