@@ -3,43 +3,233 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ativação Guia Cash | Vision Capacita</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Ativação - Guia Cash</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        .loader { border-top-color: #25D366; animation: spinner 1.5s linear infinite; }
-        @keyframes spinner { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        :root {
+            --teal: #1abc9c;
+            --purple: #6b46c1;
+            --dark: #0f172a;
+            --text: #334155;
+            --bg: #f8fafc;
+            --gradient: linear-gradient(135deg, var(--purple) 0%, var(--teal) 100%);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            padding: 40px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .top-bar {
+            height: 6px;
+            width: 100%;
+            background: var(--gradient);
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            width: 100%;
+            background: #ffffff;
+            padding: 50px 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.06);
+            position: relative;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo-wrapper { margin-bottom: 20px; }
+        .logo-img { max-width: 180px; height: auto; }
+
+        h1 {
+            color: var(--dark);
+            font-size: 24px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
+        }
+
+        .subtitle {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+            font-size: 15px;
+            margin-top: 5px;
+        }
+
+        .welcome-text {
+            text-align: center;
+            font-size: 16px;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--dark);
+            font-size: 14px;
+        }
+
+        .form-group label span {
+            color: #94a3b8;
+            font-weight: 400;
+            font-size: 12px;
+            margin-left: 5px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 15px;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .form-group input:focus {
+            border-color: var(--purple);
+            box-shadow: 0 0 0 3px rgba(107, 70, 193, 0.1);
+        }
+
+        .google-help {
+            background: rgba(26, 188, 156, 0.05);
+            border-left: 4px solid var(--teal);
+            padding: 15px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 30px;
+            font-size: 13px;
+        }
+
+        .google-help a {
+            color: var(--purple);
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .google-help a:hover { text-decoration: underline; }
+
+        .btn-submit {
+            width: 100%;
+            background: var(--dark);
+            color: white;
+            border: none;
+            padding: 16px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-submit:hover {
+            background: var(--purple);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(107, 70, 193, 0.3);
+        }
+
+        .btn-submit:active { transform: translateY(0); }
+
+        /* Loader */
+        #loading-state { display: none; text-align: center; padding: 20px 0; }
+        .spinner {
+            width: 40px; height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid var(--teal);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px auto;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #94a3b8;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        @media (max-width: 600px) {
+            .container { padding: 40px 25px; }
+            h1 { font-size: 20px; }
+            .logo-img { max-width: 150px; }
+        }
     </style>
 </head>
-<body class="bg-gray-50 flex items-center justify-center min-h-screen">
-    <div class="max-w-md w-full bg-white p-8 rounded-xl shadow-lg border border-gray-100">
-        <div class="text-center mb-8">
-            <h1 class="text-2xl font-bold text-gray-900">GUIA <span class="text-green-600">CASH</span></h1>
-            <p class="text-gray-500 text-sm mt-1">Configuração de Ecossistema Financeiro</p>
-        </div>
+<body>
+    <div class="top-bar"></div>
+    <div class="container">
+        <header>
+            <div class="logo-wrapper">
+                <img src="../guia-cash-logo.png" alt="Logo Guia Cash" class="logo-img">
+            </div>
+            <h1>Configuração de Acesso</h1>
+            <div class="subtitle">VISION EDUCAÇÃO E CAPACITAÇÃO</div>
+        </header>
 
         <div id="setup-content">
-            <h2 id="boas-vindas" class="text-xl font-semibold text-gray-800 mb-4 text-center">Olá!</h2>
-            <p class="text-gray-600 text-sm mb-6 text-center">
-                Para liberarmos sua planilha personalizada e a automação, confirme seu <strong>e-mail do Google</strong> abaixo:
-            </p>
-
-            <div class="space-y-4">
-                <input type="email" id="user-email" 
-                       class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition"
-                       placeholder="seu-email@gmail.com">
-                
-                <button onclick="ativarSistema()" id="btn-ativar"
-                        class="w-full bg-black text-white font-bold py-3 rounded-lg hover:bg-gray-800 transition transform active:scale-95 shadow-md">
-                    GERAR MINHA ESTRUTURA
-                </button>
+            <div class="welcome-text">
+                <strong style="color: var(--dark); font-size: 18px;" id="boas-vindas">Olá! 🚀</strong><br>
+                Para liberarmos sua planilha inteligente e a automação do WhatsApp, confirme os e-mails do Google que terão acesso.
             </div>
+
+            <div class="form-group">
+                <label for="email-1">E-mail Principal do Google (Obrigatório)</label>
+                <input type="email" id="email-1" placeholder="seu.email@gmail.com" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email-2">E-mail Secundário <span>(Opcional - Sócio, Esposa, etc.)</span></label>
+                <input type="email" id="email-2" placeholder="socio@gmail.com">
+            </div>
+
+            <div class="google-help">
+                💡 <strong>Por que um e-mail Google?</strong> Nossa inteligência roda no ecossistema do Google Drive. <br><br>
+                Não usa Gmail? Sem problemas. <a href="https://accounts.google.com/SignUpWithoutGmail" target="_blank">Clique aqui para vincular seu e-mail atual (Hotmail, Yahoo, Corporativo) a uma conta Google</a> gratuita em 1 minuto.
+            </div>
+
+            <button onclick="ativarSistema()" id="btn-ativar" class="btn-submit">
+                Gerar Minha Estrutura
+            </button>
         </div>
 
-        <div id="loading-state" class="hidden text-center py-10">
-            <div class="loader ease-linear rounded-full border-4 border-t-4 border-gray-200 h-12 w-12 mb-4 mx-auto"></div>
-            <p class="text-gray-700 font-medium">Configurando sua Inteligência...</p>
-            <p class="text-gray-400 text-xs mt-2">Isso leva apenas alguns segundos.</p>
+        <div id="loading-state">
+            <div class="spinner"></div>
+            <h3 style="color: var(--dark); margin-bottom: 5px;">Construindo seu Ecossistema...</h3>
+            <p style="color: #64748b; font-size: 14px;">Isso leva apenas alguns segundos. Não feche a página.</p>
         </div>
+
+        <footer>
+            &copy; 2026 Vision Educação - Sistema Guia Cash
+        </footer>
     </div>
 
     <script>
@@ -51,44 +241,50 @@
 
         // 2. Personaliza a tela
         document.getElementById('boas-vindas').innerText = `Olá, ${nome}! 🚀`;
-        if(emailPadrao) document.getElementById('user-email').value = emailPadrao;
+        if(emailPadrao) document.getElementById('email-1').value = emailPadrao;
 
         async function ativarSistema() {
-            const emailGoogle = document.getElementById('user-email').value;
-            const btn = document.getElementById('btn-ativar');
+            const email1 = document.getElementById('email-1').value.trim();
+            const email2 = document.getElementById('email-2').value.trim();
             
-            if(!emailGoogle.includes('@')) {
-                alert('Por favor, insira um e-mail válido.');
+            if(!email1.includes('@')) {
+                alert('Por favor, insira um e-mail principal válido.');
+                document.getElementById('email-1').focus();
                 return;
             }
 
             // UI: Troca para estado de carregamento
-            document.getElementById('setup-content').classList.add('hidden');
-            document.getElementById('loading-state').classList.remove('hidden');
+            document.getElementById('setup-content').style.display = 'none';
+            document.getElementById('loading-state').style.display = 'block';
 
             try {
-                // 3. Envia para o SEGUNDO Webhook do n8n (o de entrega)
+                // 3. Substitua a URL abaixo pela URL do seu Webhook de Entrega no n8n
                 const response = await fetch('SUA_URL_WEBHOOK_N8N_ENTREGA', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         id_pagamento: idPedido,
                         nome: nome,
-                        email_google: emailGoogle
+                        email_google_1: email1,
+                        email_google_2: email2 || null // Envia null se estiver vazio
                     })
                 });
 
                 const data = await response.json();
 
                 if(data.link_planilha) {
-                    // 4. Redireciona direto para a planilha criada
                     window.location.href = data.link_planilha;
                 } else {
-                    alert('Erro ao gerar planilha. Chame o suporte.');
+                    alert('Erro ao gerar planilha. Chame nosso suporte no WhatsApp.');
+                    // Restaura a UI em caso de erro
+                    document.getElementById('loading-state').style.display = 'none';
+                    document.getElementById('setup-content').style.display = 'block';
                 }
             } catch (error) {
                 console.error(error);
-                alert('Erro na comunicação com o servidor.');
+                alert('Erro na comunicação com o servidor. Tente novamente.');
+                document.getElementById('loading-state').style.display = 'none';
+                document.getElementById('setup-content').style.display = 'block';
             }
         }
     </script>
