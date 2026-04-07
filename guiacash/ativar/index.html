@@ -94,20 +94,12 @@
             font-size: 14px;
         }
 
-        .form-group label span {
-            color: #94a3b8;
-            font-weight: 400;
-            font-size: 12px;
-            margin-left: 5px;
-        }
-
         .form-group input {
             width: 100%;
             padding: 14px;
             border: 2px solid #e2e8f0;
             border-radius: 8px;
             font-size: 15px;
-            font-family: 'Inter', sans-serif;
             transition: all 0.3s ease;
             outline: none;
         }
@@ -126,14 +118,6 @@
             font-size: 13px;
         }
 
-        .google-help a {
-            color: var(--purple);
-            font-weight: 600;
-            text-decoration: none;
-        }
-
-        .google-help a:hover { text-decoration: underline; }
-
         .btn-submit {
             width: 100%;
             background: var(--dark);
@@ -146,18 +130,19 @@
             cursor: pointer;
             transition: all 0.3s ease;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
         }
 
-        .btn-submit:hover {
+        .btn-submit:hover:not(:disabled) {
             background: var(--purple);
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(107, 70, 193, 0.3);
         }
 
-        .btn-submit:active { transform: translateY(0); }
+        .btn-submit:disabled {
+            background: #cbd5e1;
+            cursor: not-allowed;
+        }
 
-        /* Loader */
         #loading-state { display: none; text-align: center; padding: 20px 0; }
         .spinner {
             width: 40px; height: 40px;
@@ -174,13 +159,6 @@
             margin-top: 30px;
             color: #94a3b8;
             font-size: 12px;
-            font-weight: 500;
-        }
-
-        @media (max-width: 600px) {
-            .container { padding: 40px 25px; }
-            h1 { font-size: 20px; }
-            .logo-img { max-width: 150px; }
         }
     </style>
 </head>
@@ -198,22 +176,21 @@
         <div id="setup-content">
             <div class="welcome-text">
                 <strong style="color: var(--dark); font-size: 18px;" id="boas-vindas">Olá! 🚀</strong><br>
-                Para liberarmos sua planilha inteligente e a automação do WhatsApp, confirme os e-mails do Google que terão acesso.
+                Confirma os e-mails da Google para libertarmos a tua estrutura.
             </div>
 
             <div class="form-group">
-                <label for="email-1">E-mail Principal do Google (Obrigatório)</label>
-                <input type="email" id="email-1" placeholder="seu.email@gmail.com" required>
+                <label for="email-1">E-mail Principal Google (Obrigatório)</label>
+                <input type="email" id="email-1" placeholder="exemplo@gmail.com" required>
             </div>
 
             <div class="form-group">
-                <label for="email-2">E-mail Secundário <span>(Opcional - Sócio, Esposa, etc.)</span></label>
+                <label for="email-2">E-mail Secundário (Opcional)</label>
                 <input type="email" id="email-2" placeholder="socio@gmail.com">
             </div>
 
             <div class="google-help">
-                💡 <strong>Por que um e-mail Google?</strong> Nossa inteligência roda no ecossistema do Google Drive. <br><br>
-                Não usa Gmail? Sem problemas. <a href="https://accounts.google.com/SignUpWithoutGmail" target="_blank">Clique aqui para vincular seu e-mail atual (Hotmail, Yahoo, Corporativo) a uma conta Google</a> gratuita em 1 minuto.
+                💡 <strong>Dica:</strong> Certifica-te que usas um e-mail @gmail.com ou associado ao Google Drive.
             </div>
 
             <button onclick="ativarSistema()" id="btn-ativar" class="btn-submit">
@@ -222,9 +199,11 @@
         </div>
 
         <div id="loading-state">
-            <div class="spinner"></div>
-            <h3 style="color: var(--dark); margin-bottom: 5px;">Construindo seu Ecossistema...</h3>
-            <p style="color: #64748b; font-size: 14px;">Isso leva apenas alguns segundos. Não feche a página.</p>
+            <div id="spinner-container">
+                <div class="spinner"></div>
+                <h3 id="loading-title" style="color: var(--dark); margin-bottom: 5px;">Construindo seu Ecossistema...</h3>
+                <p id="loading-msg" style="color: #64748b; font-size: 14px;">Isto leva apenas alguns segundos. Não feches a página.</p>
+            </div>
         </div>
 
         <footer>
@@ -233,58 +212,84 @@
     </div>
 
     <script>
-        // 1. Captura dados da URL enviada pelo n8n
         const urlParams = new URLSearchParams(window.location.search);
         const nome = urlParams.get('nome') || 'Cliente';
         const idPedido = urlParams.get('id');
         const emailPadrao = urlParams.get('email');
 
-        // 2. Personaliza a tela
+        const btn = document.getElementById('btn-ativar');
+        const setupContent = document.getElementById('setup-content');
+        const loadingState = document.getElementById('loading-state');
+
+        // Inicialização
         document.getElementById('boas-vindas').innerText = `Olá, ${nome}! 🚀`;
         if(emailPadrao) document.getElementById('email-1').value = emailPadrao;
+
+        // VERIFICAÇÃO DE BLOQUEIO (Furo de abertura repetida)
+        window.onload = function() {
+            if (idPedido && localStorage.getItem('ativado_' + idPedido)) {
+                setupContent.style.display = 'none';
+                loadingState.style.display = 'block';
+                document.getElementById('spinner-container').innerHTML = `
+                    <h2 style="color: var(--purple);">✅ Já Ativado!</h2>
+                    <p style="margin-top:15px;">Este pedido já foi configurado. Verifica o teu WhatsApp ou e-mail.</p>
+                `;
+            }
+        };
 
         async function ativarSistema() {
             const email1 = document.getElementById('email-1').value.trim();
             const email2 = document.getElementById('email-2').value.trim();
             
             if(!email1.includes('@')) {
-                alert('Por favor, insira um e-mail principal válido.');
-                document.getElementById('email-1').focus();
+                alert('Insere um e-mail Google válido.');
                 return;
             }
 
-            // UI: Troca para estado de carregamento
-            document.getElementById('setup-content').style.display = 'none';
-            document.getElementById('loading-state').style.display = 'block';
+            // TRAVA: Desativa botão e mostra loading
+            btn.disabled = true;
+            btn.innerText = "A processar...";
+            setupContent.style.display = 'none';
+            loadingState.style.display = 'block';
 
             try {
-                // 3. Substitua a URL abaixo pela URL do seu Webhook de Entrega no n8n
-                const response = await fetch('SUA_URL_WEBHOOK_N8N_ENTREGA', {
+                // SUBSTITUI PELA TUA URL DO N8N
+                const response = await fetch('SUA_URL_WEBHOOK_N8N_AQUI', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         id_pagamento: idPedido,
                         nome: nome,
                         email_google_1: email1,
-                        email_google_2: email2 || null // Envia null se estiver vazio
+                        email_google_2: email2 || null,
+                        timestamp: new Date().toISOString()
                     })
                 });
 
-                const data = await response.json();
-
-                if(data.link_planilha) {
-                    window.location.href = data.link_planilha;
+                if (response.ok) {
+                    // SUCESSO: Grava a trava permanente
+                    localStorage.setItem('ativado_' + idPedido, 'true');
+                    
+                    const data = await response.json();
+                    if(data.link_planilha) {
+                        window.location.href = data.link_planilha;
+                    } else {
+                        document.getElementById('spinner-container').innerHTML = `
+                            <h2 style="color: var(--teal);">Sucesso!</h2>
+                            <p>A tua estrutura está a ser enviada para o WhatsApp.</p>
+                        `;
+                    }
                 } else {
-                    alert('Erro ao gerar planilha. Chame nosso suporte no WhatsApp.');
-                    // Restaura a UI em caso de erro
-                    document.getElementById('loading-state').style.display = 'none';
-                    document.getElementById('setup-content').style.display = 'block';
+                    throw new Error();
                 }
+
             } catch (error) {
-                console.error(error);
-                alert('Erro na comunicação com o servidor. Tente novamente.');
-                document.getElementById('loading-state').style.display = 'none';
-                document.getElementById('setup-content').style.display = 'block';
+                // EM CASO DE ERRO: Liberta o botão para tentar de novo
+                alert('Erro de conexão. Tenta novamente.');
+                btn.disabled = false;
+                btn.innerText = "Gerar Minha Estrutura";
+                setupContent.style.display = 'block';
+                loadingState.style.display = 'none';
             }
         }
     </script>
