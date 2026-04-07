@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Termos de Serviço - Guia Cash</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <title>Ativação - Guia Cash</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --teal: #1abc9c; /* Verde Água */
-            --purple: #6b46c1; /* Roxo do Logo */
+            --teal: #1abc9c;
+            --purple: #6b46c1;
             --dark: #0f172a;
             --text: #334155;
             --bg: #f8fafc;
@@ -23,6 +23,10 @@
             color: var(--text);
             line-height: 1.7;
             padding: 40px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
         }
 
         .top-bar {
@@ -35,10 +39,10 @@
         }
 
         .container {
-            max-width: 900px;
-            margin: 0 auto;
+            max-width: 600px;
+            width: 100%;
             background: #ffffff;
-            padding: 60px;
+            padding: 50px 40px;
             border-radius: 16px;
             box-shadow: 0 10px 40px rgba(0,0,0,0.06);
             position: relative;
@@ -46,27 +50,18 @@
 
         header {
             text-align: center;
-            margin-bottom: 50px;
-            border-bottom: 1px solid #e2e8f0;
-            padding-bottom: 40px;
+            margin-bottom: 30px;
         }
 
-        .logo-wrapper {
-            margin-bottom: 25px;
-        }
-
-        .logo-img {
-            max-width: 200px;
-            height: auto;
-        }
+        .logo-wrapper { margin-bottom: 20px; }
+        .logo-img { max-width: 180px; height: auto; }
 
         h1 {
             color: var(--dark);
-            font-size: 28px;
+            font-size: 24px;
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: -0.5px;
-            margin-top: 15px;
         }
 
         .subtitle {
@@ -74,138 +69,118 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             font-weight: 700;
+            font-size: 15px;
+            margin-top: 5px;
+        }
+
+        .welcome-text {
+            text-align: center;
             font-size: 16px;
-            margin-top: 8px;
-            letter-spacing: 1px;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e2e8f0;
         }
 
-        .last-update {
-            font-size: 14px;
-            color: #94a3b8;
-            margin-top: 12px;
-            font-weight: 500;
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
         }
 
-        .content section { margin-bottom: 40px; }
-
-        h2 {
-            font-size: 19px;
-            color: var(--dark);
-            margin-bottom: 18px;
-            display: flex;
-            align-items: center;
-            font-weight: 700;
-        }
-
-        h2::before {
-            content: '';
-            display: inline-block;
-            width: 5px;
-            height: 22px;
-            background: var(--gradient);
-            margin-right: 14px;
-            border-radius: 4px;
-        }
-
-        p {
-            font-size: 16px;
-            margin-bottom: 16px;
-            text-align: justify;
-        }
-
-        ul { 
-            list-style: none; 
-            padding-left: 20px; 
-            margin-bottom: 16px;
-        }
-        
-        ul li {
-            margin-bottom: 8px;
-            position: relative;
-            padding-left: 15px;
-        }
-
-        ul li::before {
-            content: "•";
-            color: var(--purple);
-            font-weight: bold;
-            font-size: 18px;
-            position: absolute;
-            left: -5px;
-            top: -2px;
-        }
-
-        .highlight-text {
+        .form-group label {
+            display: block;
             font-weight: 600;
+            margin-bottom: 8px;
             color: var(--dark);
+            font-size: 14px;
         }
 
-        .consent-final {
+        .form-group label span {
+            color: #94a3b8;
+            font-weight: 400;
+            font-size: 12px;
+            margin-left: 5px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 15px;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .form-group input:focus {
+            border-color: var(--purple);
+            box-shadow: 0 0 0 3px rgba(107, 70, 193, 0.1);
+        }
+
+        .google-help {
+            background: rgba(26, 188, 156, 0.05);
+            border-left: 4px solid var(--teal);
+            padding: 15px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 30px;
+            font-size: 13px;
+        }
+
+        .google-help a {
+            color: var(--purple);
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .google-help a:hover { text-decoration: underline; }
+
+        .btn-submit {
+            width: 100%;
             background: var(--dark);
             color: white;
-            padding: 40px;
-            border-radius: 16px;
-            margin-top: 60px;
-            box-shadow: 0 10px 25px rgba(107, 70, 193, 0.15);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .consent-final::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: var(--gradient);
-        }
-
-        .consent-final h2 { 
-            color: white; 
-            border: none; 
-            margin-bottom: 25px;
-        }
-        
-        .consent-final h2::before { display: none; }
-
-        .check-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
-            font-weight: 500;
-            font-size: 16px;
-            background: rgba(255,255,255,0.05);
-            padding: 12px 20px;
+            border: none;
+            padding: 16px;
             border-radius: 8px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
-        .check-item span {
-            color: var(--teal);
-            margin-right: 15px;
-            font-size: 22px;
+        .btn-submit:hover {
+            background: var(--purple);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(107, 70, 193, 0.3);
         }
+
+        .btn-submit:active { transform: translateY(0); }
+
+        /* Loader */
+        #loading-state { display: none; text-align: center; padding: 20px 0; }
+        .spinner {
+            width: 40px; height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid var(--teal);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px auto;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
         footer {
             text-align: center;
-            margin-top: 50px;
-            color: #64748b;
-            font-size: 14px;
+            margin-top: 30px;
+            color: #94a3b8;
+            font-size: 12px;
             font-weight: 500;
-        }
-
-        footer span {
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-weight: 700;
-            font-size: 14px;
         }
 
         @media (max-width: 600px) {
             .container { padding: 40px 25px; }
-            h1 { font-size: 22px; }
-            .logo-img { max-width: 160px; }
+            h1 { font-size: 20px; }
+            .logo-img { max-width: 150px; }
         }
     </style>
 </head>
@@ -216,182 +191,102 @@
             <div class="logo-wrapper">
                 <img src="../guia-cash-logo.png" alt="Logo Guia Cash" class="logo-img">
             </div>
-            <h1>Termos de Serviço e Política de Responsabilidade</h1>
+            <h1>Configuração de Acesso</h1>
             <div class="subtitle">VISION EDUCAÇÃO E CAPACITAÇÃO</div>
-            <div class="last-update">Última atualização: 27/03/2026</div>
         </header>
 
-        <div class="content">
-            <section>
-                <h2>1. ACEITAÇÃO DOS TERMOS</h2>
-                <p>Ao acessar, adquirir ou utilizar o sistema Guia Cash, o usuário declara que leu, compreendeu e concorda integralmente com estes Termos de Serviço.</p>
-                <p>Caso não concorde com qualquer cláusula, o uso do sistema deve ser imediatamente interrompido.</p>
-            </section>
-
-            <section>
-                <h2>2. NATUREZA DO SERVIÇO</h2>
-                <p>O Guia Cash é um sistema digital de organização, integração e visualização de dados financeiros pessoais (PF), familiares e empresariais (PJ), incluindo controle de fluxo de caixa, patrimônio, dívidas e simulações financeiras.</p>
-                <p>O sistema possui caráter exclusivamente educacional, informativo e instrumental, não constituindo:</p>
-                <ul>
-                    <li>Consultoria financeira</li>
-                    <li>Recomendação de investimento</li>
-                    <li>Gestão de recursos</li>
-                    <li>Aconselhamento profissional regulado</li>
-                </ul>
-            </section>
-
-            <section>
-                <h2>3. FUNCIONAMENTO DO SISTEMA</h2>
-                <p>O sistema opera por meio de:</p>
-                <ul>
-                    <li>Fórmulas financeiras</li>
-                    <li>Modelos matemáticos</li>
-                    <li>Regras de mercado</li>
-                    <li>Algoritmos proprietários, incluindo a inteligência denominada “Nazaré”</li>
-                </ul>
-                <p>Os resultados apresentados constituem estimativas baseadas nos dados fornecidos pelo usuário, não garantindo precisão absoluta ou resultados financeiros específicos.</p>
-            </section>
-
-            <section>
-                <h2>4. RESPONSABILIDADE SOBRE OS DADOS</h2>
-                <p>O usuário é o único responsável por:</p>
-                <ul>
-                    <li>Inserção correta das informações</li>
-                    <li>Veracidade e atualização dos dados</li>
-                    <li>Consistência dos registros</li>
-                </ul>
-                <p>O usuário declara ciência de que dados incorretos ou incompletos impactarão diretamente a qualidade das análises e diagnósticos gerados.</p>
-            </section>
-
-            <section>
-                <h2>5. LIMITAÇÃO DE RESPONSABILIDADE</h2>
-                <p>A Vision Educação não se responsabiliza, em nenhuma hipótese, por:</p>
-                <ul>
-                    <li>Decisões financeiras tomadas pelo usuário</li>
-                    <li>Perdas financeiras ou patrimoniais</li>
-                    <li>Endividamento ou renegociação de dívidas</li>
-                    <li>Investimentos ou estratégias adotadas</li>
-                    <li>Danos diretos, indiretos ou lucros cessantes</li>
-                </ul>
-                <p>Toda decisão tomada com base nas informações do sistema é de responsabilidade exclusiva do usuário.</p>
-            </section>
-
-            <section>
-                <h2>6. AUSÊNCIA DE GARANTIAS</h2>
-                <p>O sistema é fornecido “no estado em que se encontra”, sem garantias de:</p>
-                <ul>
-                    <li>Disponibilidade contínua</li>
-                    <li>Precisão absoluta</li>
-                    <li>Resultado financeiro específico</li>
-                    <li>Adequação a objetivos individuais</li>
-                </ul>
-            </section>
-
-            <section>
-                <h2>7. USO ADEQUADO</h2>
-                <p>É proibido ao usuário:</p>
-                <ul>
-                    <li>Copiar, reproduzir ou distribuir o sistema</li>
-                    <li>Revender, sublicenciar ou explorar comercialmente</li>
-                    <li>Modificar ou tentar replicar a lógica interna</li>
-                    <li>Utilizar o sistema para prestação de serviços a terceiros sem autorização</li>
-                </ul>
-            </section>
-
-            <section>
-                <h2>8. PROPRIEDADE INTELECTUAL</h2>
-                <p>Todos os elementos do Guia Cash são de propriedade exclusiva da Vision Educação, incluindo:</p>
-                <ul>
-                    <li>Estrutura e arquitetura do sistema</li>
-                    <li>Algoritmos e lógica de cálculo</li>
-                    <li>Interface, design e automações</li>
-                </ul>
-            </section>
-
-            <section>
-                <h2>9. PRIVACIDADE E TRATAMENTO DE DADOS</h2>
-                <p>O Guia Cash é disponibilizado por meio de ambiente controlado pela Vision Educação, podendo estar hospedado em contas institucionais vinculadas à empresa.</p>
-                <p>Ao utilizar o sistema, o usuário declara estar ciente de que:</p>
-                <ul>
-                    <li>Os dados poderão ser armazenados em ambiente sob gestão da Vision Educação</li>
-                    <li>A empresa poderá ter acesso técnico aos dados para: funcionamento do sistema, suporte ao usuário e melhorias da ferramenta.</li>
-                </ul>
-                <p>A Vision Educação compromete-se a:</p>
-                <ul>
-                    <li>Não comercializar ou divulgar dados a terceiros</li>
-                    <li>Utilizar as informações apenas para fins operacionais</li>
-                    <li>Adotar medidas razoáveis de segurança</li>
-                </ul>
-                <p>O tratamento de dados ocorre em conformidade com a Lei nº 13.709/2018 (LGPD).</p>
-            </section>
-
-            <section>
-                <h2>10. INTEGRAÇÕES E SERVIÇOS DE TERCEIROS</h2>
-                <p>O Guia Cash pode integrar-se a serviços de terceiros, incluindo, mas não se limitando a:</p>
-                <ul>
-                    <li>WhatsApp (via API)</li>
-                    <li>Telegram</li>
-                    <li>Plataformas de automação</li>
-                </ul>
-                <p>O usuário declara estar ciente de que:</p>
-                <ul>
-                    <li>Tais serviços são independentes e possuem suas próprias políticas e termos</li>
-                    <li>A Vision Educação não possui controle sobre a disponibilidade dessas plataformas</li>
-                    <li>Eventuais falhas, instabilidades ou interrupções podem ocorrer</li>
-                </ul>
-            </section>
-
-            <section>
-                <h2>11. DISPONIBILIDADE DO SISTEMA E DO ROBÔ</h2>
-                <p>O acesso ao sistema e aos recursos automatizados (incluindo robôs via WhatsApp ou Telegram) pode sofrer interrupções, atrasos ou falhas técnicas.</p>
-                <p>Em especial:</p>
-                <ul>
-                    <li>O robô de WhatsApp pode ficar temporariamente indisponível devido a limitações da plataforma ou da API utilizada</li>
-                    <li>Poderá ser disponibilizado canal alternativo (ex.: Telegram) como contingência operacional</li>
-                </ul>
-                <p>A Vision Educação não garante disponibilidade ininterrupta e não se responsabiliza por períodos de indisponibilidade.</p>
-            </section>
-
-            <section>
-                <h2>12. RISCO FINANCEIRO</h2>
-                <p>O usuário declara estar ciente de que:</p>
-                <ul>
-                    <li>Toda decisão financeira envolve risco</li>
-                    <li>Simulações não garantem resultados reais</li>
-                    <li>Cenários projetados podem não se concretizar</li>
-                </ul>
-            </section>
-
-            <section>
-                <h2>13. ATUALIZAÇÕES</h2>
-                <p>A Vision Educação poderá, a qualquer momento:</p>
-                <ul>
-                    <li>Atualizar o sistema</li>
-                    <li>Alterar funcionalidades</li>
-                    <li>Modificar estes Termos</li>
-                </ul>
-                <p>O uso contínuo implica aceitação das alterações.</p>
-            </section>
-
-            <section>
-                <h2>14. FORO E LEGISLAÇÃO</h2>
-                <p>Este termo será regido pelas leis da República Federativa do Brasil.</p>
-                <p>Fica eleito o foro da comarca da sede da Vision Educação para dirimir quaisquer controvérsias.</p>
-            </section>
-
-            <div class="consent-final">
-                <h2>15. CONSENTIMENTO FINAL</h2>
-                <p style="margin-bottom: 20px; font-size: 18px;">Ao utilizar o Guia Cash, o usuário declara que:</p>
-                <div class="check-item"><span>✔</span> Compreende a natureza do sistema</div>
-                <div class="check-item"><span>✔</span> Reconhece suas limitações</div>
-                <div class="check-item"><span>✔</span> Assume total responsabilidade por suas decisões financeiras</div>
+        <div id="setup-content">
+            <div class="welcome-text">
+                <strong style="color: var(--dark); font-size: 18px;" id="boas-vindas">Olá! 🚀</strong><br>
+                Para liberarmos sua planilha inteligente e a automação do WhatsApp, confirme os e-mails do Google que terão acesso.
             </div>
+
+            <div class="form-group">
+                <label for="email-1">E-mail Principal do Google (Obrigatório)</label>
+                <input type="email" id="email-1" placeholder="seu.email@gmail.com" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email-2">E-mail Secundário <span>(Opcional - Sócio, Esposa, etc.)</span></label>
+                <input type="email" id="email-2" placeholder="socio@gmail.com">
+            </div>
+
+            <div class="google-help">
+                💡 <strong>Por que um e-mail Google?</strong> Nossa inteligência roda no ecossistema do Google Drive. <br><br>
+                Não usa Gmail? Sem problemas. <a href="https://accounts.google.com/SignUpWithoutGmail" target="_blank">Clique aqui para vincular seu e-mail atual (Hotmail, Yahoo, Corporativo) a uma conta Google</a> gratuita em 1 minuto.
+            </div>
+
+            <button onclick="ativarSistema()" id="btn-ativar" class="btn-submit">
+                Gerar Minha Estrutura
+            </button>
+        </div>
+
+        <div id="loading-state">
+            <div class="spinner"></div>
+            <h3 style="color: var(--dark); margin-bottom: 5px;">Construindo seu Ecossistema...</h3>
+            <p style="color: #64748b; font-size: 14px;">Isso leva apenas alguns segundos. Não feche a página.</p>
         </div>
 
         <footer>
-            &copy; 2026 Vision Educação e Capacitação - Sistema <span>Guia Cash</span><br>
-            Todos os direitos reservados.
+            &copy; 2026 Vision Educação - Sistema Guia Cash
         </footer>
     </div>
+
+    <script>
+        // 1. Captura dados da URL enviada pelo n8n
+        const urlParams = new URLSearchParams(window.location.search);
+        const nome = urlParams.get('nome') || 'Cliente';
+        const idPedido = urlParams.get('id');
+        const emailPadrao = urlParams.get('email');
+
+        // 2. Personaliza a tela
+        document.getElementById('boas-vindas').innerText = `Olá, ${nome}! 🚀`;
+        if(emailPadrao) document.getElementById('email-1').value = emailPadrao;
+
+        async function ativarSistema() {
+            const email1 = document.getElementById('email-1').value.trim();
+            const email2 = document.getElementById('email-2').value.trim();
+            
+            if(!email1.includes('@')) {
+                alert('Por favor, insira um e-mail principal válido.');
+                document.getElementById('email-1').focus();
+                return;
+            }
+
+            // UI: Troca para estado de carregamento
+            document.getElementById('setup-content').style.display = 'none';
+            document.getElementById('loading-state').style.display = 'block';
+
+            try {
+                // 3. Substitua a URL abaixo pela URL do seu Webhook de Entrega no n8n
+                const response = await fetch('SUA_URL_WEBHOOK_N8N_ENTREGA', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        id_pagamento: idPedido,
+                        nome: nome,
+                        email_google_1: email1,
+                        email_google_2: email2 || null // Envia null se estiver vazio
+                    })
+                });
+
+                const data = await response.json();
+
+                if(data.link_planilha) {
+                    window.location.href = data.link_planilha;
+                } else {
+                    alert('Erro ao gerar planilha. Chame nosso suporte no WhatsApp.');
+                    // Restaura a UI em caso de erro
+                    document.getElementById('loading-state').style.display = 'none';
+                    document.getElementById('setup-content').style.display = 'block';
+                }
+            } catch (error) {
+                console.error(error);
+                alert('Erro na comunicação com o servidor. Tente novamente.');
+                document.getElementById('loading-state').style.display = 'none';
+                document.getElementById('setup-content').style.display = 'block';
+            }
+        }
+    </script>
 </body>
 </html>
