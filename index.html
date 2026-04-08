@@ -8,25 +8,29 @@
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            /* Paleta de Cores Vision Educação (Baseada no Logo) */
-            --primary: #5c55be; /* Roxo/Azul do V e do Nome "Vision" */
-            --secondary: #0f172a; /* Azul Escuro Profissional para Textos */
-            --accent: #fbbf24; /* Dourado/Amarelo do Farol */
-            --white: #fff;
+            /* Paleta de Cores Vision Educação */
+            --primary: #5c55be; 
+            --secondary: #0f172a; 
+            --accent: #fbbf24; /* Dourado/Amarelo */
+            --accent-hover: #f59e0b;
+            --white: #ffffff;
             --dark: #0f172a;
-            --success: #25d366;
-            --gradient-primary: linear-gradient(135deg, #5c55be 0%, #1e3a8a 100%);
+            --success: #10b981;
+            --bg-light: #f8fafc;
+            --text-gray: #64748b;
+            --gradient-primary: linear-gradient(135deg, #5c55be 0%, #312e81 100%);
+            --gradient-dark: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
 
         body {
-            font-family: 'Poppins', sans-serif; /* Fonte mais moderna e limpa */
-            background-color: #f8fafc;
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-light);
             color: #1e293b;
             line-height: 1.6;
             overflow-x: hidden;
@@ -36,13 +40,14 @@
 
         /* HEADER & NAV */
         header {
-            background-color: var(--white);
-            padding: 20px 0;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
         }
 
         .header-grid {
@@ -51,9 +56,7 @@
             align-items: center;
         }
 
-        .logo img {
-            height: 40px; /* Ajuste conforme necessário */
-        }
+        .logo img { height: 40px; }
 
         .nav-links {
             display: flex;
@@ -65,152 +68,186 @@
             text-decoration: none;
             color: var(--secondary);
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             transition: 0.3s;
         }
 
-        .nav-links a:hover {
-            color: var(--primary);
-        }
+        .nav-links a:hover { color: var(--primary); }
 
         .cta-header {
             background-color: var(--accent);
-            color: var(--white);
-            padding: 10px 20px;
-            border-radius: 5px;
+            color: var(--dark) !important;
+            padding: 10px 24px;
+            border-radius: 50px;
+            font-weight: 700 !important;
             text-transform: uppercase;
+            font-size: 0.85rem !important;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 15px rgba(251, 191, 36, 0.3);
+        }
+        
+        .cta-header:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-2px);
         }
 
         /* HERO SECTION */
         .hero {
             background: var(--gradient-primary);
             color: var(--white);
-            padding: 160px 0 100px; /* Maior padding no topo por conta do header fixo */
+            padding: 180px 0 120px; 
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Efeito de brilho de fundo no Hero */
+        .hero::before {
+            content: ''; position: absolute; top: -50%; left: 50%; width: 800px; height: 800px;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            transform: translateX(-50%); border-radius: 50%; pointer-events: none;
         }
 
         .hero h1 {
             font-size: 3.5rem;
             font-weight: 800;
-            line-height: 1.1;
+            line-height: 1.15;
             margin-bottom: 25px;
-            letter-spacing: -2px;
+            letter-spacing: -1.5px;
+            position: relative;
+            z-index: 2;
         }
 
         .hero .highlight { color: var(--accent); }
 
         .hero p {
-            font-size: 1.3rem;
-            max-width: 750px;
+            font-size: 1.25rem;
+            max-width: 700px;
             margin: 0 auto 45px;
-            opacity: 0.95;
+            color: #e2e8f0;
+            font-weight: 400;
+            position: relative;
+            z-index: 2;
         }
 
         .cta-btn {
+            display: inline-block;
             background: var(--accent);
-            color: var(--white);
-            padding: 20px 45px;
+            color: var(--dark);
+            padding: 18px 45px;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 800;
             font-size: 1rem;
             text-transform: uppercase;
             box-shadow: 0 10px 25px rgba(251, 191, 36, 0.4);
-            transition: 0.3s;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 2;
         }
 
         .cta-btn:hover {
             transform: translateY(-5px);
             box-shadow: 0 15px 35px rgba(251, 191, 36, 0.6);
+            background: var(--accent-hover);
         }
 
         /* ABOUT / SERVICES SECTION */
-        .services {
-            padding: 100px 0;
-            background-color: var(--white);
-        }
+        .services { padding: 100px 0; background-color: var(--white); }
 
-        .section-title {
-            text-align: center;
-            margin-bottom: 60px;
-        }
+        .section-title { text-align: center; margin-bottom: 60px; }
+        .section-title h2 { font-size: 2.8rem; font-weight: 800; color: var(--dark); margin-bottom: 15px; }
+        .section-title p { font-size: 1.1rem; color: var(--text-gray); max-width: 600px; margin: 0 auto; }
 
-        .section-title h2 {
-            font-size: 2.8rem;
-            font-weight: 800;
-            color: var(--dark);
-        }
-
-        .section-title p {
-            font-size: 1.1rem;
-            color: #64748b;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
 
         .service-card {
-            background: #f8fafc;
-            padding: 40px;
+            background: var(--white);
+            padding: 45px 30px;
             border-radius: 24px;
-            border: 1px solid #e2e8f0;
-            transition: 0.3s;
+            border: 1px solid #f1f5f9;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.03);
+            transition: 0.4s;
             text-align: center;
         }
 
         .service-card:hover {
-            border-color: var(--accent);
-            transform: translateY(-5px);
+            border-color: var(--primary);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(92, 85, 190, 0.1);
         }
 
-        .service-card i {
-            font-size: 3rem;
-            color: var(--primary);
-            margin-bottom: 25px;
-            display: block;
-        }
+        .service-card i { font-size: 3.5rem; color: var(--primary); margin-bottom: 25px; display: block; }
+        .service-card h3 { font-size: 1.5rem; color: var(--dark); margin-bottom: 15px; font-weight: 700; }
+        .service-card p { color: var(--text-gray); font-size: 0.95rem; }
 
-        .service-card h3 {
-            font-size: 1.5rem;
-            color: var(--dark);
-            margin-bottom: 15px;
-        }
-
-        /* FINAL CTA SECTION */
-        .final-cta {
-            background: var(--gradient-primary);
+        /* NOVA SEÇÃO: GUIA CASH */
+        .guiacash-section {
+            background: var(--gradient-dark);
             color: var(--white);
             padding: 100px 0;
-            text-align: center;
+            position: relative;
         }
 
-        .final-cta h2 {
-            font-size: 3rem;
-            font-weight: 800;
-            margin-bottom: 30px;
-            line-height: 1.1;
+        .guiacash-grid {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            flex-wrap: wrap;
         }
+
+        .guiacash-text { flex: 1; min-width: 300px; }
+        .guiacash-text h2 { font-size: 2.8rem; font-weight: 800; color: var(--white); margin-bottom: 20px; line-height: 1.1; }
+        .guiacash-text h2 span { color: var(--success); }
+        .guiacash-text p { font-size: 1.1rem; color: #cbd5e1; margin-bottom: 30px; }
+        
+        .feature-list { list-style: none; margin-bottom: 40px; }
+        .feature-list li { margin-bottom: 15px; font-size: 1.05rem; display: flex; align-items: center; gap: 15px; }
+        .feature-list i { color: var(--success); font-size: 1.2rem; background: rgba(16, 185, 129, 0.1); padding: 8px; border-radius: 50%; }
+
+        .guiacash-visual {
+            flex: 1;
+            min-width: 300px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 30px;
+            padding: 50px 30px;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .guiacash-visual i { font-size: 5rem; color: var(--success); margin-bottom: 20px; animation: float 3s ease-in-out infinite; }
+        .guiacash-visual h3 { font-size: 1.5rem; margin-bottom: 10px; }
+        .guiacash-visual p { color: #94a3b8; font-size: 0.95rem; }
+
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+
+        .btn-green {
+            background: var(--success); color: var(--dark); box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3);
+        }
+        .btn-green:hover { background: #059669; color: var(--white); box-shadow: 0 15px 35px rgba(16, 185, 129, 0.5); }
+
+        /* FINAL CTA SECTION */
+        .final-cta { background: var(--bg-light); padding: 100px 0; text-align: center; }
+        .final-cta h2 { font-size: 2.5rem; font-weight: 800; color: var(--dark); margin-bottom: 30px; line-height: 1.2; }
 
         /* FOOTER */
-        footer {
-            background-color: var(--secondary);
-            color: #94a3b8;
-            padding: 60px 20px;
-            text-align: center;
-            font-size: 0.85rem;
-        }
+        footer { background-color: var(--secondary); color: #94a3b8; padding: 60px 20px; text-align: center; font-size: 0.85rem; }
+        footer img { opacity: 0.5; transition: 0.3s; }
+        footer img:hover { opacity: 1; }
 
+        /* RESPONSIVO */
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
-            .hero p { font-size: 1.1rem; }
-            .section-title h2 { font-size: 2.2rem; }
-            .final-cta h2 { font-size: 2.2rem; }
-            .nav-links { display: none; } /* Simples para o teste inicial */
+            .header-grid { flex-direction: column; gap: 15px; }
+            .nav-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; }
+            .hero { padding: 180px 0 80px; }
+            .hero h1 { font-size: 2.2rem; }
+            .hero p { font-size: 1.05rem; }
+            .section-title h2, .guiacash-text h2 { font-size: 2.2rem; }
+            .guiacash-grid { gap: 40px; }
+            .guiacash-visual { padding: 30px 20px; }
+            .final-cta h2 { font-size: 2rem; }
         }
     </style>
 </head>
@@ -224,8 +261,8 @@
             <nav class="nav-links">
                 <a href="#inicio">Início</a>
                 <a href="#servicos">O Que Fazemos</a>
-                <a href="#metodo">Método Guia Cash</a>
-                <a href="#contato" class="cta-header">Falar com Consultor</a>
+                <a href="#metodo">Método GuiaCash®</a>
+                <a href="https://wa.me/555192491010" target="_blank" class="cta-header">Falar com Consultor</a>
             </nav>
         </div>
     </header>
@@ -233,8 +270,8 @@
     <section id="inicio" class="hero">
         <div class="container">
             <h1>Sua <span class="highlight">Visão</span> Financeira com Clareza de <span class="highlight">Farol</span>.</h1>
-            <p>A Vision Educação ajuda consultorias, mentorias e PF a transformarem o caos financeiro em controle total e lucro real. Sua direção segura para a prosperidade.</p>
-            <a href="#servicos" class="cta-btn">Conheça Nossos Serviços</a>
+            <p>A Vision Educação ajuda consultorias, pequenos negócios e pessoas físicas a transformarem o caos financeiro em controle total e lucro real.</p>
+            <a href="#metodo" class="cta-btn">Conhecer a Automação</a>
         </div>
     </section>
 
@@ -242,38 +279,62 @@
         <div class="container">
             <div class="section-title">
                 <h2>Onde Podemos Te Guiar?</h2>
-                <p>Educação e consultoria financeira sob medida para o seu momento de vida.</p>
+                <p>Educação e consultoria financeira desenhada para o seu momento atual.</p>
             </div>
             <div class="services-grid">
                 <div class="service-card">
                     <i class="fas fa-chart-pie"></i>
                     <h3>Consultoria PF</h3>
-                    <p>Organize suas contas, elimine dívidas e aprenda a investir com segurança máxima.</p>
+                    <p>Organize suas contas, elimine dívidas e aprenda a investir com segurança e planejamento estratégico.</p>
                 </div>
-                <div class="service-card">
-                    <i class="fas fa-hand-holding-usd"></i>
+                <div class="service-card" style="border-color: var(--primary); box-shadow: 0 15px 30px rgba(92,85,190,0.08);">
+                    <i class="fas fa-robot"></i>
                     <h3>Mentoria Gabi AI</h3>
-                    <p>Controle financeiro automatizado com a ajuda inteligente da assistente Gabi.</p>
+                    <p>Eleve seu controle a outro nível. Mentoria especializada combinada com a automação inteligente da nossa IA.</p>
                 </div>
                 <div class="service-card">
                     <i class="fas fa-briefcase"></i>
                     <h3>Visão para Empresas</h3>
-                    <p>Planejamento estratégico e controle de fluxo de caixa para MEIs e pequenos negócios.</p>
+                    <p>Controle de fluxo de caixa, precificação e visão de lucro real para MEIs e pequenos negócios prosperarem.</p>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="metodo" class="guiacash-section">
+        <div class="container guiacash-grid">
+            <div class="guiacash-text">
+                <h2>Sistema <span>GuiaCash®</span></h2>
+                <p>O primeiro ecossistema financeiro que une a familiaridade de uma planilha do Google Drive com o poder da automação via WhatsApp.</p>
+                
+                <ul class="feature-list">
+                    <li><i class="fas fa-check"></i> Planilha inteligente criada automaticamente no seu Drive.</li>
+                    <li><i class="fas fa-check"></i> Envio de gastos e entradas direto pelo WhatsApp.</li>
+                    <li><i class="fas fa-check"></i> Gráficos e painéis atualizados em tempo real.</li>
+                    <li><i class="fas fa-check"></i> Adeus ao trabalho manual de digitar recibos à noite.</li>
+                </ul>
+
+                <a href="/guiacash" class="cta-btn btn-green">Ver o GuiaCash® na Prática</a>
+            </div>
+            
+            <div class="guiacash-visual">
+                <i class="fas fa-bolt"></i>
+                <h3>Automação de Ponta a Ponta</h3>
+                <p>O robô captura a informação no seu celular, organiza e injeta na sua planilha financeira em segundos. Controle na palma da mão.</p>
             </div>
         </div>
     </section>
 
     <section id="contato" class="final-cta">
         <div class="container">
-            <h2>Pronto para Ter Clareza <br> no Seu Dinheiro?</h2>
+            <h2>Pronto para assumir o controle <br> da sua vida financeira?</h2>
             <a href="https://wa.me/555192491010" class="cta-btn" target="_blank">Falar com um Guia no WhatsApp</a>
         </div>
     </section>
 
     <footer>
         <div class="container">
-            <img src="https://drive.google.com/uc?id=1mYyU3mqysC_VOMeM7xj47IFc5iB2O1mr" alt="Logo Vision Educação" style="height: 30px; margin-bottom: 20px;">
+            <img src="https://drive.google.com/uc?id=1mYyU3mqysC_VOMeM7xj47IFc5iB2O1mr" alt="Logo Vision Educação" style="height: 35px; margin-bottom: 20px;">
             <p>© 2026 Vision Educação | Consultoria e Educação Financeira. Todos os direitos reservados.</p>
         </div>
     </footer>
