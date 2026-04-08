@@ -14,6 +14,7 @@
             --bg: #f8fafc;
             --gradient: linear-gradient(135deg, var(--purple) 0%, var(--teal) 100%);
             --shadow: 0 10px 40px rgba(0,0,0,0.06);
+            --red: #e11d48;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
@@ -159,6 +160,7 @@
     const nomeURL = urlParams.get('nome') ? decodeURIComponent(urlParams.get('nome')) : null;
     const emailURL = urlParams.get('email');
 
+    // Bloqueio inicial se não houver parâmetros
     if (!idPedido || !nomeURL) {
         window.location.href = "https://visioncapacita.com.br/guiacash";
     } else {
@@ -168,17 +170,32 @@
     window.onload = function() {
         if(nomeURL) document.getElementById('boas-vindas').innerText = `Olá, ${nomeURL}! 🚀`;
         if(emailURL) document.getElementById('email-1').value = emailURL;
+        
         if (localStorage.getItem('ativado_' + idPedido)) {
             renderizarSucesso("✅ Já Ativado!", "Você já configurou este pedido.", null);
         }
     };
 
+    // FUNÇÃO PARA ERRO BONITÃO (BARRA ESPERTINHOS)
+    function renderizarErro(titulo, desc) {
+        document.getElementById('setup-content').style.display = 'none';
+        document.getElementById('loading-state').style.display = 'block';
+        document.getElementById('status-container').innerHTML = `
+            <div style="font-size: 60px; margin-bottom: 15px;">⚠️</div>
+            <h2 class="status-title" style="color: var(--red)">${titulo}</h2>
+            <p class="status-desc">${desc}</p>
+            <button onclick="location.reload()" class="btn-submit" style="margin-top: 30px; background: var(--dark);">TENTAR NOVAMENTE</button>
+        `;
+    }
+
+    // FUNÇÃO PARA SUCESSO BONITÃO
     function renderizarSucesso(titulo, desc, link) {
         document.getElementById('setup-content').style.display = 'none';
         document.getElementById('loading-state').style.display = 'block';
         let linkHTML = link ? `<a href="${link}" target="_blank" class="success-btn">ACESSAR MEU SISTEMA GUIACASH®</a>` : '';
         document.getElementById('status-container').innerHTML = `
-            <h2 class="status-title">${titulo}</h2>
+            <div style="font-size: 60px; margin-bottom: 15px;">✅</div>
+            <h2 class="status-title" style="color: var(--teal)">${titulo}</h2>
             <p class="status-desc">${desc}</p>
             ${linkHTML}
             <p style="margin-top:25px; font-size:12px; color:#94a3b8; font-weight:600;">O acesso também foi enviado para seu WhatsApp.</p>`;
@@ -190,6 +207,7 @@
         const e2 = document.getElementById('email-2').value.trim().toLowerCase();
         const e2Conf = document.getElementById('email-2-confirma').value.trim().toLowerCase();
 
+        // Validações de e-mail
         if (!e1.includes('@') || e1 !== e1Conf) {
             alert('Atenção: O e-mail principal não confere com a confirmação.');
             return;
@@ -200,13 +218,15 @@
             return;
         }
 
+        // Alterar UI para processamento
         document.getElementById('btn-ativar').disabled = true;
-        document.getElementById('btn-ativar').innerText = "ATIVANDO...";
+        document.getElementById('btn-ativar').innerText = "CONECTANDO...";
         document.getElementById('setup-content').style.display = 'none';
         document.getElementById('loading-state').style.display = 'block';
 
         try {
-            const response = await fetch('https://n8nwebhook.visioncapacita.com.br/webhook/formularioguiacash', {
+            // URL DE PRODUÇÃO
+            const response = await fetch('https://n8neditor.visioncapacita.com.br/webhook/formularioguiacash', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -214,7 +234,7 @@
                     nome: nomeURL,
                     email_google_1: e1,
                     email_google_2: e2 || null,
-                    origem: 'Pagina_Ativacao_Blindada_V4',
+                    origem: 'Pagina_Ativacao_Blindada_V6',
                     timestamp: new Date().toISOString()
                 })
             });
@@ -222,16 +242,16 @@
             const data = await response.json();
 
             if (response.ok) {
+                // SUCESSO (Caminho TRUE do n8n)
                 localStorage.setItem('ativado_' + idPedido, 'true');
-                renderizarSucesso("🎉 Tudo Pronto!", "Seu sistema foi personalizado e já está disponível.", data.link_planilha);
+                renderizarSucesso("🎉 Tudo Pronto!", "Seu sistema foi personalizado e já está disponível no seu e-mail.", data.link_planilha);
             } else {
-                // Caso o n8n retorne erro (ex: Saída FALSE do IF com status 403)
-                alert(data.message || 'Erro: Acesso não autorizado para este ID de pagamento.');
-                location.reload(); 
+                // ERRO CONTROLADO (Caminho FALSE do n8n - 403 Forbidden)
+                renderizarErro("Acesso Negado", data.message || "ID de pagamento não localizado ou não aprovado.");
             }
         } catch (e) {
-            alert('Erro na conexão. Verifique sua internet.');
-            location.reload();
+            // ERRO DE CONEXÃO (n8n Offline ou problema de rede)
+            renderizarErro("Erro de Sistema", "Não conseguimos conectar ao servidor. Verifique se o workflow no n8n está ATIVO.");
         }
     }
     </script>
