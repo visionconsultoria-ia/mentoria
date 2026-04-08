@@ -88,6 +88,16 @@
         @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.03); } }
 
         footer { text-align: center; margin-top: 40px; color: #94a3b8; font-size: 13px; }
+        
+        /* Ajuste para o link de suporte */
+        .support-link {
+            color: var(--purple);
+            font-weight: 700;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: 0.3s;
+        }
+        .support-link:hover { border-bottom-color: var(--purple); }
     </style>
 </head>
 <body>
@@ -160,7 +170,6 @@
     const nomeURL = urlParams.get('nome') ? decodeURIComponent(urlParams.get('nome')) : null;
     const emailURL = urlParams.get('email');
 
-    // Bloqueio inicial se não houver parâmetros
     if (!idPedido || !nomeURL) {
         window.location.href = "https://visioncapacita.com.br/guiacash";
     } else {
@@ -170,28 +179,28 @@
     window.onload = function() {
         if(nomeURL) document.getElementById('boas-vindas').innerText = `Olá, ${nomeURL}! 🚀`;
         if(emailURL) document.getElementById('email-1').value = emailURL;
-        
         if (localStorage.getItem('ativado_' + idPedido)) {
             renderizarSucesso("✅ Já Ativado!", "Você já configurou este pedido.", null);
         }
     };
 
-    // FUNÇÃO PARA ERRO BONITÃO (BARRA ESPERTINHOS)
     function renderizarErro(titulo, desc) {
         document.getElementById('setup-content').style.display = 'none';
         document.getElementById('loading-state').style.display = 'block';
+        
+        // Uso de target="_top" e herança direta para garantir que o mailto funcione melhor em dispositivos móveis e desktops
         document.getElementById('status-container').innerHTML = `
             <div style="font-size: 60px; margin-bottom: 15px;">⚠️</div>
             <h2 class="status-title" style="color: var(--red)">${titulo}</h2>
             <p class="status-desc">${desc}</p>
-            <div style="margin-top: 20px; font-size: 13px; color: #64748b;">
-                Dúvidas? <a href="mailto:visionconsultoria.ia@gmail.com" style="color: var(--purple); font-weight: 600;">visionconsultoria.ia@gmail.com</a>
+            <div style="margin-top: 20px; font-size: 14px; color: #64748b;">
+                Precisa de ajuda? <br>
+                <a href="mailto:visionconsultoria.ia@gmail.com" class="support-link">visionconsultoria.ia@gmail.com</a>
             </div>
             <button onclick="location.reload()" class="btn-submit" style="margin-top: 30px; background: var(--dark);">TENTAR NOVAMENTE</button>
         `;
     }
 
-    // FUNÇÃO PARA SUCESSO BONITÃO
     function renderizarSucesso(titulo, desc, link) {
         document.getElementById('setup-content').style.display = 'none';
         document.getElementById('loading-state').style.display = 'block';
@@ -204,7 +213,7 @@
             <p style="margin-top:25px; font-size:12px; color:#94a3b8; font-weight:600;">O acesso também foi enviado para seu WhatsApp.</p>`;
     }
 
-async function ativarSistema() {
+    async function ativarSistema() {
         const e1 = document.getElementById('email-1').value.trim().toLowerCase();
         const e1Conf = document.getElementById('email-1-confirma').value.trim().toLowerCase();
         const e2 = document.getElementById('email-2').value.trim().toLowerCase();
@@ -245,11 +254,10 @@ async function ativarSistema() {
                 localStorage.setItem('ativado_' + idPedido, 'true');
                 renderizarSucesso("🎉 Tudo Pronto!", "Seu sistema foi personalizado e já está disponível no seu e-mail.", data.link_planilha);
             } else {
-                // Aqui ele pega a mensagem nova com o e-mail que você configurou no n8n
-                renderizarErro("Acesso Negado", data.message);
+                renderizarErro("Acesso Negado", data.message || "ID de pagamento não localizado ou não aprovado.");
             }
         } catch (e) {
-            renderizarErro("Erro de Sistema", "Não conseguimos conectar ao servidor. Se o erro persistir, contate: visionconsultoria.ia@gmail.com");
+            renderizarErro("Erro de Conexão", "Não conseguimos contactar o servidor. Se o problema persistir, envie um e-mail para visionconsultoria.ia@gmail.com");
         }
     }
     </script>
