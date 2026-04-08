@@ -47,16 +47,18 @@
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
         header { text-align: center; margin-bottom: 35px; }
-        .logo-img { max-width: 190px; height: auto; margin-bottom: 25px; }
+        .logo-wrapper { margin-bottom: 25px; }
+        .logo-img { max-width: 190px; height: auto; }
         h1 { color: var(--dark); font-size: 26px; font-weight: 800; text-transform: uppercase; letter-spacing: -0.5px; }
-        .subtitle { background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 700; font-size: 14px; text-transform: uppercase; }
+        .subtitle { background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; }
 
         .welcome-text { text-align: center; margin-bottom: 30px; padding-bottom: 25px; border-bottom: 1px solid #e2e8f0; color: #64748b; }
         .welcome-text strong { color: var(--dark); display: block; font-size: 20px; margin-bottom: 5px; }
 
         .google-notice { background: #fffbeb; border: 1px solid #fde68a; padding: 20px; border-radius: 12px; margin-bottom: 30px; display: flex; gap: 15px; }
-        .google-notice p { font-size: 13.5px; color: #92400e; }
-        .google-notice a { color: var(--purple); font-weight: 700; }
+        .google-notice span { font-size: 24px; }
+        .google-notice p { font-size: 13.5px; color: #92400e; line-height: 1.6; }
+        .google-notice a { color: var(--purple); font-weight: 700; text-decoration: underline; }
 
         .form-group { margin-bottom: 22px; }
         .form-group label { display: block; font-weight: 600; margin-bottom: 8px; color: var(--dark); font-size: 14px; }
@@ -65,7 +67,7 @@
 
         .btn-submit {
             width: 100%; background: var(--dark); color: white; border: none; padding: 18px; border-radius: 10px;
-            font-size: 16px; font-weight: 700; cursor: pointer; text-transform: uppercase; transition: 0.3s;
+            font-size: 16px; font-weight: 700; cursor: pointer; text-transform: uppercase; transition: 0.3s; letter-spacing: 1px;
         }
         .btn-submit:hover:not(:disabled) { background: var(--purple); transform: translateY(-2px); box-shadow: 0 10px 20px rgba(107, 70, 193, 0.2); }
         .btn-submit:disabled { background: #cbd5e1; cursor: not-allowed; }
@@ -73,6 +75,9 @@
         #loading-state { display: none; text-align: center; padding: 40px 0; }
         .spinner { width: 55px; height: 55px; border: 5px solid #f3f3f3; border-top: 5px solid var(--teal); border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 25px; }
         @keyframes spin { 100% { transform: rotate(360deg); } }
+
+        .status-title { color: var(--dark); font-size: 22px; font-weight: 700; margin-bottom: 10px; }
+        .status-desc { color: #64748b; font-size: 15px; max-width: 85%; margin: 0 auto; }
 
         .success-btn {
             display: inline-block; width: 100%; padding: 20px; background: var(--gradient); color: white !important;
@@ -88,7 +93,9 @@
     <div class="top-bar"></div>
     <div class="container" id="main-container">
         <header>
-            <img src="../guia-cash-logo.png" alt="Logo Guia Cash" class="logo-img">
+            <div class="logo-wrapper">
+                <img src="../guia-cash-logo.png" alt="Logo Guia Cash" class="logo-img">
+            </div>
             <h1>Configuração de Acesso</h1>
             <div class="subtitle">VISION EDUCAÇÃO E CAPACITAÇÃO</div>
         </header>
@@ -96,40 +103,54 @@
         <div id="setup-content">
             <div class="welcome-text">
                 <strong id="boas-vindas">Olá! 🚀</strong>
-                Preencha seus e-mails Google para ativação:
+                Confirme seus e-mails para liberarmos seu sistema personalizado:
             </div>
 
             <div class="google-notice">
                 <span>💡</span>
-                <p><strong>Atenção:</strong> Os e-mails devem ser Contas Google. <a href="https://accounts.google.com/SignUpWithoutGmail" target="_blank">Vincule seu e-mail aqui</a> se necessário.</p>
+                <p>
+                    <strong>Atenção:</strong> Nosso sistema roda no ambiente Google. 
+                    Se você não tem conta ou usa Hotmail, Yahoo, 
+                    <a href="https://accounts.google.com/SignUpWithoutGmail" target="_blank">clique aqui para vincular seu e-mail atual agora</a>.
+                </p>
             </div>
 
             <div class="form-group">
                 <label for="email-1">E-mail Principal Google (Obrigatório)</label>
-                <input type="email" id="email-1" placeholder="seu-email@gmail.com" required>
+                <input type="email" id="email-1" placeholder="exemplo@gmail.com" required>
             </div>
 
             <div class="form-group">
-                <label for="email-confirma">Confirme seu E-mail Principal</label>
-                <input type="email" id="email-confirma" placeholder="digite o mesmo e-mail acima" required>
+                <label for="email-1-confirma">Confirme seu E-mail Principal</label>
+                <input type="email" id="email-1-confirma" placeholder="repita o e-mail principal" required>
+            </div>
+
+            <div style="margin: 30px 0; border-top: 1px dashed #e2e8f0;"></div>
+
+            <div class="form-group">
+                <label for="email-2">E-mail Bônus Google (Familiar ou Sócio)</label>
+                <input type="email" id="email-2" placeholder="opcional@gmail.com">
             </div>
 
             <div class="form-group">
-                <label for="email-2">E-mail Bônus Google (Opcional - Sócio ou Familiar)</label>
-                <input type="email" id="email-2" placeholder="email-do-socio@gmail.com">
+                <label for="email-2-confirma">Confirme o E-mail Bônus</label>
+                <input type="email" id="email-2-confirma" placeholder="repita o e-mail bônus">
             </div>
 
-            <button onclick="ativarSistema()" id="btn-ativar" class="btn-submit">Gerar Meu Sistema GuiaCash® Agora</button>
+            <button onclick="ativarSistema()" id="btn-ativar" class="btn-submit">
+                Gerar Meu Sistema GuiaCash® Agora
+            </button>
         </div>
 
         <div id="loading-state">
             <div id="status-container">
                 <div class="spinner"></div>
-                <h3 class="status-title">Processando...</h3>
-                <p class="status-desc">Estamos montando seu sistema. Isso leva cerca de 10 segundos.</p>
+                <h3 class="status-title" id="status-title">Processando...</h3>
+                <p class="status-desc" id="status-desc">Estamos montando seu sistema. Isso leva cerca de 10 segundos.</p>
             </div>
         </div>
-        <footer>&copy; 2026© Vision Educação e Capacitação</footer>
+
+        <footer>&copy; 2026© Vision Educação e Capacitação - Sistema Guia Cash</footer>
     </div>
 
     <script>
@@ -155,30 +176,34 @@
     function renderizarSucesso(titulo, desc, link) {
         document.getElementById('setup-content').style.display = 'none';
         document.getElementById('loading-state').style.display = 'block';
-        let linkHTML = link ? `<a href="${link}" target="_blank" class="success-btn">ACESSAR MEU SISTEMA</a>` : '';
+        let linkHTML = link ? `<a href="${link}" target="_blank" class="success-btn">ACESSAR MEU SISTEMA GUIACASH®</a>` : '';
         document.getElementById('status-container').innerHTML = `
-            <h2 style="color:var(--dark)">${titulo}</h2>
-            <p style="color:#64748b">${desc}</p>
+            <h2 class="status-title">${titulo}</h2>
+            <p class="status-desc">${desc}</p>
             ${linkHTML}
-            <p style="margin-top:20px; font-size:12px; font-weight:bold">O acesso também foi enviado para seu WhatsApp.</p>`;
+            <p style="margin-top:25px; font-size:12px; color:#94a3b8; font-weight:600;">O acesso também foi enviado para seu WhatsApp.</p>`;
     }
 
     async function ativarSistema() {
         const e1 = document.getElementById('email-1').value.trim().toLowerCase();
-        const eConf = document.getElementById('email-confirma').value.trim().toLowerCase();
+        const e1Conf = document.getElementById('email-1-confirma').value.trim().toLowerCase();
         const e2 = document.getElementById('email-2').value.trim().toLowerCase();
-        
-        if (e1 !== eConf) {
-            alert('Erro: O e-mail de confirmação está diferente do e-mail principal.');
+        const e2Conf = document.getElementById('email-2-confirma').value.trim().toLowerCase();
+
+        // Validação E-mail 1
+        if (!e1.includes('@') || e1 !== e1Conf) {
+            alert('Atenção: O e-mail principal não confere com a confirmação.');
             return;
         }
 
-        if(!e1.includes('@')) {
-            alert('Por favor, insira um e-mail principal válido.');
+        // Validação E-mail 2 (se preenchido)
+        if (e2 !== "" && (e2 !== e2Conf || !e2.includes('@'))) {
+            alert('Atenção: O e-mail bônus não confere com a confirmação ou é inválido.');
             return;
         }
 
         document.getElementById('btn-ativar').disabled = true;
+        document.getElementById('btn-ativar').innerText = "ATIVANDO...";
         document.getElementById('setup-content').style.display = 'none';
         document.getElementById('loading-state').style.display = 'block';
 
@@ -191,7 +216,7 @@
                     nome: nomeURL,
                     email_google_1: e1,
                     email_google_2: e2 || null,
-                    origem: 'Pagina_Ativacao_V3_Blindada',
+                    origem: 'Pagina_Ativacao_Blindada_V4',
                     timestamp: new Date().toISOString()
                 })
             });
@@ -199,7 +224,7 @@
             if (response.ok) {
                 const data = await response.json();
                 localStorage.setItem('ativado_' + idPedido, 'true');
-                renderizarSucesso("🎉 Tudo Pronto!", "Seu sistema foi gerado e já está disponível.", data.link_planilha);
+                renderizarSucesso("🎉 Tudo Pronto!", "Seu sistema foi personalizado e já está disponível.", data.link_planilha);
             } else {
                 throw new Error();
             }
