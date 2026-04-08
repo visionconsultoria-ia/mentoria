@@ -184,6 +184,9 @@
             <div style="font-size: 60px; margin-bottom: 15px;">⚠️</div>
             <h2 class="status-title" style="color: var(--red)">${titulo}</h2>
             <p class="status-desc">${desc}</p>
+            <div style="margin-top: 20px; font-size: 13px; color: #64748b;">
+                Dúvidas? <a href="mailto:visionconsultoria.ia@gmail.com" style="color: var(--purple); font-weight: 600;">visionconsultoria.ia@gmail.com</a>
+            </div>
             <button onclick="location.reload()" class="btn-submit" style="margin-top: 30px; background: var(--dark);">TENTAR NOVAMENTE</button>
         `;
     }
@@ -201,13 +204,12 @@
             <p style="margin-top:25px; font-size:12px; color:#94a3b8; font-weight:600;">O acesso também foi enviado para seu WhatsApp.</p>`;
     }
 
-    async function ativarSistema() {
+async function ativarSistema() {
         const e1 = document.getElementById('email-1').value.trim().toLowerCase();
         const e1Conf = document.getElementById('email-1-confirma').value.trim().toLowerCase();
         const e2 = document.getElementById('email-2').value.trim().toLowerCase();
         const e2Conf = document.getElementById('email-2-confirma').value.trim().toLowerCase();
 
-        // Validações de e-mail
         if (!e1.includes('@') || e1 !== e1Conf) {
             alert('Atenção: O e-mail principal não confere com a confirmação.');
             return;
@@ -218,14 +220,12 @@
             return;
         }
 
-        // Alterar UI para processamento
         document.getElementById('btn-ativar').disabled = true;
         document.getElementById('btn-ativar').innerText = "CONECTANDO...";
         document.getElementById('setup-content').style.display = 'none';
         document.getElementById('loading-state').style.display = 'block';
 
         try {
-            // URL DE PRODUÇÃO
             const response = await fetch('https://n8neditor.visioncapacita.com.br/webhook/formularioguiacash', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -242,16 +242,14 @@
             const data = await response.json();
 
             if (response.ok) {
-                // SUCESSO (Caminho TRUE do n8n)
                 localStorage.setItem('ativado_' + idPedido, 'true');
                 renderizarSucesso("🎉 Tudo Pronto!", "Seu sistema foi personalizado e já está disponível no seu e-mail.", data.link_planilha);
             } else {
-                // ERRO CONTROLADO (Caminho FALSE do n8n - 403 Forbidden)
-                renderizarErro("Acesso Negado", data.message || "ID de pagamento não localizado ou não aprovado.");
+                // Aqui ele pega a mensagem nova com o e-mail que você configurou no n8n
+                renderizarErro("Acesso Negado", data.message);
             }
         } catch (e) {
-            // ERRO DE CONEXÃO (n8n Offline ou problema de rede)
-            renderizarErro("Erro de Sistema", "Não conseguimos conectar ao servidor. Verifique se o workflow no n8n está ATIVO.");
+            renderizarErro("Erro de Sistema", "Não conseguimos conectar ao servidor. Se o erro persistir, contate: visionconsultoria.ia@gmail.com");
         }
     }
     </script>
