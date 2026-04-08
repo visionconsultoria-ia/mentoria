@@ -16,7 +16,7 @@
             --shadow: 0 10px 40px rgba(0,0,0,0.06);
         }
 
-        * { 
+        * { e
             margin: 0; 
             padding: 0; 
             box-sizing: border-box; 
@@ -314,7 +314,7 @@
             </div>
 
             <div class="form-group">
-                <label for="email-2">E-mail Secundário (Sócio ou Suporte)</label>
+                <label for="email-2">E-mail Bônus Google (Familiar ou Sócio)</label>
                 <input type="email" id="email-2" placeholder="opcional@gmail.com">
             </div>
 
@@ -327,11 +327,11 @@
             <div id="status-container">
                 <div class="spinner"></div>
                 <h3 class="status-title" id="status-title">Processando...</h3>
-                <p class="status-desc" id="status-desc">Estamos montando seu ecossistema. Isso leva cerca de 10 segundos.</p>
+                <p class="status-desc" id="status-desc">Estamos montando seu sistema. Isso leva cerca de 10 segundos.</p>
             </div>
         </div>
 
-        <footer>&copy; 2026 Vision Educação - Sistema Guia Cash</footer>
+        <footer>&copy; 2026© Vision Educação e Capacitação - Sistema Guia Cash</footer>
     </div>
 
     <script>
@@ -424,9 +424,9 @@
                 localStorage.setItem('ativado_' + idPedido, 'true');
                 
                 if(data.link_planilha) {
-                    renderizarSucesso("🎉 Tudo Pronto!", "Sua estrutura foi personalizada e já está disponível.", data.link_planilha);
+                    renderizarSucesso("🎉 Tudo Pronto!", "Sua sistema foi personalizada e já está disponível.", data.link_planilha);
                 } else {
-                    renderizarSucesso("🚀 Quase lá!", "Sua solicitação foi recebida. O link será enviado no seu WhatsApp em instantes.", null);
+                    renderizarSucesso("🚀 Quase lá!", "Sua solicitação foi recebida. O link será enviado no seu WhatsApp e E-mail em instantes.", null);
                 }
             } else if (response.status === 403) {
                 // Caso você implemente a trava de ID no n8n que conversamos
@@ -439,7 +439,7 @@
         } catch (error) {
             alert('Erro de conexão. Tente novamente em instantes.');
             btnSubmit.disabled = false;
-            btnSubmit.innerText = "Gerar Minha Estrutura Agora";
+            btnSubmit.innerText = "Gerar Meu Sistema GuiaCash® Agora";
             setupContent.style.display = 'block';
             loadingState.style.display = 'none';
         }
