@@ -16,7 +16,7 @@
             --shadow: 0 10px 40px rgba(0,0,0,0.06);
         }
 
-        * { e
+        * { 
             margin: 0; 
             padding: 0; 
             box-sizing: border-box; 
@@ -303,8 +303,9 @@
             <div class="google-notice">
                 <span>💡</span>
                 <p>
-                    <strong>Importante:</strong> Nosso sistema roda no Ambiente Google. 
-                    Se você não usa Gmail (ex: Hotmail ou Yahoo), <a href="https://accounts.google.com/SignUpWithoutGmail" target="_blank">clique aqui para vincular seu e-mail atual a uma conta Google</a> em segundos.
+                    <strong>Atenção:</strong> Nosso sistema roda no ambiente Google. 
+                    Se você não tem conta ou usa Hotmail, Yahoo, 
+                    <a href="https://accounts.google.com/SignUpWithoutGmail" target="_blank">clique aqui para vincular seu e-mail atual agora</a>.
                 </p>
             </div>
 
@@ -429,7 +430,6 @@
                     renderizarSucesso("🚀 Quase lá!", "Sua solicitação foi recebida. O link será enviado no seu WhatsApp e E-mail em instantes.", null);
                 }
             } else if (response.status === 403) {
-                // Caso você implemente a trava de ID no n8n que conversamos
                 alert('Acesso Negado: Este ID de pagamento não é válido ou já foi usado.');
                 location.reload();
             } else {
@@ -444,6 +444,6 @@
             loadingState.style.display = 'none';
         }
     }
-</script>
+    </script>
 </body>
 </html>
