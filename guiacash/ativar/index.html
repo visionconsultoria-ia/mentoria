@@ -80,6 +80,11 @@
         .status-title { color: var(--dark); font-size: 22px; font-weight: 700; margin-bottom: 10px; }
         .status-desc { color: #64748b; font-size: 15px; max-width: 85%; margin: 0 auto; }
 
+        /* Card de Informação dos E-mails (Adicionado para quando já estiver ativo) */
+        .info-card { background: #f1f5f9; padding: 20px; border-radius: 12px; margin: 25px 0; text-align: left; border-left: 5px solid var(--purple); }
+        .info-card p { font-size: 14px; margin-bottom: 8px; color: var(--dark); }
+        .info-card strong { color: var(--purple); font-size: 11px; text-transform: uppercase; display: block; }
+
         .success-btn {
             display: inline-block; width: 100%; padding: 20px; background: var(--gradient); color: white !important;
             text-decoration: none !important; border-radius: 10px; font-weight: 800; font-size: 17px; margin-top: 30px;
@@ -89,7 +94,6 @@
 
         footer { text-align: center; margin-top: 40px; color: #94a3b8; font-size: 13px; }
         
-        /* Ajuste para o link de suporte */
         .support-link {
             color: var(--purple);
             font-weight: 700;
@@ -179,16 +183,11 @@
     window.onload = function() {
         if(nomeURL) document.getElementById('boas-vindas').innerText = `Olá, ${nomeURL}! 🚀`;
         if(emailURL) document.getElementById('email-1').value = emailURL;
-        if (localStorage.getItem('ativado_' + idPedido)) {
-            renderizarSucesso("✅ Já Ativado!", "Você já configurou este pedido.", null);
-        }
     };
 
     function renderizarErro(titulo, desc) {
         document.getElementById('setup-content').style.display = 'none';
         document.getElementById('loading-state').style.display = 'block';
-        
-        // Uso de target="_top" e herança direta para garantir que o mailto funcione melhor em dispositivos móveis e desktops
         document.getElementById('status-container').innerHTML = `
             <div style="font-size: 60px; margin-bottom: 15px;">⚠️</div>
             <h2 class="status-title" style="color: var(--red)">${titulo}</h2>
@@ -201,15 +200,25 @@
         `;
     }
 
-    function renderizarSucesso(titulo, desc, link) {
+    function renderizarSucesso(titulo, desc, link, e1, e2, isExistente) {
         document.getElementById('setup-content').style.display = 'none';
         document.getElementById('loading-state').style.display = 'block';
-        let linkHTML = link ? `<a href="${link}" target="_blank" class="success-btn">ACESSAR MEU SISTEMA GUIACASH®</a>` : '';
+        
+        let corTitulo = isExistente ? "var(--purple)" : "var(--teal)";
+        let icone = isExistente ? "🚀" : "✅";
+        
+        let infoEmails = `
+            <div class="info-card">
+                <p><strong>E-MAIL PRINCIPAL:</strong> ${e1}</p>
+                ${e2 ? `<p><strong>E-MAIL BÔNUS:</strong> ${e2}</p>` : '<p><strong>E-MAIL BÔNUS:</strong> Nenhum cadastrado</p>'}
+            </div>`;
+
         document.getElementById('status-container').innerHTML = `
-            <div style="font-size: 60px; margin-bottom: 15px;">✅</div>
-            <h2 class="status-title" style="color: var(--teal)">${titulo}</h2>
+            <div style="font-size: 60px; margin-bottom: 15px;">${icone}</div>
+            <h2 class="status-title" style="color: ${corTitulo}">${titulo}</h2>
             <p class="status-desc">${desc}</p>
-            ${linkHTML}
+            ${infoEmails}
+            <a href="${link}" target="_blank" class="success-btn">ACESSAR MEU SISTEMA GUIACASH®</a>
             <p style="margin-top:25px; font-size:12px; color:#94a3b8; font-weight:600;">O acesso também foi enviado para seu WhatsApp.</p>`;
     }
 
@@ -243,21 +252,23 @@
                     nome: nomeURL,
                     email_google_1: e1,
                     email_google_2: e2 || null,
-                    origem: 'Pagina_Ativacao_Blindada_V6',
+                    origem: 'Pagina_Ativacao_Blindada_V7',
                     timestamp: new Date().toISOString()
                 })
             });
 
             const data = await response.json();
 
-            if (response.ok) {
+            if (data.status === "existente") {
+                renderizarSucesso("Acesso Já Ativado", data.message, data.link_planilha, data.email1, data.email2, true);
+            } else if (response.ok) {
                 localStorage.setItem('ativado_' + idPedido, 'true');
-                renderizarSucesso("🎉 Tudo Pronto!", "Seu sistema foi personalizado e já está disponível no seu e-mail.", data.link_planilha);
+                renderizarSucesso("🎉 Tudo Pronto!", "Seu sistema foi personalizado e já está disponível.", data.link_planilha, e1, e2, false);
             } else {
                 renderizarErro("Acesso Negado", data.message || "ID de pagamento não localizado ou não aprovado.");
             }
         } catch (e) {
-            renderizarErro("Erro de Conexão", "Não conseguimos contactar o servidor. Se o problema persistir, envie um e-mail para visionconsultoria.ia@gmail.com");
+            renderizarErro("Erro de Conexão", "Não conseguimos contactar o servidor.");
         }
     }
     </script>
