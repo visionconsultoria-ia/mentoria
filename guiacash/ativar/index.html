@@ -63,14 +63,27 @@
     .form-group { margin-bottom: 18px; }
     .form-group label { display: block; font-weight: 600; margin-bottom: 6px; color: var(--dark); font-size: 13px; }
     
-    /* EFEITO NOS INPUTS */
     .form-group input { 
         width: 100%; padding: 12px 15px; border: 2px solid #e2e8f0; border-radius: 10px; 
         font-size: 14px; outline: none; background: #fcfcfd; transition: 0.3s; 
     }
     .form-group input:focus { border-color: var(--purple); box-shadow: 0 0 0 4px rgba(107, 70, 193, 0.1); background: #fff; }
+    
+    /* ESTILO PARA INPUT COM ERRO */
+    input.input-error { border-color: var(--red) !important; background: #fff1f2 !important; }
 
-    /* EFEITO NO BOTÃO PRETO */
+    /* NOVA MENSAGEM DE ERRO NA TELA */
+    .error-banner {
+        background: #fff1f2; color: var(--red); border: 1px solid #fecdd3;
+        padding: 12px; border-radius: 10px; font-size: 13px; font-weight: 600;
+        margin-bottom: 20px; display: none; animation: shake 0.4s ease-in-out;
+    }
+    @keyframes shake {
+        0%, 100% { transform: translateX(0); }
+        25% { transform: translateX(-5px); }
+        75% { transform: translateX(5px); }
+    }
+
     .btn-submit {
         width: 100%; background: var(--dark); color: white; border: none; padding: 16px; border-radius: 10px;
         font-size: 15px; font-weight: 700; cursor: pointer; text-transform: uppercase; transition: all 0.3s ease; letter-spacing: 1px;
@@ -90,7 +103,6 @@
     .info-card p { font-size: 13px; margin-bottom: 5px; color: var(--dark); }
     .info-card strong { color: var(--purple); font-size: 10px; }
 
-    /* EFEITO NO BOTÃO DE SUCESSO (GRADIENTE) */
     .success-btn {
         display: inline-block; width: 100%; padding: 18px; background: var(--gradient); color: white !important;
         text-decoration: none !important; border-radius: 10px; font-weight: 800; font-size: 16px; margin-top: 20px;
@@ -158,6 +170,8 @@
                 <input type="email" id="email-2-confirma" placeholder="repita o e-mail bônus">
             </div>
 
+            <div id="msg-erro-validacao" class="error-banner"></div>
+
             <button onclick="ativarSistema()" id="btn-ativar" class="btn-submit">
                 Gerar Meu Sistema GuiaCash® Agora
             </button>
@@ -190,6 +204,26 @@
         if(nomeURL) document.getElementById('boas-vindas').innerText = `Olá, ${nomeURL}! 🚀`;
         if(emailURL) document.getElementById('email-1').value = emailURL;
     };
+
+    // Função de validação de formato de e-mail (Regex)
+    function validarEmailFormato(email) {
+        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return regex.test(email);
+    }
+
+    function exibirErroCustom(texto) {
+        const erroDiv = document.getElementById('msg-erro-validacao');
+        erroDiv.innerText = "⚠️ " + texto;
+        erroDiv.style.display = 'block';
+        
+        // Remove o estado de erro quando o usuário volta a digitar
+        document.querySelectorAll('input').forEach(input => {
+            input.addEventListener('input', () => {
+                erroDiv.style.display = 'none';
+                input.classList.remove('input-error');
+            }, { once: true });
+        });
+    }
 
     function renderizarErro(titulo, desc) {
         document.getElementById('setup-content').style.display = 'none';
@@ -234,16 +268,37 @@
         const e2 = document.getElementById('email-2').value.trim().toLowerCase();
         const e2Conf = document.getElementById('email-2-confirma').value.trim().toLowerCase();
 
-        if (!e1.includes('@') || e1 !== e1Conf) {
-            alert('Atenção: O e-mail principal não confere com a confirmação.');
+        // RESET DE CLASSES DE ERRO
+        document.querySelectorAll('input').forEach(i => i.classList.remove('input-error'));
+        document.getElementById('msg-erro-validacao').style.display = 'none';
+
+        // VALIDAÇÃO E-MAIL 1
+        if (!e1 || !validarEmailFormato(e1)) {
+            exibirErroCustom("Insira um e-mail principal válido.");
+            document.getElementById('email-1').classList.add('input-error');
+            return;
+        }
+        if (e1 !== e1Conf) {
+            exibirErroCustom("A confirmação do e-mail principal não confere.");
+            document.getElementById('email-1-confirma').classList.add('input-error');
             return;
         }
 
-        if (e2 !== "" && (e2 !== e2Conf || !e2.includes('@'))) {
-            alert('Atenção: O e-mail bônus não confere com a confirmação ou é inválido.');
-            return;
+        // VALIDAÇÃO E-MAIL 2 (OPCIONAL)
+        if (e2 !== "") {
+            if (!validarEmailFormato(e2)) {
+                exibirErroCustom("O e-mail bônus inserido não é válido.");
+                document.getElementById('email-2').classList.add('input-error');
+                return;
+            }
+            if (e2 !== e2Conf) {
+                exibirErroCustom("A confirmação do e-mail bônus não confere.");
+                document.getElementById('email-2-confirma').classList.add('input-error');
+                return;
+            }
         }
 
+        // SE TUDO OK, PROSSEGUE
         document.getElementById('btn-ativar').disabled = true;
         document.getElementById('btn-ativar').innerText = "CONECTANDO...";
         document.getElementById('setup-content').style.display = 'none';
