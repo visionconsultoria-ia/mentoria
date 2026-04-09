@@ -166,14 +166,14 @@
 
     <script>
     const urlParams = new URLSearchParams(window.location.search);
-    const idPedido = urlParams.get('id');
+    const uidAcesso = urlParams.get('uid');
     const nomeURL = urlParams.get('nome') ? decodeURIComponent(urlParams.get('nome')) : null;
     const emailURL = urlParams.get('email');
 
-    if (!idPedido || !nomeURL) {
-        window.location.href = "https://visioncapacita.com.br/guiacash";
+    if (!uidAcesso || !nomeURL) {
+    window.location.href = "https://visioncapacita.com.br/guiacash";
     } else {
-        document.getElementById('main-container').style.display = 'block';
+    document.getElementById('main-container').style.display = 'block';
     }
 
     window.onload = function() {
@@ -244,7 +244,7 @@
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    id_pagamento: idPedido,
+                    uid: uidAcesso, // Enviando o UID agora
                     nome: nomeURL,
                     email_google_1: e1,
                     email_google_2: e2 || null,
@@ -258,10 +258,10 @@
             if (data.status === "existente") {
                 renderizarSucesso("Acesso Já Ativado", data.message, data.link_planilha, data.email1, data.email2, true);
             } else if (response.ok) {
-                localStorage.setItem('ativado_' + idPedido, 'true');
+                localStorage.setItem('ativado_' + uidAcesso, 'true');
                 renderizarSucesso("🎉 Tudo Pronto!", "Seu sistema foi personalizado e já está disponível.", data.link_planilha, e1, e2, false);
             } else {
-                renderizarErro("Acesso Negado", data.message || "ID de pagamento não localizado ou não aprovado.");
+                renderizarErro("Acesso Negado", data.message || "Chave de acesso inválida ou não aprovada.");
             }
         } catch (e) {
             renderizarErro("Erro de Conexão", "Não conseguimos contactar o servidor.");
