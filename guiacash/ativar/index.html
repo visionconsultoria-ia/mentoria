@@ -209,7 +209,7 @@
     }
 
     function ehDominioDuvidoso(email) {
-        const dominiosNaoGmailPadrao = ['hotmail.com', 'outlook.com', 'live.com', 'yahoo.com', 'yahoo.com.br', 'icloud.com', 'msn.com', 'bol.com.br'];
+        const dominiosNaoGmailPadrao = ['hotmail.com', 'outlook.com', 'live.com', 'msn.com', 'yahoo.com', 'yahoo.com.br', 'rocketmail.com', 'bol.com.br', 'uol.com.br', 'ig.com.br', 'terra.com.br', 'oi.com.br', 'globo.com', 'icloud.com', 'me.com', 'aol.com'];
         const dominio = email.split('@')[1];
         return dominiosNaoGmailPadrao.includes(dominio);
     }
