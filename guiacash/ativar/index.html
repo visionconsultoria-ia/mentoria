@@ -99,8 +99,9 @@
     .spinner { width: 50px; height: 50px; border: 5px solid #f3f3f3; border-top: 5px solid var(--teal); border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 15px; }
     @keyframes spin { 100% { transform: rotate(360deg); } }
 
-    .status-title { color: var(--dark); font-size: 20px; font-weight: 700; margin-bottom: 8px; }
-    .status-desc { color: #64748b; font-size: 14px; max-width: 90%; margin: 0 auto; }
+    /* ESTILO DOS ESTADOS DE ERRO/SUCESSO DENTRO DO LOADING STATE PARA PRESERVAR O HEADER */
+    .status-title { color: var(--dark); font-size: 20px; font-weight: 700; margin-bottom: 8px; margin-top: 15px; }
+    .status-desc { color: #64748b; font-size: 14px; max-width: 90%; margin: 0 auto; line-height: 1.6; }
 
     .info-card { background: #f1f5f9; padding: 15px; border-radius: 12px; margin: 20px 0; text-align: left; border-left: 5px solid var(--purple); }
     .info-card p { font-size: 13px; margin-bottom: 5px; color: var(--dark); }
@@ -248,7 +249,7 @@
         document.getElementById('setup-content').style.display = 'none';
         document.getElementById('loading-state').style.display = 'block';
         document.getElementById('status-container').innerHTML = `
-            <div style="font-size: 50px; margin-bottom: 15px;">⚠️</div>
+            <div style="font-size: 50px; margin-top: 15px;">⚠️</div>
             <h2 class="status-title" style="color: var(--red)">${titulo}</h2>
             <p class="status-desc">${desc}</p>
             <button onclick="location.reload()" class="btn-submit" style="margin-top: 30px; background: var(--dark);">TENTAR NOVAMENTE</button>
@@ -265,7 +266,7 @@
                 ${e2 ? `<p><strong>E-MAIL BÔNUS:</strong> ${e2}</p>` : '<p><strong>E-MAIL BÔNUS:</strong> Nenhum cadastrado</p>'}
             </div>`;
         document.getElementById('status-container').innerHTML = `
-            <div style="font-size: 50px; margin-bottom: 15px;">${isExistente ? '🚀' : '✅'}</div>
+            <div style="font-size: 50px; margin-top: 15px;">${isExistente ? '🚀' : '✅'}</div>
             <h2 class="status-title" style="color: ${corTitulo}">${titulo}</h2>
             <p class="status-desc">${desc}</p>
             ${infoEmails}
@@ -290,7 +291,6 @@
             return;
         }
 
-        // Blindagem Amigável: Se for domínio externo (Hotmail, BOL, etc) e não confirmou vínculo
         if (!confirmouNaoGmail && (ehDominioDuvidoso(e1) || (e2 && ehDominioDuvidoso(e2)))) {
             exibirAvisoGoogle("Detectamos um e-mail externo. Para que o sistema funcione, este endereço PRECISA estar vinculado a uma Conta Google. Se já vinculou, clique no botão abaixo novamente.");
             confirmouNaoGmail = true;
@@ -329,7 +329,7 @@
                     nome: nomeURL,
                     email_google_1: e1,
                     email_google_2: e2 || null,
-                    origem: 'Pagina_Ativacao_Blindada_V7'
+                    origem: 'Pagina_Ativacao_Blindada_V7_Corrigida'
                 })
             });
             const data = await response.json();
@@ -338,7 +338,7 @@
             } else if (response.ok) {
                 renderizarSucesso("🎉 Tudo Pronto!", "Seu sistema foi personalizado e já está disponível.", data.link_planilha, e1, e2, false);
             } else {
-                renderizarErro("Acesso Negado", data.message || "Chave de acesso inválida.");
+                renderizarErro("Acesso Negado", data.message || "Acesso não liberado ou chave inválida. Se você realizou o pagamento via Boleto, aguarde a compensação. Caso tenha usado PIX ou Cartão, fale com nosso suporte.");
             }
         } catch (e) {
             renderizarErro("Erro de Conexão", "Não conseguimos contactar o servidor.");
