@@ -15,6 +15,7 @@
         --gradient: linear-gradient(135deg, var(--purple) 0%, var(--teal) 100%);
         --shadow: 0 10px 40px rgba(0,0,0,0.06);
         --red: #e11d48;
+        --orange: #f59e0b;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
@@ -56,9 +57,9 @@
     .welcome-text { text-align: center; margin-bottom: 25px; padding-bottom: 20px; border-bottom: 1px solid #e2e8f0; color: #64748b; }
     .welcome-text strong { color: var(--dark); display: block; font-size: 19px; margin-bottom: 5px; }
 
-    .google-notice { background: #fffbeb; border: 1px solid #fde68a; padding: 15px; border-radius: 12px; margin-bottom: 25px; display: flex; gap: 12px; }
+    .google-notice { background: #fffbeb; border: 1px solid #fde68a; padding: 15px; border-radius: 12px; margin-bottom: 25px; display: flex; gap: 12px; align-items: flex-start; }
     .google-notice span { font-size: 20px; }
-    .google-notice p { font-size: 13px; color: #92400e; line-height: 1.5; }
+    .google-notice p { font-size: 13px; color: #92400e; line-height: 1.5; margin: 0; }
 
     .form-group { margin-bottom: 18px; }
     .form-group label { display: block; font-weight: 600; margin-bottom: 6px; color: var(--dark); font-size: 13px; }
@@ -76,6 +77,12 @@
         padding: 12px; border-radius: 10px; font-size: 13px; font-weight: 600;
         margin-bottom: 20px; display: none; animation: shake 0.4s ease-in-out;
     }
+    .warning-banner {
+        background: #fffbeb; color: #92400e; border: 1px solid #fde68a;
+        padding: 12px; border-radius: 10px; font-size: 13px; font-weight: 600;
+        margin-bottom: 20px; display: none;
+    }
+
     @keyframes shake {
         0%, 100% { transform: translateX(0); }
         25% { transform: translateX(-5px); }
@@ -109,7 +116,6 @@
     @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(26, 188, 156, 0.4); } 70% { box-shadow: 0 0 0 15px rgba(26, 188, 156, 0); } 100% { box-shadow: 0 0 0 0 rgba(26, 188, 156, 0); } }
 
     footer { text-align: center; margin-top: 20px; color: #94a3b8; font-size: 12px; }
-    .support-link { color: var(--purple); font-weight: 700; text-decoration: none; }
 </style>
 </head>
 <body>
@@ -132,9 +138,9 @@
             <div class="google-notice">
                 <span>💡</span>
                 <p>
-                    <strong>Atenção:</strong> Nosso sistema roda no ambiente Google. 
-                    Se você não tem conta ou usa Hotmail, Yahoo, 
-                    <a href="https://accounts.google.com/SignUpWithoutGmail" target="_blank">clique aqui</a>.
+                    <strong>Atenção:</strong> Este sistema é uma ferramenta Google. 
+                    Se o seu e-mail (mesmo sendo empresarial, Hotmail, Yahoo, etc) ainda não é uma "Conta Google", 
+                    <a href="https://accounts.google.com/SignUpWithoutGmail" target="_blank" style="color: #b45309; font-weight: 700;">clique aqui para vinculá-lo gratuitamente</a> antes de prosseguir.
                 </p>
             </div>
 
@@ -161,6 +167,7 @@
             </div>
 
             <div id="msg-erro-validacao" class="error-banner"></div>
+            <div id="msg-aviso-google" class="warning-banner"></div>
 
             <button onclick="ativarSistema()" id="btn-ativar" class="btn-submit">
                 Gerar Meu Sistema GuiaCash® Agora
@@ -183,6 +190,7 @@
     const uidAcesso = urlParams.get('uid');
     const nomeURL = urlParams.get('nome') ? decodeURIComponent(urlParams.get('nome')) : null;
     const emailURL = urlParams.get('email');
+    let confirmouNaoGmail = false;
 
     if (!uidAcesso || !nomeURL) {
         window.location.href = "https://visioncapacita.com.br/guiacash";
@@ -200,17 +208,41 @@
         return regex.test(email);
     }
 
+    function ehDominioDuvidoso(email) {
+        const dominiosNaoGmailPadrao = ['hotmail.com', 'outlook.com', 'live.com', 'yahoo.com', 'yahoo.com.br', 'icloud.com', 'msn.com', 'bol.com.br'];
+        const dominio = email.split('@')[1];
+        return dominiosNaoGmailPadrao.includes(dominio);
+    }
+
     function exibirErroCustom(texto) {
         const erroDiv = document.getElementById('msg-erro-validacao');
         erroDiv.innerText = "⚠️ " + texto;
         erroDiv.style.display = 'block';
-        document.querySelectorAll('input').forEach(input => {
-            input.addEventListener('input', () => {
-                erroDiv.style.display = 'none';
-                input.classList.remove('input-error');
-            }, { once: true });
-        });
+        resetBotao();
     }
+
+    function exibirAvisoGoogle(texto) {
+        const avisoDiv = document.getElementById('msg-aviso-google');
+        avisoDiv.innerHTML = "💡 <strong>Atenção:</strong> " + texto;
+        avisoDiv.style.display = 'block';
+        document.getElementById('btn-ativar').innerText = "ESTE E-MAIL JÁ É CONTA GOOGLE - ATIVAR";
+        document.getElementById('btn-ativar').style.background = "var(--orange)";
+    }
+
+    function resetBotao() {
+        confirmouNaoGmail = false;
+        document.getElementById('msg-aviso-google').style.display = 'none';
+        document.getElementById('btn-ativar').innerText = "Gerar Meu Sistema GuiaCash® Agora";
+        document.getElementById('btn-ativar').style.background = "var(--dark)";
+    }
+
+    document.querySelectorAll('input').forEach(input => {
+        input.addEventListener('input', () => {
+            document.getElementById('msg-erro-validacao').style.display = 'none';
+            input.classList.remove('input-error');
+            resetBotao();
+        });
+    });
 
     function renderizarErro(titulo, desc) {
         document.getElementById('setup-content').style.display = 'none';
@@ -219,10 +251,6 @@
             <div style="font-size: 50px; margin-bottom: 15px;">⚠️</div>
             <h2 class="status-title" style="color: var(--red)">${titulo}</h2>
             <p class="status-desc">${desc}</p>
-            <div style="margin-top: 20px; font-size: 14px; color: #64748b;">
-                Precisa de ajuda? <br>
-                <a href="mailto:visionconsultoria.ia@gmail.com" class="support-link">visionconsultoria.ia@gmail.com</a>
-            </div>
             <button onclick="location.reload()" class="btn-submit" style="margin-top: 30px; background: var(--dark);">TENTAR NOVAMENTE</button>
         `;
     }
@@ -231,14 +259,13 @@
         document.getElementById('setup-content').style.display = 'none';
         document.getElementById('loading-state').style.display = 'block';
         let corTitulo = isExistente ? "var(--purple)" : "var(--teal)";
-        let icone = isExistente ? "🚀" : "✅";
         let infoEmails = `
             <div class="info-card">
                 <p><strong>E-MAIL PRINCIPAL:</strong> ${e1}</p>
                 ${e2 ? `<p><strong>E-MAIL BÔNUS:</strong> ${e2}</p>` : '<p><strong>E-MAIL BÔNUS:</strong> Nenhum cadastrado</p>'}
             </div>`;
         document.getElementById('status-container').innerHTML = `
-            <div style="font-size: 50px; margin-bottom: 15px;">${icone}</div>
+            <div style="font-size: 50px; margin-bottom: 15px;">${isExistente ? '🚀' : '✅'}</div>
             <h2 class="status-title" style="color: ${corTitulo}">${titulo}</h2>
             <p class="status-desc">${desc}</p>
             ${infoEmails}
@@ -252,10 +279,6 @@
         const e2 = document.getElementById('email-2').value.trim().toLowerCase();
         const e2Conf = document.getElementById('email-2-confirma').value.trim().toLowerCase();
 
-        document.querySelectorAll('input').forEach(i => i.classList.remove('input-error'));
-        document.getElementById('msg-erro-validacao').style.display = 'none';
-
-        // Validação E-mail 1
         if (!e1 || !validarEmailFormato(e1)) {
             exibirErroCustom("Insira um e-mail principal válido.");
             document.getElementById('email-1').classList.add('input-error');
@@ -267,7 +290,13 @@
             return;
         }
 
-        // Validação E-mail 2 (Bônus)
+        // Blindagem Amigável: Se for domínio externo (Hotmail, BOL, etc) e não confirmou vínculo
+        if (!confirmouNaoGmail && (ehDominioDuvidoso(e1) || (e2 && ehDominioDuvidoso(e2)))) {
+            exibirAvisoGoogle("Detectamos um e-mail externo. Para que o sistema funcione, este endereço PRECISA estar vinculado a uma Conta Google. Se já vinculou, clique no botão abaixo novamente.");
+            confirmouNaoGmail = true;
+            return;
+        }
+
         if (e2 !== "") {
             if (!validarEmailFormato(e2)) {
                 exibirErroCustom("O e-mail bônus inserido não é válido.");
@@ -279,7 +308,6 @@
                 document.getElementById('email-2-confirma').classList.add('input-error');
                 return;
             }
-            // NOVA VALIDAÇÃO: E-mail Bônus não pode ser igual ao Principal
             if (e2 === e1) {
                 exibirErroCustom("O e-mail bônus deve ser diferente do e-mail principal.");
                 document.getElementById('email-2').classList.add('input-error');
