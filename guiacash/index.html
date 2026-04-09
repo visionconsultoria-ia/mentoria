@@ -10,9 +10,9 @@
 
     <style>
         :root {
-            --primary: #0FD6AA; /* Verde Água Guia Cash */
-            --secondary: #63259D; /* Roxo Guia Cash */
-            --dark: #134f5c; /* Azul Petróleo Vision */
+            --primary: #0FD6AA;
+            --secondary: #63259D;
+            --dark: #134f5c;
             --light-bg: #f8fafc;
             --gradient: linear-gradient(135deg, #20124d 0%, #134f5c 100%);
         }
@@ -26,7 +26,6 @@
             line-height: 1.6;
         }
 
-        /* Barra de Alerta */
         .top-bar {
             background: #ef4444;
             color: white;
@@ -43,7 +42,6 @@
 
         .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
 
-        /* Hero Section */
         .hero {
             background: var(--gradient);
             padding: 140px 0 100px;
@@ -63,10 +61,7 @@
             background: linear-gradient(to top, var(--light-bg), transparent);
         }
 
-        .logo-img {
-            max-width: 220px;
-            margin-bottom: 30px;
-        }
+        .logo-img { max-width: 220px; margin-bottom: 30px; }
 
         .hero h1 {
             font-size: 3.5rem;
@@ -89,7 +84,6 @@
             opacity: 0.9;
         }
 
-        /* Botões */
         .cta-btn {
             background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
             color: #fff;
@@ -106,37 +100,6 @@
         }
 
         .cta-btn:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(99, 37, 157, 0.5); }
-
-        /* Grid de Funcionalidades */
-        .section-padding { padding: 100px 0; }
-        .section-title { text-align: center; margin-bottom: 60px; }
-        .section-title h2 { font-size: 2.5rem; color: var(--dark); }
-
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .feature-card {
-            background: white;
-            padding: 45px;
-            border-radius: 24px;
-            border: 1px solid #e2e8f0;
-            transition: 0.3s;
-            text-align: center;
-        }
-
-        .feature-card:hover { border-color: var(--primary); transform: translateY(-5px); }
-
-        .feature-card i {
-            font-size: 3rem;
-            margin-bottom: 25px;
-            display: block;
-            background: linear-gradient(135deg, var(--secondary), var(--primary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
 
         /* Modal Styles */
         #captureModal {
@@ -164,25 +127,54 @@
             text-align: center;
         }
 
+        .modal-content label {
+            display: block;
+            text-align: left;
+            font-size: 0.75rem; 
+            font-weight: 800; 
+            color: var(--dark);
+            margin-bottom: 5px;
+        }
+
         .modal-content input {
             width:100%; 
             padding:14px; 
-            margin-top:5px; 
             border-radius:10px; 
             border:2px solid #e2e8f0; 
             font-family: inherit;
             margin-bottom: 15px;
+            outline: none;
         }
 
-        .modal-content label {
-            display: block;
-            text-align: left;
-            font-size: 0.8rem; 
-            font-weight: 700; 
-            color: var(--dark);
+        .modal-content input:focus { border-color: var(--primary); }
+
+        /* Grid e Footer */
+        .section-padding { padding: 100px 0; }
+        .section-title { text-align: center; margin-bottom: 60px; }
+        .section-title h2 { font-size: 2.5rem; color: var(--dark); }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
         }
 
-        /* Footer Profissional */
+        .feature-card {
+            background: white;
+            padding: 45px;
+            border-radius: 24px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+        }
+
+        .feature-card i {
+            font-size: 3rem;
+            margin-bottom: 25px;
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
         footer {
             background: #0f172a;
             color: #94a3b8;
@@ -190,31 +182,9 @@
             text-align: center;
         }
 
-        .footer-links {
-            margin: 30px 0;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
+        .footer-links { margin: 30px 0; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+        .footer-links a { color: #cbd5e1; text-decoration: none; font-weight: 600; font-size: 0.9rem; }
 
-        .footer-links a {
-            color: #cbd5e1;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: 0.3s;
-        }
-
-        .footer-links a:hover { color: var(--primary); }
-
-        .cnpj-info {
-            font-size: 0.75rem;
-            margin-top: 20px;
-            opacity: 0.6;
-        }
-
-        /* Flutuantes */
         .whatsapp-float {
             position: fixed;
             bottom: 30px;
@@ -228,12 +198,10 @@
             align-items: center;
             justify-content: center;
             z-index: 1000;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
 
         @media (max-width: 768px) {
             .hero h1 { font-size: 2.5rem; }
-            .section-padding { padding: 60px 0; }
         }
     </style>
 </head>
@@ -241,7 +209,7 @@
 
     <div class="top-bar">Oferta Exclusiva GuiaCash®: <span id="timer">15:00</span></div>
 
-    <a href="https://wa.me/555192491010" class="whatsapp-float" target="_blank" rel="noopener noreferrer">
+    <a href="https://wa.me/555192491010" class="whatsapp-float" target="_blank">
         <i class="fa-brands fa-whatsapp fa-2x"></i>
     </a>
 
@@ -249,8 +217,7 @@
         <div class="container">
             <img src="guia-cash-logo.png" alt="Guia Cash Logo" class="logo-img">
             <h1>Domine suas finanças com o <span class="highlight">GuiaCash®</span></h1>
-            <p>A solução definitiva para organização financeira e automação inteligente. Saia do caos e comece a ver seu patrimônio crescer com a metodologia Vision.</p>
-            
+            <p>A solução definitiva para organização financeira e automação inteligente.</p>
             <a href="javascript:void(0)" class="cta-btn" onclick="openModal()">QUERO ADQUIRIR O SISTEMA AGORA!</a>
         </div>
     </section>
@@ -258,48 +225,51 @@
     <div id="captureModal">
         <div class="modal-content">
             <h2 style="color:var(--dark); font-size: 1.8rem; margin-bottom:10px;">Falta pouco! 🚀</h2>
-            <p style="color:#64748b; margin-bottom:25px; font-size:0.95rem;">Preencha abaixo para liberar seu acesso e receber o <b>Guia VIP</b> no WhatsApp.</p>
+            <p style="color:#64748b; margin-bottom:25px; font-size:0.95rem;">Preencha abaixo para liberar seu acesso.</p>
             
             <form id="leadForm">
                 <label>NOME COMPLETO</label>
-                <input type="text" id="nome" name="nome" placeholder="Ex: Jonatan Pelisoli" required>
+                <input type="text" id="nome" name="nome" placeholder="Ex: Laura Silva" required>
 
                 <label>SEU MELHOR E-MAIL</label>
-                <input type="email" id="email" name="email" placeholder="email@exemplo.com" required>
+                <input type="email" id="email" name="email" placeholder="laura.silva@gmail.com" required>
 
-                <label>WHATSAPP (COM DDD)</label>
-                <input type="tel" id="whatsapp" name="whatsapp" placeholder="51999999999" required>
+                <label>WHATSAPP</label>
+                <div style="display: flex; gap: 10px;">
+                    <input type="tel" id="ddd" name="ddd" placeholder="DDD" maxlength="2" required 
+                           style="width: 80px; text-align: center;">
+                    
+                    <input type="tel" id="whatsapp_num" name="whatsapp_num" placeholder="99999-9999" maxlength="10" required 
+                           style="flex: 1;">
+                </div>
                 
-                <button type="submit" id="btnEnviar" class="cta-btn" style="width:100%; font-size: 1rem;">
+                <button type="submit" id="btnEnviar" class="cta-btn" style="width:100%; font-size: 1rem; margin-top: 10px;">
                     CONTINUAR PARA PAGAMENTO
                 </button>
             </form>
-            
-            <p style="margin-top:20px; font-size: 0.7rem; color: #94a3b8;">🔒 Seus dados estão seguros com a Vision Tecnologia.</p>
-            <button onclick="closeModal()" style="position:absolute; top:15px; right:15px; background:none; border:none; font-size:1.5rem; cursor:pointer; color:#94a3b8;">&times;</button>
+            <p style="margin-top:20px; font-size: 0.7rem; color: #94a3b8;">🔒 Seus dados estão seguros.</p>
+            <button onclick="closeModal()" style="position:absolute; top:15px; right:15px; background:none; border:none; font-size:1.5rem; cursor:pointer;">&times;</button>
         </div>
     </div>
 
     <section class="section-padding">
         <div class="container">
-            <div class="section-title">
-                <h2>Tecnologia a favor do seu bolso</h2>
-            </div>
+            <div class="section-title"><h2>Tecnologia a favor do seu bolso</h2></div>
             <div class="feature-grid">
                 <div class="feature-card">
                     <i class="fas fa-brain"></i>
                     <h3>Inteligência Nazaré</h3>
-                    <p>Algoritmos proprietários que analisam seu comportamento financeiro e sugerem os melhores caminhos.</p>
+                    <p>Algoritmos que analisam seu comportamento financeiro.</p>
                 </div>
                 <div class="feature-card">
                     <i class="fas fa-robot"></i>
                     <h3>Automação Total</h3>
-                    <p>Integração via WhatsApp para registro rápido de despesas e consultas de saldo em tempo real.</p>
+                    <p>Registro via WhatsApp em tempo real.</p>
                 </div>
                 <div class="feature-card">
                     <i class="fas fa-graduation-cap"></i>
                     <h3>Mentoria Vision</h3>
-                    <p>Mais que uma ferramenta, um método completo de capacitação financeira para você e sua família.</p>
+                    <p>Método completo de capacitação financeira.</p>
                 </div>
             </div>
         </div>
@@ -307,22 +277,17 @@
 
     <footer>
         <div class="container">
-            <img src="guia-cash-logo.png" alt="Vision Capacita" style="max-width: 150px; opacity: 0.8; margin-bottom: 20px;">
-            
             <div class="footer-links">
                 <a href="#">Início</a>
-                <a href="https://visioncapacita.com.br/guiacash/faq/" target="_blank">Central de Ajuda (FAQ)</a>
-                <a href="https://visioncapacita.com.br/guiacash/termos/" target="_blank">Termos de Serviço</a>
-                <a href="https://visioncapacita.com.br/guiacash/privacidade/" target="_blank">Política de Privacidade</a>
+                <a href="https://visioncapacita.com.br/guiacash/faq/" target="_blank">FAQ</a>
+                <a href="https://visioncapacita.com.br/guiacash/termos/" target="_blank">Termos</a>
             </div>
-
-            <p>© 2026 Vision Educação e Capacitação. Todos os direitos reservados.</p>
-            <p class="cnpj-info">O sistema GuiaCash® é uma ferramenta educacional. <br> Vision Educação e Capacitação - Porto Alegre/RS</p>
+            <p>© 2026 Vision Educação e Capacitação.</p>
         </div>
     </footer>
 
     <script>
-        // Timer da barra superior
+        // Timer
         function startTimer(duration, display) {
             var timer = duration, minutes, seconds;
             setInterval(function () {
@@ -333,43 +298,45 @@
             }, 1000);
         }
 
-        // Funções do Modal
-        function openModal() {
-            document.getElementById('captureModal').style.display = 'flex';
-        }
+        // Modal
+        function openModal() { document.getElementById('captureModal').style.display = 'flex'; }
+        function closeModal() { document.getElementById('captureModal').style.display = 'none'; }
+        window.onclick = function(e) { if (e.target == document.getElementById('captureModal')) closeModal(); }
 
-        function closeModal() {
-            document.getElementById('captureModal').style.display = 'none';
-        }
+        // Máscara e Filtro
+        document.getElementById('ddd').addEventListener('input', function(e) {
+            e.target.value = e.target.value.replace(/\D/g, '');
+        });
 
-        // Fechar ao clicar fora
-        window.onclick = function(event) {
-            if (event.target == document.getElementById('captureModal')) {
-                closeModal();
-            }
-        }
+        document.getElementById('whatsapp_num').addEventListener('input', function (e) {
+            let x = e.target.value.replace(/\D/g, '').match(/(\d{0,5})(\d{0,4})/);
+            e.target.value = !x[2] ? x[1] : x[1] + '-' + x[2];
+        });
 
-        // Envio dos dados e Redirecionamento
+        // Envio
         document.getElementById('leadForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            
             const btn = document.getElementById('btnEnviar');
             btn.innerText = "PROCESSANDO...";
             btn.disabled = true;
 
+            const ddd = document.getElementById('ddd').value;
+            const numeroLimpo = document.getElementById('whatsapp_num').value.replace(/\D/g, '');
+            const whatsappFinal = "55" + ddd + numeroLimpo;
+
             const data = {
                 nome: document.getElementById('nome').value,
                 email: document.getElementById('email').value,
-                whatsapp: document.getElementById('whatsapp').value,
+                whatsapp: whatsappFinal,
                 data_lead: new Date().toISOString()
             };
 
-            // URL DO SEU WEBHOOK N8N (Troque aqui!)
+            // URL DO SEU WEBHOOK N8N AQUI
             const webhookURL = 'https://n8nwebhook.visioncapacita.com.br/webhook/SUA_URL_DO_WEBHOOK_AQUI';
 
             fetch(webhookURL, {
                 method: 'POST',
-                mode: 'no-cors', 
+                mode: 'no-cors',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(data)
             }).then(() => {
@@ -379,9 +346,7 @@
             });
         });
 
-        window.onload = function () {
-            startTimer(60 * 15, document.querySelector('#timer'));
-        };
+        window.onload = function () { startTimer(60 * 15, document.querySelector('#timer')); };
     </script>
 </body>
 </html>
