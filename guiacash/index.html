@@ -34,15 +34,20 @@
             z-index: 1100;
             text-transform: uppercase;
         }
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
-        
-        /* HERO COM FORMULÁRIO DIRETO */
+        .container { 
+            max-width: 1100px; 
+            margin: 0 auto; 
+            padding: 0 20px; 
+        }
+       
+        /* HERO OTIMIZADO */
         .hero {
             background: var(--gradient);
-            padding: 160px 0 120px;
+            padding: 120px 0 80px;           /* reduzido para mobile-first */
             color: white;
             position: relative;
             overflow: hidden;
+            text-align: center;
         }
         .hero::after {
             content: '';
@@ -50,13 +55,17 @@
             bottom: 0;
             left: 0;
             width: 100%;
-            height: 120px;
+            height: 100px;
             background: linear-gradient(to top, var(--light-bg), transparent);
         }
-        .logo-img { max-width: 220px; margin-bottom: 25px; }
-        
+        .logo-img { 
+            max-width: 220px; 
+            margin: 0 auto 20px; 
+            display: block; 
+        }
+       
         .hero h1 {
-            font-size: 3.2rem;
+            font-size: 2.9rem;
             font-weight: 800;
             margin-bottom: 15px;
             letter-spacing: -1.5px;
@@ -67,30 +76,30 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        
+       
         .offer-box {
             background: rgba(255,255,255,0.1);
             backdrop-filter: blur(10px);
             border: 2px solid rgba(255,255,255,0.3);
             border-radius: 20px;
-            padding: 30px;
+            padding: 25px 20px;
             max-width: 520px;
-            margin: 30px auto;
+            margin: 25px auto;
             text-align: center;
         }
-        
+       
         .offer-box h2 {
-            font-size: 1.65rem;
+            font-size: 1.55rem;
             margin-bottom: 12px;
             color: #fff;
         }
-        
+       
         .offer-box p {
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             opacity: 0.95;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
-        
+       
         .vip-badge {
             background: #25d366;
             color: white;
@@ -101,20 +110,20 @@
             align-items: center;
             gap: 8px;
             font-size: 0.95rem;
-            margin-bottom: 20px;
+            margin-bottom: 18px;
         }
 
         /* Formulário */
         .lead-form {
             background: white;
-            padding: 35px;
+            padding: 32px 25px;
             border-radius: 24px;
             box-shadow: 0 20px 50px rgba(0,0,0,0.25);
-            max-width: 520px;
+            max-width: 500px;
             margin: 0 auto;
             color: #1e293b;
         }
-        
+       
         .lead-form label {
             display: block;
             text-align: left;
@@ -124,27 +133,26 @@
             margin-bottom: 6px;
         }
         .lead-form input {
-            width:100%;
-            padding: 15px;
+            width: 100%;
+            padding: 14px 16px;
             border-radius: 12px;
             border: 2px solid #e2e8f0;
             font-family: inherit;
-            margin-bottom: 18px;
+            margin-bottom: 16px;
             outline: none;
             font-size: 1rem;
         }
         .lead-form input:focus { border-color: var(--primary); }
-        
+       
         .cta-btn {
             background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
             color: #fff;
-            padding: 18px 40px;
+            padding: 18px;
             border-radius: 50px;
             font-weight: 800;
-            font-size: 1.1rem;
+            font-size: 1.08rem;
             display: block;
             width: 100%;
-            text-decoration: none;
             text-transform: uppercase;
             border: none;
             cursor: pointer;
@@ -153,6 +161,7 @@
         }
         .cta-btn:hover { transform: translateY(-3px); box-shadow: 0 15px 35px rgba(99, 37, 157, 0.5); }
 
+        /* Seções abaixo */
         .section-padding { padding: 100px 0; }
         .feature-grid {
             display: grid;
@@ -165,13 +174,6 @@
             border-radius: 24px;
             border: 1px solid #e2e8f0;
             text-align: center;
-        }
-        .feature-card i {
-            font-size: 3rem;
-            margin-bottom: 25px;
-            background: linear-gradient(135deg, var(--secondary), var(--primary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
         }
         footer {
             background: #0f172a;
@@ -193,15 +195,39 @@
             justify-content: center;
             z-index: 1000;
         }
+
+        /* RESPONSIVO - Mobile First */
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2.4rem; }
-            .hero { padding: 140px 0 100px; }
+            .hero {
+                padding: 100px 0 60px;     /* ainda mais compacto no celular */
+            }
+            .hero h1 {
+                font-size: 2.35rem;
+            }
+            .offer-box {
+                padding: 22px 18px;
+                margin: 20px auto;
+            }
+            .lead-form {
+                padding: 28px 20px;
+                max-width: 100%;
+            }
+            .cta-btn {
+                font-size: 1.05rem;
+                padding: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2.15rem;
+            }
         }
     </style>
 </head>
 <body>
     <div class="top-bar">⏰ Oferta Exclusiva termina em: <span id="timer">15:00</span></div>
-    
+   
     <a href="https://wa.me/555192491010" class="whatsapp-float" target="_blank">
         <i class="fa-brands fa-whatsapp fa-2x"></i>
     </a>
@@ -209,9 +235,9 @@
     <section class="hero">
         <div class="container">
             <img src="guia-cash-logo.png" alt="Guia Cash Logo" class="logo-img">
-            
+           
             <h1>Domine suas finanças com o <span class="highlight">GuiaCash®</span></h1>
-            
+           
             <div class="offer-box">
                 <div class="vip-badge">
                     <i class="fab fa-whatsapp"></i> GRUPO VIP + DESCONTO EXCLUSIVO
@@ -220,26 +246,26 @@
                 <p>Preencha seus dados abaixo e garanta sua vaga com valor reduzido + acesso imediato ao grupo VIP no WhatsApp com mentoria ao vivo e atualizações exclusivas.</p>
             </div>
 
-            <!-- FORMULÁRIO DIRETO (sem modal) -->
+            <!-- FORMULÁRIO DIRETO -->
             <div class="lead-form">
                 <form id="leadForm">
                     <label>NOME COMPLETO</label>
                     <input type="text" id="nome" name="nome" placeholder="Ex: Laura Silva" required>
-                    
+                   
                     <label>SEU MELHOR E-MAIL</label>
                     <input type="email" id="email" name="email" placeholder="laura.silva@gmail.com" required>
-                    
+                   
                     <label>WHATSAPP (para entrar no grupo VIP)</label>
                     <div style="display: flex; gap: 10px; margin-bottom: 20px;">
                         <input type="tel" id="ddd" name="ddd" placeholder="51" maxlength="2" required style="width: 80px; text-align: center;">
                         <input type="tel" id="whatsapp_num" name="whatsapp_num" placeholder="99999-9999" maxlength="10" required style="flex: 1;">
                     </div>
-                    
+                   
                     <button type="submit" id="btnEnviar" class="cta-btn">
                         QUERO MEU DESCONTO EXCLUSIVO + ACESSO AO GRUPO VIP
                     </button>
                 </form>
-                
+               
                 <p style="text-align:center; margin-top:20px; font-size: 0.75rem; color: #64748b;">
                     🔒 Seus dados estão 100% seguros | Acesso imediato após o cadastro
                 </p>
@@ -247,7 +273,7 @@
         </div>
     </section>
 
-    <!-- Restante do conteúdo (mantido igual) -->
+    <!-- Restante do conteúdo (mantido) -->
     <section class="section-padding">
         <div class="container">
             <div class="section-title"><h2>Tecnologia a favor do seu bolso</h2></div>
@@ -294,11 +320,10 @@
             }, 1000);
         }
 
-        // Máscara WhatsApp
+        // Máscara WhatsApp (mantida)
         document.getElementById('ddd').addEventListener('input', function(e) {
             e.target.value = e.target.value.replace(/\D/g, '');
         });
-
         document.getElementById('whatsapp_num').addEventListener('input', function (e) {
             let value = e.target.value.replace(/\D/g, '');
             if (value.length > 8) {
@@ -309,12 +334,10 @@
             e.target.value = value;
         });
 
-        // Envio do formulário (mantido 100% compatível com seu n8n)
+        // Envio do formulário (n8n intacto)
         document.getElementById('leadForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            
             const btn = document.getElementById('btnEnviar');
-            const originalText = btn.innerText;
             btn.innerText = "PROCESSANDO...";
             btn.disabled = true;
 
@@ -344,7 +367,6 @@
             });
         });
 
-        // Inicia timer
         window.onload = function () {
             startTimer(60 * 15, document.querySelector('#timer'));
         };
