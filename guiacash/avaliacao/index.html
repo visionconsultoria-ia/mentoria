@@ -21,24 +21,29 @@ body {
     background: linear-gradient(135deg,#20124d 0%,#134f5c 100%);
     min-height:100vh;
     display:flex;
-    align-items:center;
+    align-items:flex-start; /* 🔥 sobe tudo */
     justify-content:center;
     color:white;
-    padding:20px;
+    padding:10px 20px 20px; /* 🔥 menos espaço em cima */
 }
 
-.container { max-width:420px; width:100%; text-align:center; }
+.container {
+    max-width:420px;
+    width:100%;
+    text-align:center;
+    margin-top:5px; /* 🔥 ajuste fino */
+}
 
 .logo {
     max-width:180px;
-    margin-bottom:25px;
+    margin-bottom:15px; /* 🔥 menos espaço abaixo */
 }
 
 h1 {
     font-size:1.9rem;
     font-weight:800;
     line-height:1.2;
-    margin-bottom:15px;
+    margin-bottom:12px;
 }
 
 .highlight { color:var(--primary); }
@@ -46,12 +51,12 @@ h1 {
 p {
     font-size:0.95rem;
     opacity:0.9;
-    margin-bottom:20px;
+    margin-bottom:18px;
 }
 
 .benefits {
     font-size:0.85rem;
-    margin-bottom:15px;
+    margin-bottom:12px;
 }
 
 .benefits div {
@@ -59,6 +64,7 @@ p {
     align-items:center;
     gap:8px;
     margin-bottom:6px;
+    justify-content:center;
 }
 
 .benefits i {
@@ -117,7 +123,7 @@ input:focus { border-color:var(--primary); }
 
 <div class="container">
 
-<!-- LOGO CORRIGIDO -->
+<!-- LOGO -->
 <img src="../guia-cash-logo.png" alt="GuiaCash Logo" class="logo">
 
 <h1>
