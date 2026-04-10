@@ -152,11 +152,9 @@ input.invalid {
     font-size:1rem;
     box-shadow: 0 8px 15px rgba(99, 37, 157, 0.3);
     margin-top: 5px;
-    /* ADIÇÃO DA PULSAÇÃO */
     animation: pulseGlow 2s infinite;
 }
 
-/* KEYFRAMES DA PULSAÇÃO */
 @keyframes pulseGlow {
     0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(15, 214, 170, 0.4); }
     70% { transform: scale(1.02); box-shadow: 0 0 0 12px rgba(15, 214, 170, 0); }
@@ -294,10 +292,14 @@ document.getElementById('leadForm').addEventListener('submit', function(e) {
     const btn = document.getElementById('btnEnviar');
     btn.innerHTML = "<i class='fa-solid fa-circle-notch fa-spin'></i> AGUARDE...";
     btn.disabled = true;
-    btn.style.animation = "none"; // Para a pulsação ao carregar
+    btn.style.animation = "none";
+
+    const emailValue = email.value.trim();
+    // Link de destino enviando o email via parâmetro URL
+    const nextURL = "https://visioncapacita.com.br/guiacash/avaliacao/?email=" + encodeURIComponent(emailValue);
 
     const data = {
-        email: email.value,
+        email: emailValue,
         whatsapp: "55" + ddd.value + zap.value.replace(/\D/g, ''),
         origem: 'WhatsApp_Mobile_V8'
     };
@@ -308,9 +310,9 @@ document.getElementById('leadForm').addEventListener('submit', function(e) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
     }).then(() => {
-        setTimeout(() => { window.location.href = "https://visioncapacita.com.br/guiacash/avaliacao/"; }, 600);
+        setTimeout(() => { window.location.href = nextURL; }, 600);
     }).catch(() => {
-        window.location.href = "https://visioncapacita.com.br/guiacash/avaliacao/";
+        window.location.href = nextURL;
     });
 });
 </script>
