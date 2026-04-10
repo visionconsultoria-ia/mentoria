@@ -27,7 +27,16 @@ body {
     padding:20px;
 }
 
-.container { max-width:420px; width:100%; }
+.container {
+    max-width:420px;
+    width:100%;
+    text-align:center;
+}
+
+.logo {
+    max-width:160px;
+    margin:0 auto 20px;
+}
 
 h1 {
     font-size:1.9rem;
@@ -52,6 +61,7 @@ p {
 .benefits div {
     display:flex;
     align-items:center;
+    justify-content:center;
     gap:8px;
     margin-bottom:6px;
 }
@@ -74,13 +84,16 @@ input {
     border-radius:10px;
     border:2px solid #e2e8f0;
     margin-bottom:12px;
-    font-family:'Inter';
+    font-family:'Inter',sans-serif;
     outline:none;
 }
 
 input:focus { border-color:var(--primary); }
 
-.row { display:flex; gap:10px; }
+.row {
+    display:flex;
+    gap:10px;
+}
 
 .ddd {
     width:80px;
@@ -99,6 +112,8 @@ input:focus { border-color:var(--primary); }
     margin-top:10px;
 }
 
+.cta:disabled { opacity:0.7; }
+
 .secure {
     text-align:center;
     font-size:0.7rem;
@@ -111,6 +126,9 @@ input:focus { border-color:var(--primary); }
 <body>
 
 <div class="container">
+
+<!-- LOGO CORRIGIDO -->
+<img src="../guiacash/guia-cash-logo.png" class="logo" alt="GuiaCash Logo">
 
 <h1>
 Você ganha bem… <br>
