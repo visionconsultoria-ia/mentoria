@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Avaliação GuiaCash®</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+:root {
+    --primary: #0FD6AA;
+    --secondary: #63259D;
+    --dark: #0f172a;
+    --bg-gradient: linear-gradient(135deg,#20124d 0%,#134f5c 100%);
+}
+
+* { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color: transparent; }
+
+body {
+    font-family:'Inter',sans-serif;
+    background: var(--bg-gradient);
+    min-height:100vh;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    color:white;
+    padding: 20px;
+}
+
+/* Barra de Progresso */
+.progress-container {
+    width: 100%;
+    max-width: 400px;
+    height: 8px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 10px;
+    margin-bottom: 30px;
+    overflow: hidden;
+}
+
+#progress-bar {
+    width: 20%;
+    height: 100%;
+    background: var(--primary);
+    transition: width 0.4s ease;
+}
+
+.quiz-container {
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+}
+
+.step { display: none; animation: slideIn 0.4s ease-out; }
+.step.active { display: block; }
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateX(20px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+h2 { font-size: 1.5rem; font-weight: 800; margin-bottom: 20px; line-height: 1.3; }
+
+/* Botões de Opção */
+.options-grid { display: grid; gap: 12px; margin-top: 20px; }
+
+.option-btn {
+    background: white;
+    color: var(--dark);
+    border: none;
+    padding: 18px;
+    border-radius: 15px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.option-btn i { color: #cbd5e1; font-size: 1.2rem; }
+.option-btn:active { transform: scale(0.98); background: #f8fafc; }
+.option-btn.selected { border: 2px solid var(--primary); background: #f0fdfa; }
+
+/* Tela de Carregamento/Diagnóstico */
+.loading-screen { display: none; text-align: center; margin-top: 50px; }
+.spinner {
+    width: 60px;
+    height: 60px;
+    border: 6px solid rgba(255,255,255,0.1);
+    border-top-color: var(--primary);
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Tela Final */
+.result-card {
+    display: none;
+    background: white;
+    color: var(--dark);
+    padding: 30px 20px;
+    border-radius: 20px;
+    animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.result-header { color: var(--secondary); font-weight: 800; font-size: 1.2rem; margin-bottom: 15px; }
+.result-text { font-size: 0.95rem; line-height: 1.5; margin-bottom: 25px; color: #475569; }
+
+.cta-final {
+    display: block;
+    text-decoration: none;
+    background: linear-gradient(135deg,var(--secondary),var(--primary));
+    color: white;
+    padding: 20px;
+    border-radius: 50px;
+    font-weight: 800;
+    font-size: 1.1rem;
+    box-shadow: 0 10px 20px rgba(99, 37, 157, 0.3);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.03); }
+    100% { transform: scale(1); }
+}
+
+</style>
+</head>
+
+<body>
+
+    <div class="progress-container">
+        <div id="progress-bar"></div>
+    </div>
+
+    <div class="quiz-container" id="quiz-box">
+        
+        <div class="step active" id="step1">
+            <h2>Qual sua principal fonte de renda hoje?</h2>
+            <div class="options-grid">
+                <button class="option-btn" onclick="nextStep(1, 2)">Empresário / PJ <i class="fa-solid fa-chevron-right"></i></button>
+                <button class="option-btn" onclick="nextStep(1, 2)">CLT / Assalariado <i class="fa-solid fa-chevron-right"></i></button>
+                <button class="option-btn" onclick="nextStep(1, 2)">Autônomo / Liberal <i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+        </div>
+
+        <div class="step" id="step2">
+            <h2>Qual seu maior desafio financeiro no momento?</h2>
+            <div class="options-grid">
+                <button class="option-btn" onclick="nextStep(2, 3)">Fazer o dinheiro sobrar <i class="fa-solid fa-chevron-right"></i></button>
+                <button class="option-btn" onclick="nextStep(2, 3)">Sair das dívidas <i class="fa-solid fa-chevron-right"></i></button>
+                <button class="option-btn" onclick="nextStep(2, 3)">Começar a investir <i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+        </div>
+
+        <div class="step" id="step3">
+            <h2>Você sabe quanto gasta com "taxas e assinaturas" por mês?</h2>
+            <div class="options-grid">
+                <button class="option-btn" onclick="finishQuiz()">Sim, tenho controle total <i class="fa-solid fa-chevron-right"></i></button>
+                <button class="option-btn" onclick="finishQuiz()">Não, o dinheiro só some <i class="fa-solid fa-chevron-right"></i></button>
+                <button class="option-btn" onclick="finishQuiz()">Mais ou menos <i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="loading-screen" id="loading">
+        <div class="spinner"></div>
+        <h2 id="loading-text">Analisando suas respostas...</h2>
+        <p style="opacity: 0.7">Cruzando dados com o método GuiaCash®</p>
+    </div>
+
+    <div class="quiz-container">
+        <div class="result-card" id="result">
+            <div class="result-header">AVALIAÇÃO CONCLUÍDA!</div>
+            <p class="result-text">
+                Identificamos que sua vida financeira possui <b>"vazamentos invisíveis"</b> que estão impedindo seu crescimento. <br><br>
+                Você tem o perfil ideal para aplicar o nosso método e retomar o controle em menos de 30 dias.
+            </p>
+            <a href="https://SEU-LINK-DE-VENDAS-OU-WHATSAPP" class="cta-final">
+                VER MEU PLANO PRÁTICO <i class="fa-solid fa-arrow-right"></i>
+            </a>
+            <p style="font-size: 0.7rem; color: #94a3b8; margin-top: 15px;">Acesso imediato ao vídeo explicativo.</p>
+        </div>
+    </div>
+
+<script>
+    const totalSteps = 3;
+    const progressBar = document.getElementById('progress-bar');
+
+    function nextStep(current, next) {
+        document.getElementById('step' + current).classList.remove('active');
+        document.getElementById('step' + next).classList.add('active');
+        
+        // Atualiza progresso
+        const percent = (next / totalSteps) * 100;
+        progressBar.style.width = percent + '%';
+    }
+
+    function finishQuiz() {
+        // Esconde perguntas
+        document.getElementById('quiz-box').style.display = 'none';
+        progressBar.style.width = '100%';
+        
+        // Mostra carregamento
+        const loading = document.getElementById('loading');
+        loading.style.display = 'block';
+
+        // Simulação de "Inteligência" (trocando frases)
+        const phrases = [
+            "Analisando perfil de gastos...",
+            "Identificando gargalos financeiros...",
+            "Gerando diagnóstico personalizado..."
+        ];
+        
+        let i = 0;
+        const interval = setInterval(() => {
+            if(i < phrases.length) {
+                document.getElementById('loading-text').innerText = phrases[i];
+                i++;
+            }
+        }, 800);
+
+        // Mostra resultado final após 2.5 segundos
+        setTimeout(() => {
+            clearInterval(interval);
+            loading.style.display = 'none';
+            document.getElementById('result').style.display = 'block';
+        }, 2500);
+    }
+</script>
+
+</body>
+</html>
