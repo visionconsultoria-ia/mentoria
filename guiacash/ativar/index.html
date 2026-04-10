@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ativação - Guia Cash</title>
+    <title>Desconto Exclusivo - Guia Cash</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
     :root {
@@ -35,7 +35,7 @@
     .top-bar { height: 6px; width: 100%; background: var(--gradient); position: absolute; top: 0; left: 0; z-index: 10; }
 
     .container {
-        display: none; 
+        /* Removido display:none para a captura carregar imediato */
         max-width: 600px;
         width: 100%;
         background: #ffffff;
@@ -70,6 +70,10 @@
     }
     .form-group input:focus { border-color: var(--purple); box-shadow: 0 0 0 4px rgba(107, 70, 193, 0.1); background: #fff; }
     
+    /* Layout para WhatsApp */
+    .whatsapp-grid { display: flex; gap: 10px; }
+    .ddd-input { width: 80px !important; text-align: center; }
+
     input.input-error { border-color: var(--red) !important; background: #fff1f2 !important; }
 
     .error-banner {
@@ -99,7 +103,6 @@
     .spinner { width: 50px; height: 50px; border: 5px solid #f3f3f3; border-top: 5px solid var(--teal); border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 15px; }
     @keyframes spin { 100% { transform: rotate(360deg); } }
 
-    /* AJUSTE DO PADDING PARA O ÍCONE NÃO FICAR LONGE DO HEADER */
     .status-title { color: var(--dark); font-size: 20px; font-weight: 700; margin-bottom: 8px; margin-top: 5px; }
     .status-desc { color: #64748b; font-size: 14px; max-width: 90%; margin: 0 auto; line-height: 1.6; }
 
@@ -124,54 +127,48 @@
     <div class="container" id="main-container">
         <header>
             <div class="logo-wrapper">
-                <img src="../guia-cash-logo.png" alt="Logo Guia Cash" class="logo-img">
+                <img src="https://visioncapacita.com.br/guiacash/guia-cash-logo.png" alt="Logo Guia Cash" class="logo-img">
             </div>
-            <h1>Configuração de Acesso</h1>
-            <div class="subtitle">VISION EDUCAÇÃO E CAPACITAÇÃO</div>
+            <h1>Acesso Exclusivo</h1>
+            <div class="subtitle">DESCONTO GUIACASH® + GRUPO VIP</div>
         </header>
 
         <div id="setup-content">
             <div class="welcome-text">
-                <strong id="boas-vindas">Olá! 🚀</strong>
-                Confirme seus e-mails para liberarmos seu sistema personalizado:
+                <strong id="boas-vindas">Libere seu Desconto! 🚀</strong>
+                Preencha os dados abaixo para receber seu link promocional e o convite do nosso Grupo VIP:
             </div>
 
             <div class="google-notice">
                 <span>💡</span>
                 <p>
-                    <strong>Atenção:</strong> Este sistema é uma ferramenta Google. 
-                    Se o seu e-mail (mesmo sendo empresarial, Hotmail, Yahoo, etc) ainda não é uma "Conta Google", 
-                    <a href="https://accounts.google.com/SignUpWithoutGmail" target="_blank" style="color: #b45309; font-weight: 700;">clique aqui para vinculá-lo gratuitamente</a> antes de prosseguir.
+                    <strong>Atenção:</strong> Ao garantir o seu desconto, você também receberá o acesso ao nosso <strong>Grupo VIP de Implementação</strong> no WhatsApp para tirar dúvidas.
                 </p>
             </div>
 
             <div class="form-group">
-                <label for="email-1">E-mail Principal Google (Obrigatório)</label>
-                <input type="email" id="email-1" placeholder="exemplo@gmail.com" required>
+                <label for="nome">Seu Nome Completo</label>
+                <input type="text" id="nome" placeholder="Ex: Maria Silva" required>
             </div>
 
             <div class="form-group">
-                <label for="email-1-confirma">Confirme seu E-mail Principal</label>
-                <input type="email" id="email-1-confirma" placeholder="repita o e-mail principal" required>
-            </div>
-
-            <div style="margin: 30px 0; border-top: 1px dashed #e2e8f0;"></div>
-
-            <div class="form-group">
-                <label for="email-2">E-mail Bônus Google (Familiar ou Sócio)</label>
-                <input type="email" id="email-2" placeholder="opcional@gmail.com">
+                <label for="email">Seu Melhor E-mail</label>
+                <input type="email" id="email" placeholder="exemplo@gmail.com" required>
             </div>
 
             <div class="form-group">
-                <label for="email-2-confirma">Confirme o E-mail Bônus</label>
-                <input type="email" id="email-2-confirma" placeholder="repita o e-mail bônus">
+                <label>Seu WhatsApp (com DDD)</label>
+                <div class="whatsapp-grid">
+                    <input type="tel" id="ddd" class="ddd-input" placeholder="DDD" maxlength="2" required>
+                    <input type="tel" id="whatsapp_num" placeholder="99999-9999" maxlength="10" required>
+                </div>
             </div>
 
             <div id="msg-erro-validacao" class="error-banner"></div>
             <div id="msg-aviso-google" class="warning-banner"></div>
 
-            <button onclick="ativarSistema()" id="btn-ativar" class="btn-submit">
-                Gerar Meu Sistema GuiaCash® Agora
+            <button onclick="capturarLead()" id="btn-ativar" class="btn-submit">
+                Garantir Meu Desconto + Grupo VIP Agora
             </button>
         </div>
 
@@ -179,7 +176,7 @@
             <div id="status-container">
                 <div class="spinner"></div>
                 <h3 class="status-title" id="status-title">Processando...</h3>
-                <p class="status-desc" id="status-desc">Estamos montando seu sistema. Isso leva cerca de 10 segundos.</p>
+                <p class="status-desc" id="status-desc">Estamos gerando seu link de desconto exclusivo. Isso leva cerca de 5 segundos.</p>
             </div>
         </div>
 
@@ -187,32 +184,30 @@
     </div>
 
     <script>
+    // Preservando a lógica de parâmetros de URL para pré-preenchimento
     const urlParams = new URLSearchParams(window.location.search);
-    const uidAcesso = urlParams.get('uid');
     const nomeURL = urlParams.get('nome') ? decodeURIComponent(urlParams.get('nome')) : null;
     const emailURL = urlParams.get('email');
-    let confirmouNaoGmail = false;
-
-    if (!uidAcesso || !nomeURL) {
-        window.location.href = "https://visioncapacita.com.br/guiacash";
-    } else {
-        document.getElementById('main-container').style.display = 'block';
-    }
 
     window.onload = function() {
-        if(nomeURL) document.getElementById('boas-vindas').innerText = `Olá, ${nomeURL}! 🚀`;
-        if(emailURL) document.getElementById('email-1').value = emailURL;
+        if(nomeURL) {
+            document.getElementById('boas-vindas').innerText = `Olá, ${nomeURL}! 🚀`;
+            document.getElementById('nome').value = nomeURL;
+        }
+        if(emailURL) document.getElementById('email').value = emailURL;
     };
+
+    // Máscaras de Input (Números apenas)
+    document.getElementById('ddd').addEventListener('input', (e) => e.target.value = e.target.value.replace(/\D/g, ''));
+    document.getElementById('whatsapp_num').addEventListener('input', (e) => {
+        let value = e.target.value.replace(/\D/g, '');
+        if (value.length > 5) value = value.replace(/^(\d{5})(\d{4}).*/, '$1-$2');
+        e.target.value = value;
+    });
 
     function validarEmailFormato(email) {
         const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return regex.test(email);
-    }
-
-    function ehDominioDuvidoso(email) {
-        const dominiosNaoGmailPadrao = ['hotmail.com', 'outlook.com', 'live.com', 'msn.com', 'yahoo.com', 'yahoo.com.br', 'rocketmail.com', 'bol.com.br', 'uol.com.br', 'ig.com.br', 'terra.com.br', 'oi.com.br', 'globo.com', 'icloud.com', 'me.com', 'aol.com'];
-        const dominio = email.split('@')[1];
-        return dominiosNaoGmailPadrao.includes(dominio);
     }
 
     function exibirErroCustom(texto) {
@@ -222,18 +217,9 @@
         resetBotao();
     }
 
-    function exibirAvisoGoogle(texto) {
-        const avisoDiv = document.getElementById('msg-aviso-google');
-        avisoDiv.innerHTML = "💡 <strong>Atenção:</strong> " + texto;
-        avisoDiv.style.display = 'block';
-        document.getElementById('btn-ativar').innerText = "ESTE E-MAIL JÁ É CONTA GOOGLE - GERAR SISTEMA";
-        document.getElementById('btn-ativar').style.background = "var(--orange)";
-    }
-
     function resetBotao() {
-        confirmouNaoGmail = false;
-        document.getElementById('msg-aviso-google').style.display = 'none';
-        document.getElementById('btn-ativar').innerText = "Gerar Meu Sistema GuiaCash® Agora";
+        document.getElementById('btn-ativar').disabled = false;
+        document.getElementById('btn-ativar').innerText = "Garantir Meu Desconto + Grupo VIP Agora";
         document.getElementById('btn-ativar').style.background = "var(--dark)";
     }
 
@@ -241,7 +227,6 @@
         input.addEventListener('input', () => {
             document.getElementById('msg-erro-validacao').style.display = 'none';
             input.classList.remove('input-error');
-            resetBotao();
         });
     });
 
@@ -256,92 +241,73 @@
         `;
     }
 
-    function renderizarSucesso(titulo, desc, link, e1, e2, isExistente) {
+    // Função de Sucesso (Originalmente renderizarSucesso) adaptada para redirecionamento ou exibição
+    function renderizarSucesso(link) {
         document.getElementById('setup-content').style.display = 'none';
         document.getElementById('loading-state').style.display = 'block';
-        let corTitulo = isExistente ? "var(--purple)" : "var(--teal)";
-        let infoEmails = `
-            <div class="info-card">
-                <p><strong>E-MAIL PRINCIPAL:</strong> ${e1}</p>
-                ${e2 ? `<p><strong>E-MAIL BÔNUS:</strong> ${e2}</p>` : '<p><strong>E-MAIL BÔNUS:</strong> Nenhum cadastrado</p>'}
-            </div>`;
         document.getElementById('status-container').innerHTML = `
-            <div style="font-size: 50px; margin-top: 5px;">${isExistente ? '🚀' : '✅'}</div>
-            <h2 class="status-title" style="color: ${corTitulo}">${titulo}</h2>
-            <p class="status-desc">${desc}</p>
-            ${infoEmails}
-            <a href="${link}" target="_blank" class="success-btn">ACESSAR MEU SISTEMA GUIACASH®</a>
-            <p style="margin-top:25px; font-size:12px; color:#94a3b8; font-weight:600;">O acesso também foi enviado para seu WhatsApp, se você o informou na compra.</p>`;
+            <div style="font-size: 50px; margin-top: 5px;">✅</div>
+            <h2 class="status-title" style="color: var(--teal)">🎉 Tudo Pronto!</h2>
+            <p class="status-desc">Seu desconto foi liberado. Clique no botão abaixo para acessar o checkout e o grupo VIP.</p>
+            <a href="${link}" class="success-btn">ACESSAR DESCONTO + GRUPO VIP</a>`;
     }
 
-    async function ativarSistema() {
-        const e1 = document.getElementById('email-1').value.trim().toLowerCase();
-        const e1Conf = document.getElementById('email-1-confirma').value.trim().toLowerCase();
-        const e2 = document.getElementById('email-2').value.trim().toLowerCase();
-        const e2Conf = document.getElementById('email-2-confirma').value.trim().toLowerCase();
+    async function capturarLead() {
+        const nome = document.getElementById('nome').value.trim();
+        const email = document.getElementById('email').value.trim().toLowerCase();
+        const ddd = document.getElementById('ddd').value.trim();
+        const numero = document.getElementById('whatsapp_num').value.replace(/\D/g, '');
 
-        if (!e1 || !validarEmailFormato(e1)) {
-            exibirErroCustom("Insira um e-mail principal válido.");
-            document.getElementById('email-1').classList.add('input-error');
+        // Validações completas
+        if (!nome) {
+            exibirErroCustom("Insira seu nome completo.");
+            document.getElementById('nome').classList.add('input-error');
             return;
         }
-        if (e1 !== e1Conf) {
-            exibirErroCustom("A confirmação do e-mail principal não confere.");
-            document.getElementById('email-1-confirma').classList.add('input-error');
+        if (!email || !validarEmailFormato(email)) {
+            exibirErroCustom("Insira um e-mail válido.");
+            document.getElementById('email').classList.add('input-error');
+            return;
+        }
+        if (ddd.length < 2 || numero.length < 8) {
+            exibirErroCustom("Insira um WhatsApp válido com DDD.");
+            document.getElementById('whatsapp_num').classList.add('input-error');
             return;
         }
 
-        if (!confirmouNaoGmail && (ehDominioDuvidoso(e1) || (e2 && ehDominioDuvidoso(e2)))) {
-            exibirAvisoGoogle("Detectamos um e-mail externo. Para que o sistema funcione, este endereço PRECISA estar vinculado a uma Conta Google. Se já vinculou, clique no botão abaixo novamente.");
-            confirmouNaoGmail = true;
-            return;
-        }
+        const whatsappCompleto = "55" + ddd + numero;
 
-        if (e2 !== "") {
-            if (!validarEmailFormato(e2)) {
-                exibirErroCustom("O e-mail bônus inserido não é válido.");
-                document.getElementById('email-2').classList.add('input-error');
-                return;
-            }
-            if (e2 !== e2Conf) {
-                exibirErroCustom("A confirmação do e-mail bônus não confere.");
-                document.getElementById('email-2-confirma').classList.add('input-error');
-                return;
-            }
-            if (e2 === e1) {
-                exibirErroCustom("O e-mail bônus deve ser diferente do e-mail principal.");
-                document.getElementById('email-2').classList.add('input-error');
-                return;
-            }
-        }
-
+        // Estado de Loading UI
         document.getElementById('btn-ativar').disabled = true;
         document.getElementById('btn-ativar').innerText = "CONECTANDO...";
         document.getElementById('setup-content').style.display = 'none';
         document.getElementById('loading-state').style.display = 'block';
 
+        const checkoutLink = "https://pay.herospark.com/guiacash-sistema-integrado-de-controle-financeiro-515826";
+
         try {
-            const response = await fetch('https://n8nwebhook.visioncapacita.com.br/webhook/formularioguiacash', {
+            // Envio para o Webhook n8n de Captura
+            const response = await fetch('https://n8nwebhook.visioncapacita.com.br/webhook/captura-guiacash', {
                 method: 'POST',
+                mode: 'no-cors', // Para evitar problemas de CORS no envio rápido
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    uid: uidAcesso,
-                    nome: nomeURL,
-                    email_google_1: e1,
-                    email_google_2: e2 || null,
-                    origem: 'Pagina_Ativacao_Blindada_V7_Corrigida'
+                    nome: nome,
+                    email: email,
+                    whatsapp: whatsappCompleto,
+                    origem: 'Pagina_Vendas_Direta_V8'
                 })
             });
-            const data = await response.json();
-            if (data.status === "existente") {
-                renderizarSucesso("Acesso Já Ativado", data.message, data.link_planilha, data.email1, data.email2, true);
-            } else if (response.ok) {
-                renderizarSucesso("🎉 Tudo Pronto!", "Seu sistema foi personalizado e já está disponível.", data.link_planilha, e1, e2, false);
-            } else {
-                renderizarErro("Acesso Negado", data.message || "Acesso não liberado ou chave inválida. Se você realizou o pagamento via Boleto, aguarde a compensação. Caso tenha usado PIX ou Cartão, fale com nosso suporte.");
-            }
+
+            // Redirecionamento automático após curto delay para o checkout
+            setTimeout(() => {
+                window.location.href = checkoutLink;
+            }, 1000);
+
         } catch (e) {
-            renderizarErro("Erro de Conexão", "Não conseguimos contactar o servidor.");
+            // Caso ocorra erro de conexão, redireciona mesmo assim para não perder a venda
+            console.error("Erro na captura:", e);
+            window.location.href = checkoutLink;
         }
     }
     </script>
