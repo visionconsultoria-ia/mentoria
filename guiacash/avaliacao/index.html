@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GuiaCash® - Avaliação Gratuita</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+:root {
+    --primary: #0FD6AA;
+    --secondary: #63259D;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+    font-family:'Inter',sans-serif;
+    background: linear-gradient(135deg,#20124d 0%,#134f5c 100%);
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:white;
+    padding:20px;
+}
+
+.container { max-width:420px; width:100%; }
+
+h1 {
+    font-size:1.9rem;
+    font-weight:800;
+    line-height:1.2;
+    margin-bottom:15px;
+}
+
+.highlight { color:var(--primary); }
+
+p {
+    font-size:0.95rem;
+    opacity:0.9;
+    margin-bottom:20px;
+}
+
+.benefits {
+    font-size:0.85rem;
+    margin-bottom:15px;
+}
+
+.benefits div {
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-bottom:6px;
+}
+
+.benefits i {
+    color:#25d366;
+}
+
+.card {
+    background:white;
+    border-radius:20px;
+    padding:25px;
+    color:#1e293b;
+    box-shadow:0 20px 40px rgba(0,0,0,0.3);
+}
+
+input {
+    width:100%;
+    padding:14px;
+    border-radius:10px;
+    border:2px solid #e2e8f0;
+    margin-bottom:12px;
+    font-family:'Inter';
+    outline:none;
+}
+
+input:focus { border-color:var(--primary); }
+
+.row { display:flex; gap:10px; }
+
+.ddd {
+    width:80px;
+    text-align:center;
+}
+
+.cta {
+    width:100%;
+    padding:16px;
+    border-radius:50px;
+    border:none;
+    font-weight:800;
+    background: linear-gradient(135deg,var(--secondary),var(--primary));
+    color:white;
+    cursor:pointer;
+    margin-top:10px;
+}
+
+.secure {
+    text-align:center;
+    font-size:0.7rem;
+    color:#94a3b8;
+    margin-top:10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>
+Você ganha bem… <br>
+mas o dinheiro <span class="highlight">some todo mês?</span>
+</h1>
+
+<p>
+Descubra em poucos minutos como está sua vida financeira 
+e onde você está perdendo dinheiro sem perceber.
+</p>
+
+<div class="benefits">
+    <div><i class="fa-brands fa-whatsapp"></i> Avaliação financeira gratuita</div>
+    <div><i class="fa-brands fa-whatsapp"></i> Grupo com dicas práticas PF + PJ</div>
+</div>
+
+<div class="card">
+<form id="leadForm">
+
+<input type="email" id="email" placeholder="Seu melhor e-mail" required>
+
+<div class="row">
+    <input type="tel" id="ddd" class="ddd" placeholder="DDD" maxlength="2" pattern="\d{2}" required>
+    <input type="tel" id="whatsapp_num" placeholder="99999-9999" maxlength="10" minlength="9" required>
+</div>
+
+<button type="submit" id="btnEnviar" class="cta">
+QUERO MINHA AVALIAÇÃO GRATUITA
+</button>
+
+</form>
+
+<div class="secure">🔒 Seus dados estão seguros</div>
+</div>
+
+</div>
+
+<script>
+document.getElementById('ddd').addEventListener('input', function(e) {
+    e.target.value = e.target.value.replace(/\D/g, '');
+});
+
+document.getElementById('whatsapp_num').addEventListener('input', function (e) {
+    let value = e.target.value.replace(/\D/g, '');
+    if (value.length > 8) {
+        value = value.replace(/^(\d{5})(\d{4}).*/, '$1-$2');
+    } else {
+        value = value.replace(/^(\d{4})(\d{4}).*/, '$1-$2');
+    }
+    e.target.value = value;
+});
+
+document.getElementById('leadForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const btn = document.getElementById('btnEnviar');
+    btn.innerText = "PROCESSANDO...";
+    btn.disabled = true;
+
+    const ddd = document.getElementById('ddd').value;
+    const numeroLimpo = document.getElementById('whatsapp_num').value.replace(/\D/g, '');
+    const whatsappFinal = "55" + ddd + numeroLimpo;
+
+    const data = {
+        email: document.getElementById('email').value,
+        whatsapp: whatsappFinal,
+        data_lead: new Date().toISOString()
+    };
+
+    const webhookURL = 'https://n8nwebhook.visioncapacita.com.br/webhook/captura-guiacash';
+
+    fetch(webhookURL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    }).then(() => {
+        window.location.href = "https://SEU-LINK-DE-AVALIACAO-AQUI";
+    }).catch(() => {
+        window.location.href = "https://SEU-LINK-DE-AVALIACAO-AQUI";
+    });
+});
+</script>
+
+</body>
+</html>
