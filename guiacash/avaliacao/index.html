@@ -13,7 +13,8 @@
     --primary: #0FD6AA;
     --secondary: #63259D;
     --dark: #0f172a;
-    --bg-gradient: linear-gradient(135deg,#20124d 0%,#134f5c 100%);
+    --error: #ef4444;
+    --bg-gradient: linear-gradient(135deg,#1a0b3b 0%,#0d3a44 100%);
 }
 
 * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color: transparent; }
@@ -29,6 +30,7 @@ body {
     padding: 20px;
 }
 
+/* Progress Bar */
 .progress-container {
     width: 100%;
     max-width: 400px;
@@ -40,10 +42,15 @@ body {
 }
 
 #progress-bar {
-    width: 25%;
+    width: 20%;
     height: 100%;
     background: var(--primary);
     transition: width 0.4s ease;
+}
+
+.logo {
+    max-width:130px;
+    margin-bottom: 25px;
 }
 
 .quiz-container {
@@ -62,6 +69,7 @@ body {
 
 h2 { font-size: 1.5rem; font-weight: 800; margin-bottom: 20px; line-height: 1.3; }
 
+/* Botões de Opção */
 .options-grid { display: grid; gap: 12px; margin-top: 20px; }
 
 .option-btn {
@@ -77,37 +85,52 @@ h2 { font-size: 1.5rem; font-weight: 800; margin-bottom: 20px; line-height: 1.3;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    transition: transform 0.2s;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
 .option-btn i { color: #cbd5e1; }
 
-/* Estilo para o campo de Nome */
-.name-input {
-    width: 100%;
-    padding: 18px;
-    border-radius: 15px;
-    border: none;
-    font-size: 1.1rem;
-    margin-bottom: 15px;
-    outline: none;
-    text-align: center;
+/* Form Final */
+.card-form {
+    background: white;
+    border-radius: 20px;
+    padding: 25px 20px;
+    color: var(--dark);
+    text-align: left;
 }
 
-.cta-next {
-    width: 100%;
-    padding: 18px;
-    border-radius: 50px;
-    border: none;
-    background: var(--primary);
-    color: var(--dark);
+.form-group { margin-bottom: 15px; }
+label { display: block; font-size: 0.75rem; font-weight: 700; margin-bottom: 5px; color: #64748b; }
+
+input {
+    width:100%;
+    padding:15px;
+    border-radius:10px;
+    border:2px solid #e2e8f0;
+    font-family:'Inter';
+    outline:none;
+    font-size: 1rem;
+}
+
+.row { display:flex; gap:8px; }
+.ddd { width:80px; text-align:center; }
+
+.cta-submit {
+    width:100%;
+    padding:18px;
+    border-radius:50px;
+    border:none;
+    background: linear-gradient(135deg,var(--secondary),var(--primary));
+    color: white;
     font-weight: 800;
     font-size: 1rem;
     cursor: pointer;
+    margin-top: 10px;
+    animation: pulse 2s infinite;
 }
 
-.loading-screen { display: none; text-align: center; margin-top: 50px; }
+/* Loading & Result */
+.loading-screen { display: none; text-align: center; margin-top: 30px; }
 .spinner {
     width: 60px; height: 60px;
     border: 6px solid rgba(255,255,255,0.1);
@@ -135,27 +158,19 @@ h2 { font-size: 1.5rem; font-weight: 800; margin-bottom: 20px; line-height: 1.3;
 .result-header { color: var(--secondary); font-weight: 800; font-size: 1.2rem; margin-bottom: 15px; }
 .result-text { font-size: 0.95rem; line-height: 1.5; margin-bottom: 25px; color: #475569; }
 
-.cta-final {
-    display: block;
-    text-decoration: none;
-    background: linear-gradient(135deg,var(--secondary),var(--primary));
-    color: white;
-    padding: 20px;
-    border-radius: 50px;
-    font-weight: 800;
-    font-size: 1.1rem;
-    animation: pulse 2s infinite;
-}
-
 @keyframes pulse {
     0%, 100% { transform: scale(1); }
     50% { transform: scale(1.03); }
 }
 
+#error-msg { color: var(--error); font-size: 0.8rem; font-weight: 700; margin-bottom: 10px; display: none; }
+
 </style>
 </head>
 
 <body>
+
+    <img src="../guia-cash-logo.png" alt="GuiaCash Logo" class="logo">
 
     <div class="progress-container">
         <div id="progress-bar"></div>
@@ -182,71 +197,104 @@ h2 { font-size: 1.5rem; font-weight: 800; margin-bottom: 20px; line-height: 1.3;
         </div>
 
         <div class="step" id="step3">
-            <h2>Você sabe quanto gasta com "taxas e assinaturas" por mês?</h2>
+            <h2>Você sabe quanto gasta com "taxas e assinaturas"?</h2>
             <div class="options-grid">
-                <button class="option-btn" onclick="saveData('conhecimento', 'Sim'); nextStep(3, 4)">Sim, tenho controle total <i class="fa-solid fa-chevron-right"></i></button>
+                <button class="option-btn" onclick="saveData('conhecimento', 'Sim'); nextStep(3, 4)">Sim, controle total <i class="fa-solid fa-chevron-right"></i></button>
                 <button class="option-btn" onclick="saveData('conhecimento', 'Nao'); nextStep(3, 4)">Não, o dinheiro só some <i class="fa-solid fa-chevron-right"></i></button>
                 <button class="option-btn" onclick="saveData('conhecimento', 'Media'); nextStep(3, 4)">Mais ou menos <i class="fa-solid fa-chevron-right"></i></button>
             </div>
         </div>
 
         <div class="step" id="step4">
-            <h2>Para quem devemos enviar o resultado?</h2>
-            <p style="margin-bottom: 20px; opacity: 0.8;">Digite seu nome completo:</p>
-            <input type="text" id="nome_lead" class="name-input" placeholder="Seu nome aqui">
-            <button class="cta-next" onclick="finishQuiz()">VER MEU RESULTADO <i class="fa-solid fa-check"></i></button>
+            <h2>Avaliação Quase Pronta!</h2>
+            <p style="margin-bottom: 20px; opacity: 0.8; font-size: 0.9rem;">Para onde devemos enviar seu diagnóstico personalizado?</p>
+            
+            <div class="card-form">
+                <div id="error-msg">Preencha todos os campos corretamente.</div>
+                
+                <div class="form-group">
+                    <label>Nome Completo:</label>
+                    <input type="text" id="nome" placeholder="Seu nome">
+                </div>
+
+                <div class="form-group">
+                    <label>Seu melhor e-mail:</label>
+                    <input type="email" id="email" placeholder="email@exemplo.com">
+                </div>
+
+                <div class="form-group">
+                    <label>WhatsApp:</label>
+                    <div class="row">
+                        <input type="tel" id="ddd" class="ddd" placeholder="DDD" maxlength="2">
+                        <input type="tel" id="zap" placeholder="99999-9999">
+                    </div>
+                </div>
+
+                <button class="cta-submit" onclick="processLead()">
+                    LIBERAR MEU RESULTADO <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
         </div>
 
     </div>
 
     <div class="loading-screen" id="loading">
         <div class="spinner"></div>
-        <h2 id="loading-text">Analisando suas respostas...</h2>
-        <p style="opacity: 0.7">Cruzando dados com o método GuiaCash®</p>
+        <h2 id="loading-text">Analisando respostas...</h2>
     </div>
 
     <div class="quiz-container">
         <div class="result-card" id="result">
             <div class="result-header">AVALIAÇÃO CONCLUÍDA!</div>
             <p class="result-text">
-                Identificamos que sua vida financeira possui <b>"vazamentos invisíveis"</b> que estão impedindo seu crescimento. <br><br>
+                Identificamos <b>vazamentos financeiros</b> no seu perfil. <br><br>
                 Você tem o perfil ideal para aplicar o nosso método e retomar o controle em menos de 30 dias.
             </p>
-            <a href="https://pay.herospark.com/guiacash-sistema-integrado-de-controle-financeiro-515826" class="cta-final">
+            <a href="https://pay.herospark.com/guiacash-sistema-integrado-de-controle-financeiro-515826" class="cta-submit" style="display:block; text-decoration:none; text-align:center;">
                 VER MEU PLANO PRÁTICO <i class="fa-solid fa-arrow-right"></i>
             </a>
         </div>
     </div>
 
 <script>
-    const totalSteps = 4;
-    const progressBar = document.getElementById('progress-bar');
     let quizData = {};
+    const progressBar = document.getElementById('progress-bar');
 
-    // Captura o email da URL (passado pela página anterior)
-    const urlParams = new URLSearchParams(window.location.search);
-    const leadEmail = urlParams.get('email') || 'nao_informado';
-
-    function saveData(key, value) {
-        quizData[key] = value;
-    }
+    function saveData(key, value) { quizData[key] = value; }
 
     function nextStep(current, next) {
         document.getElementById('step' + current).classList.remove('active');
         document.getElementById('step' + next).classList.add('active');
-        const percent = (next / totalSteps) * 100;
+        const percent = (next / 4) * 100;
         progressBar.style.width = percent + '%';
     }
 
-    function finishQuiz() {
-        const nome = document.getElementById('nome_lead').value;
-        if(!nome) { alert("Por favor, digite seu nome."); return; }
-        
-        quizData['nome'] = nome;
-        quizData['email'] = leadEmail; // Vincula com o lead anterior
-        quizData['origem'] = 'Avaliacao_Quiz_V1';
+    // Máscara básica para WhatsApp
+    document.getElementById('zap').addEventListener('input', function (e) {
+        let x = e.target.value.replace(/\D/g, '').match(/(\d{0,5})(\d{0,4})/);
+        e.target.value = !x[2] ? x[1] : x[1] + '-' + x[2];
+    });
 
-        // ENVIO PARA O WEBHOOK N8N
+    function processLead() {
+        const nome = document.getElementById('nome').value;
+        const email = document.getElementById('email').value;
+        const ddd = document.getElementById('ddd').value;
+        const zap = document.getElementById('zap').value;
+        const error = document.getElementById('error-msg');
+
+        if(!nome || !email.includes('@') || ddd.length < 2 || zap.length < 9) {
+            error.style.display = 'block';
+            return;
+        }
+        error.style.display = 'none';
+
+        // Monta objeto final
+        quizData['nome'] = nome;
+        quizData['email'] = email;
+        quizData['whatsapp'] = "55" + ddd + zap.replace('-', '');
+        quizData['origem'] = 'Funil_Unificado_V1';
+
+        // Webhook n8n
         fetch('https://n8nwebhook.visioncapacita.com.br/webhook/captura-guiacash', {
             method: 'POST',
             mode: 'no-cors',
@@ -254,13 +302,17 @@ h2 { font-size: 1.5rem; font-weight: 800; margin-bottom: 20px; line-height: 1.3;
             body: JSON.stringify(quizData)
         });
 
-        document.getElementById('quiz-box').style.display = 'none';
-        progressBar.style.width = '100%';
-        document.getElementById('loading').style.display = 'block';
+        startLoading();
+    }
 
-        const phrases = ["Analisando perfil...", "Identificando gargalos...", "Gerando diagnóstico..."];
+    function startLoading() {
+        document.getElementById('quiz-box').style.display = 'none';
+        document.getElementById('loading').style.display = 'block';
+        progressBar.style.width = '100%';
+
+        const phrases = ["Cruzando dados...", "Identificando vazamentos...", "Gerando diagnóstico..."];
         let i = 0;
-        const interval = setInterval(() => {
+        setInterval(() => {
             if(i < phrases.length) {
                 document.getElementById('loading-text').innerText = phrases[i];
                 i++;
@@ -268,10 +320,9 @@ h2 { font-size: 1.5rem; font-weight: 800; margin-bottom: 20px; line-height: 1.3;
         }, 800);
 
         setTimeout(() => {
-            clearInterval(interval);
             document.getElementById('loading').style.display = 'none';
             document.getElementById('result').style.display = 'block';
-        }, 2500);
+        }, 2800);
     }
 </script>
 
