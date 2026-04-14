@@ -30,7 +30,7 @@ body {
     padding: 20px;
 }
 
-/* Progress Bar */
+/* Header Progress */
 .progress-container {
     width: 100%;
     max-width: 400px;
@@ -40,25 +40,18 @@ body {
     margin-bottom: 30px;
     overflow: hidden;
 }
-
 #progress-bar {
-    width: 20%;
+    width: 15%;
     height: 100%;
     background: var(--primary);
     transition: width 0.4s ease;
 }
 
-.logo {
-    max-width:130px;
-    margin-bottom: 25px;
-}
+.logo { max-width:130px; margin-bottom: 25px; }
 
-.quiz-container {
-    max-width: 400px;
-    width: 100%;
-    text-align: center;
-}
+.quiz-container { max-width: 400px; width: 100%; text-align: center; }
 
+/* Controla a exibição dos passos */
 .step { display: none; animation: slideIn 0.4s ease-out; }
 .step.active { display: block; }
 
@@ -69,7 +62,6 @@ body {
 
 h2 { font-size: 1.5rem; font-weight: 800; margin-bottom: 20px; line-height: 1.3; }
 
-/* Botões de Opção */
 .options-grid { display: grid; gap: 12px; margin-top: 20px; }
 
 .option-btn {
@@ -88,9 +80,36 @@ h2 { font-size: 1.5rem; font-weight: 800; margin-bottom: 20px; line-height: 1.3;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
-.option-btn i { color: #cbd5e1; }
+/* TELA DE CÁLCULO (PIZZA) */
+.circular-progress {
+    position: relative;
+    height: 160px;
+    width: 160px;
+    border-radius: 50%;
+    background: conic-gradient(var(--primary) 0deg, rgba(255,255,255,0.1) 0deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 30px auto;
+}
 
-/* Form Final */
+.circular-progress::before {
+    content: "";
+    position: absolute;
+    height: 130px;
+    width: 130px;
+    border-radius: 50%;
+    background-color: #161a35; /* Fundo interno do círculo */
+}
+
+.percentage {
+    position: relative;
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--primary);
+}
+
+/* Card Form (Captura) */
 .card-form {
     background: white;
     border-radius: 20px;
@@ -98,70 +117,51 @@ h2 { font-size: 1.5rem; font-weight: 800; margin-bottom: 20px; line-height: 1.3;
     color: var(--dark);
     text-align: left;
 }
-
 .form-group { margin-bottom: 15px; }
 label { display: block; font-size: 0.75rem; font-weight: 700; margin-bottom: 5px; color: #64748b; }
-
 input {
-    width:100%;
-    padding:15px;
-    border-radius:10px;
-    border:2px solid #e2e8f0;
-    font-family:'Inter';
-    outline:none;
-    font-size: 1rem;
+    width:100%; padding:15px; border-radius:10px; border:2px solid #e2e8f0;
+    font-family:'Inter'; outline:none; font-size: 1rem;
 }
-
 .row { display:flex; gap:8px; }
 .ddd { width:80px; text-align:center; }
 
+/* Botão de Envio */
 .cta-submit {
-    width:100%;
-    padding:18px;
-    border-radius:50px;
-    border:none;
+    width:100%; padding:18px; border-radius:50px; border:none;
     background: linear-gradient(135deg,var(--secondary),var(--primary));
-    color: white;
-    font-weight: 800;
-    font-size: 1rem;
-    cursor: pointer;
-    margin-top: 10px;
-    animation: pulse 2s infinite;
+    color: white; font-weight: 800; font-size: 1rem; cursor: pointer;
+    margin-top: 10px; animation: pulse 2s infinite;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
 }
 
-/* Loading & Result */
+@keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.03); } }
+
+/* Telas de transição e Resultado */
 .loading-screen { display: none; text-align: center; margin-top: 30px; }
 .spinner {
-    width: 60px; height: 60px;
-    border: 6px solid rgba(255,255,255,0.1);
-    border-top-color: var(--primary);
-    border-radius: 50%;
-    margin: 0 auto 20px;
-    animation: spin 1s linear infinite;
+    width: 60px; height: 60px; border: 6px solid rgba(255,255,255,0.1);
+    border-top-color: var(--primary); border-radius: 50%;
+    margin: 0 auto 20px; animation: spin 1s linear infinite;
 }
 @keyframes spin { to { transform: rotate(360deg); } }
 
-.result-card {
-    display: none;
-    background: white;
+/* ESTA É A PARTE QUE VOCÊ PERGUNTOU - O RESULTADO FINAL */
+#result {
+    display: none; /* Começa escondido */
+    background: white; 
     color: var(--dark);
-    padding: 30px 20px;
-    border-radius: 20px;
+    padding: 30px 20px; 
+    border-radius: 20px; 
     animation: fadeInUp 0.6s ease-out;
+    text-align: center;
 }
 
-@keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.result-header { color: var(--secondary); font-weight: 800; font-size: 1.2rem; margin-bottom: 15px; }
-.result-text { font-size: 0.95rem; line-height: 1.5; margin-bottom: 25px; color: #475569; }
-
-@keyframes pulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.03); }
-}
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
 #error-msg { color: var(--error); font-size: 0.8rem; font-weight: 700; margin-bottom: 10px; display: none; }
 
@@ -172,11 +172,11 @@ input {
 
     <img src="../guia-cash-logo.png" alt="GuiaCash Logo" class="logo">
 
-    <div class="progress-container">
+    <div class="progress-container" id="prog-wrapper">
         <div id="progress-bar"></div>
     </div>
 
-    <div class="quiz-container" id="quiz-box">
+    <div class="quiz-container">
         
         <div class="step active" id="step1">
             <h2>Qual sua principal fonte de renda hoje?</h2>
@@ -199,29 +199,27 @@ input {
         <div class="step" id="step3">
             <h2>Você sabe quanto gasta com "taxas e assinaturas"?</h2>
             <div class="options-grid">
-                <button class="option-btn" onclick="saveData('conhecimento', 'Sim'); nextStep(3, 4)">Sim, controle total <i class="fa-solid fa-chevron-right"></i></button>
-                <button class="option-btn" onclick="saveData('conhecimento', 'Nao'); nextStep(3, 4)">Não, o dinheiro só some <i class="fa-solid fa-chevron-right"></i></button>
-                <button class="option-btn" onclick="saveData('conhecimento', 'Media'); nextStep(3, 4)">Mais ou menos <i class="fa-solid fa-chevron-right"></i></button>
+                <button class="option-btn" onclick="saveData('conhecimento', 'Sim'); startCalculation()">Sim, controle total <i class="fa-solid fa-chevron-right"></i></button>
+                <button class="option-btn" onclick="saveData('conhecimento', 'Nao'); startCalculation()">Não, o dinheiro só some <i class="fa-solid fa-chevron-right"></i></button>
+                <button class="option-btn" onclick="saveData('conhecimento', 'Media'); startCalculation()">Mais ou menos <i class="fa-solid fa-chevron-right"></i></button>
             </div>
         </div>
 
+        <div class="step" id="calculating-step">
+            <h2 id="calc-text">Analisando respostas...</h2>
+            <div class="circular-progress" id="circular-progress">
+                <span class="percentage" id="percentage-value">0%</span>
+            </div>
+            <p style="opacity: 0.7; font-size: 0.9rem;">Cruzando dados com o método GuiaCash®</p>
+        </div>
+
         <div class="step" id="step4">
-            <h2>Avaliação Quase Pronta!</h2>
-            <p style="margin-bottom: 20px; opacity: 0.8; font-size: 0.9rem;">Para onde devemos enviar seu diagnóstico personalizado?</p>
-            
+            <h2>Resultado Disponível!</h2>
+            <p style="margin-bottom: 20px; opacity: 0.8; font-size: 0.9rem;">Para onde enviamos seu diagnóstico personalizado?</p>
             <div class="card-form">
                 <div id="error-msg">Preencha todos os campos corretamente.</div>
-                
-                <div class="form-group">
-                    <label>Nome Completo:</label>
-                    <input type="text" id="nome" placeholder="Seu nome">
-                </div>
-
-                <div class="form-group">
-                    <label>Seu melhor e-mail:</label>
-                    <input type="email" id="email" placeholder="email@exemplo.com">
-                </div>
-
+                <div class="form-group"><label>Nome Completo:</label><input type="text" id="nome" placeholder="Seu nome"></div>
+                <div class="form-group"><label>E-mail:</label><input type="email" id="email" placeholder="email@exemplo.com"></div>
                 <div class="form-group">
                     <label>WhatsApp:</label>
                     <div class="row">
@@ -229,31 +227,26 @@ input {
                         <input type="tel" id="zap" placeholder="99999-9999">
                     </div>
                 </div>
-
-                <button class="cta-submit" onclick="processLead()">
-                    LIBERAR MEU RESULTADO <i class="fa-solid fa-arrow-right"></i>
-                </button>
+                <button class="cta-submit" onclick="processLead()">LIBERAR MEU RESULTADO <i class="fa-solid fa-arrow-right"></i></button>
             </div>
         </div>
 
-    </div>
+        <div class="loading-screen" id="loading-final">
+            <div class="spinner"></div>
+            <h2>Sincronizando diagnóstico...</h2>
+        </div>
 
-    <div class="loading-screen" id="loading">
-        <div class="spinner"></div>
-        <h2 id="loading-text">Analisando respostas...</h2>
-    </div>
-
-    <div class="quiz-container">
-        <div class="result-card" id="result">
-            <div class="result-header">AVALIAÇÃO CONCLUÍDA!</div>
-            <p class="result-text">
+        <div id="result">
+            <div style="color: var(--secondary); font-weight: 800; font-size: 1.2rem; margin-bottom: 15px; text-transform: uppercase;">Avaliação Concluída!</div>
+            <p style="font-size: 0.95rem; line-height: 1.5; margin-bottom: 25px; color: #475569;">
                 Identificamos <b>vazamentos financeiros</b> no seu perfil. <br><br>
                 Você tem o perfil ideal para aplicar o nosso método e retomar o controle em menos de 30 dias.
             </p>
-            <a href="https://pay.herospark.com/guiacash-sistema-integrado-de-controle-financeiro-515826" class="cta-submit" style="display:block; text-decoration:none; text-align:center;">
+            <a href="https://pay.herospark.com/guiacash-sistema-integrado-de-controle-financeiro-515826" class="cta-submit">
                 VER MEU PLANO PRÁTICO <i class="fa-solid fa-arrow-right"></i>
             </a>
         </div>
+
     </div>
 
 <script>
@@ -265,36 +258,72 @@ input {
     function nextStep(current, next) {
         document.getElementById('step' + current).classList.remove('active');
         document.getElementById('step' + next).classList.add('active');
-        const percent = (next / 4) * 100;
-        progressBar.style.width = percent + '%';
+        progressBar.style.width = (next / 4 * 100) + '%';
     }
 
-    // Máscara básica para WhatsApp
-    document.getElementById('zap').addEventListener('input', function (e) {
+    // LÓGICA DA PIZZA (5 SEGUNDOS)
+    function startCalculation() {
+        document.getElementById('step3').classList.remove('active');
+        document.getElementById('calculating-step').classList.add('active');
+        progressBar.style.width = '75%';
+
+        const duration = 5000; 
+        const percentageEl = document.getElementById('percentage-value');
+        const circularEl = document.getElementById('circular-progress');
+        const textEl = document.getElementById('calc-text');
+        const phrases = ["Cruzando dados...", "Identificando vazamentos...", "Finalizando diagnóstico..."];
+        
+        const startTime = performance.now();
+
+        function animate(currentTime) {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const currentPercent = Math.floor(progress * 100);
+
+            percentageEl.innerText = currentPercent + "%";
+            circularEl.style.background = `conic-gradient(var(--primary) ${currentPercent * 3.6}deg, rgba(255,255,255,0.1) 0deg)`;
+
+            if (progress > 0.3) textEl.innerText = phrases[1];
+            if (progress > 0.7) textEl.innerText = phrases[2];
+
+            if (progress < 1) {
+                requestAnimationFrame(animate);
+            } else {
+                setTimeout(() => {
+                    document.getElementById('calculating-step').classList.remove('active');
+                    document.getElementById('step4').classList.add('active');
+                    progressBar.style.width = '90%';
+                }, 500);
+            }
+        }
+        requestAnimationFrame(animate);
+    }
+
+    // MÁSCARAS E FOCO
+    document.getElementById('ddd').addEventListener('input', e => { if(e.target.value.length === 2) document.getElementById('zap').focus(); });
+    document.getElementById('zap').addEventListener('input', e => {
         let x = e.target.value.replace(/\D/g, '').match(/(\d{0,5})(\d{0,4})/);
         e.target.value = !x[2] ? x[1] : x[1] + '-' + x[2];
     });
 
+    // ENVIO PARA O WEBHOOK E LIBERAÇÃO DO RESULTADO
     function processLead() {
         const nome = document.getElementById('nome').value;
         const email = document.getElementById('email').value;
         const ddd = document.getElementById('ddd').value;
         const zap = document.getElementById('zap').value;
-        const error = document.getElementById('error-msg');
 
         if(!nome || !email.includes('@') || ddd.length < 2 || zap.length < 9) {
-            error.style.display = 'block';
+            document.getElementById('error-msg').style.display = 'block';
             return;
         }
-        error.style.display = 'none';
 
-        // Monta objeto final
         quizData['nome'] = nome;
         quizData['email'] = email;
         quizData['whatsapp'] = "55" + ddd + zap.replace('-', '');
-        quizData['origem'] = 'Funil_Unificado_V1';
+        quizData['origem'] = 'Funil_Unificado_V9_Pizza';
 
-        // Webhook n8n
+        // Dispara o Webhook (n8n)
         fetch('https://n8nwebhook.visioncapacita.com.br/webhook/captura-guiacash', {
             method: 'POST',
             mode: 'no-cors',
@@ -302,27 +331,15 @@ input {
             body: JSON.stringify(quizData)
         });
 
-        startLoading();
-    }
-
-    function startLoading() {
-        document.getElementById('quiz-box').style.display = 'none';
-        document.getElementById('loading').style.display = 'block';
-        progressBar.style.width = '100%';
-
-        const phrases = ["Cruzando dados...", "Identificando vazamentos...", "Gerando diagnóstico..."];
-        let i = 0;
-        setInterval(() => {
-            if(i < phrases.length) {
-                document.getElementById('loading-text').innerText = phrases[i];
-                i++;
-            }
-        }, 800);
-
+        // Troca para o loading final e depois para o RESULTADO
+        document.getElementById('step4').classList.remove('active');
+        document.getElementById('loading-final').style.display = 'block';
+        
         setTimeout(() => {
-            document.getElementById('loading').style.display = 'none';
-            document.getElementById('result').style.display = 'block';
-        }, 2800);
+            document.getElementById('loading-final').style.display = 'none';
+            document.getElementById('prog-wrapper').style.display = 'none'; // Esconde barra de progresso no fim
+            document.getElementById('result').style.display = 'block'; // AQUI APARECE O RESULTADO FINAL
+        }, 2000);
     }
 </script>
 
