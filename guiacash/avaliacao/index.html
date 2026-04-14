@@ -58,7 +58,7 @@ h2 { font-size: 1.5rem; font-weight: 800; margin-bottom: 20px; line-height: 1.3;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
-/* PIZZA DE CARREGAMENTO */
+/* PIZZA */
 .circular-progress {
     position: relative; height: 160px; width: 160px; border-radius: 50%;
     background: conic-gradient(var(--primary) 0deg, rgba(255,255,255,0.1) 0deg);
@@ -103,6 +103,12 @@ input:focus { border-color: var(--primary); }
 }
 
 @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.03); } }
+
+/* DISCLAIMER DE SEGURANÇA */
+.security-disclaimer {
+    display: flex; align-items: center; justify-content: center; gap: 6px;
+    margin-top: 15px; color: #94a3b8; font-size: 0.7rem; font-weight: 500;
+}
 
 #error-msg { 
     background: #fff1f2; color: var(--error); padding: 12px; 
@@ -199,6 +205,11 @@ input:focus { border-color: var(--primary); }
                 <button class="cta-submit" onclick="validateAndProcess()">
                     LIBERAR MEU RESULTADO <i class="fa-solid fa-arrow-right"></i>
                 </button>
+
+                <div class="security-disclaimer">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    Seus dados estão seguros e protegidos.
+                </div>
             </div>
         </div>
     </div>
@@ -280,7 +291,6 @@ input:focus { border-color: var(--primary); }
             return;
         }
 
-        // Validação Opcional: Só avisa erro se preencheu uma parte e deixou a outra em branco
         if(ddd.length > 0 || zap.length > 0) {
             if(ddd.length < 2) {
                 errorDiv.innerHTML = '<i class="fa-solid fa-phone"></i> O campo DDD está incompleto.';
@@ -297,15 +307,13 @@ input:focus { border-color: var(--primary); }
         quizData['nome'] = nome;
         quizData['email'] = email;
         
-        // Define o valor do WhatsApp para envio APENAS se foi preenchido corretamente
         if(ddd.length === 2 && zap.length >= 9) {
             quizData['whatsapp'] = "55" + ddd + zap.replace('-', '');
         } else {
-            // Se não preencheu, removemos a chave do objeto para não mandar nada
             delete quizData['whatsapp'];
         }
         
-        quizData['origem'] = 'SaaS_V13_Zap_Opcional';
+        quizData['origem'] = 'SaaS_V14_Final_Secured';
 
         fetch('https://n8nwebhook.visioncapacita.com.br/webhook/captura-guiacash', {
             method: 'POST', mode: 'no-cors', headers: {'Content-Type': 'application/json'},
