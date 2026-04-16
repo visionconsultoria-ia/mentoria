@@ -6,7 +6,7 @@
     <title>GuiaCash® - Vision</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-  
+ 
     <style>
         :root {
             --primary: #0FD6AA;
@@ -15,9 +15,9 @@
             --light-bg: #f8fafc;
             --gradient: linear-gradient(135deg, #20124d 0%, #134f5c 100%);
         }
-       
+      
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
-       
+      
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--light-bg);
@@ -26,8 +26,6 @@
             overflow-x: hidden;
         }
 
-        /* === TOP BAR, HERO, PARTICLES, CTA, MODAL, FEATURES, FOOTER === */
-        /* (Mantido 100% igual à sua base) */
         .top-bar { background: #ef4444; color: white; text-align: center; padding: 12px 20px; font-size: 0.95rem; font-weight: 700; position: fixed; width: 100%; top: 0; z-index: 1100; text-transform: uppercase; display: flex; align-items: center; justify-content: center; gap: 12px; box-shadow: 0 4px 20px rgba(239, 68, 68, 0.3); animation: topBarPulse 4s ease-in-out infinite; }
         @keyframes topBarPulse { 0%, 100% { background: #ef4444; } 50% { background: #f87171; } }
         .top-bar::before { content: ''; position: absolute; top: 0; left: -100%; width: 40%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent); animation: shine 6s linear infinite; }
@@ -86,7 +84,7 @@
 
         @keyframes fadeUp { from { opacity: 0; transform: translateY(35px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* === NOVAS SEÇÕES (adicionadas de forma conservadora) === */
+        /* NOVAS SEÇÕES */
         .trust-bar { background: white; padding: 18px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.08); }
         .trust-grid { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 35px; font-size: 0.95rem; font-weight: 600; color: #334155; }
         .trust-grid i { color: var(--primary); margin-right: 8px; }
@@ -135,7 +133,7 @@
         </div>
     </section>
 
-    <!-- BARRA DE CONFIANÇA (nova) -->
+    <!-- BARRA DE CONFIANÇA -->
     <div class="trust-bar">
         <div class="container">
             <div class="trust-grid">
@@ -169,7 +167,7 @@
         </div>
     </div>
 
-    <!-- SEÇÃO DE FEATURES -->
+    <!-- FEATURES -->
     <section class="section-padding">
         <div class="container">
             <div class="section-title"><h2>Tecnologia a favor do seu bolso</h2></div>
@@ -181,7 +179,7 @@
         </div>
     </section>
 
-    <!-- DEPOIMENTOS (nova) -->
+    <!-- DEPOIMENTOS -->
     <section class="section-padding testimonials">
         <div class="container">
             <div class="section-title"><h2>O que nossos alunos estão dizendo</h2></div>
@@ -193,7 +191,7 @@
         </div>
     </section>
 
-    <!-- FAQ (nova) -->
+    <!-- FAQ -->
     <section class="section-padding">
         <div class="container">
             <div class="section-title"><h2>Perguntas frequentes</h2></div>
@@ -206,20 +204,21 @@
         </div>
     </section>
 
-    <!-- FOOTER -->
+    <!-- FOOTER com Política de Privacidade -->
     <footer>
         <div class="container">
             <div class="footer-links">
                 <a href="#">Início</a>
                 <a href="https://visioncapacita.com.br/guiacash/faq/" target="_blank">FAQ</a>
                 <a href="https://visioncapacita.com.br/guiacash/termos/" target="_blank">Termos</a>
+                <a href="https://visioncapacita.com.br/guiacash/privacidade/" target="_blank">Política de Privacidade</a>
             </div>
             <p>© 2026 Vision Educação e Capacitação. Todos os direitos reservados.</p>
         </div>
     </footer>
 
     <script>
-        // ====================== TODO O JAVASCRIPT DA SUA BASE (100% intacto) ======================
+        // ====================== JAVASCRIPT (mantido 100% igual) ======================
         function startTimer(duration, display) {
             let timer = duration;
             setInterval(function () {
@@ -235,7 +234,7 @@
             modal.style.display = 'flex';
             setTimeout(() => modal.classList.add('show'), 20);
         }
-       
+      
         function closeModal() {
             const modal = document.getElementById('captureModal');
             modal.classList.remove('show');
@@ -248,12 +247,12 @@
             const ctx = canvas.getContext('2d');
             let particlesArray = [];
             let animationFrame;
-           
+          
             function resize() {
                 canvas.width = document.querySelector('.hero').offsetWidth;
                 canvas.height = document.querySelector('.hero').offsetHeight;
             }
-           
+          
             class Particle {
                 constructor() {
                     this.x = Math.random() * canvas.width;
@@ -277,7 +276,7 @@
                     ctx.fill();
                 }
             }
-           
+          
             function connectParticles() {
                 for (let i = 0; i < particlesArray.length; i++) {
                     for (let j = i + 1; j < particlesArray.length; j++) {
@@ -296,20 +295,20 @@
                     }
                 }
             }
-           
+          
             function animate() {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
                 particlesArray.forEach(p => { p.update(); p.draw(); });
                 connectParticles();
                 animationFrame = requestAnimationFrame(animate);
             }
-           
+          
             function createParticles() {
                 particlesArray = [];
                 const numberOfParticles = window.innerWidth < 768 ? 55 : 85;
                 for (let i = 0; i < numberOfParticles; i++) particlesArray.push(new Particle());
             }
-           
+          
             window.addEventListener('resize', () => { resize(); createParticles(); });
             resize();
             createParticles();
@@ -333,20 +332,20 @@
             const btn = document.getElementById('btnEnviar');
             btn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> PROCESSANDO...`;
             btn.disabled = true;
-           
+          
             const ddd = document.getElementById('ddd').value;
             const numeroLimpo = document.getElementById('whatsapp_num').value.replace(/\D/g, '');
             const whatsappFinal = "55" + ddd + numeroLimpo;
-           
+          
             const data = {
                 nome: document.getElementById('nome').value,
                 email: document.getElementById('email').value,
                 whatsapp: whatsappFinal,
                 data_lead: new Date().toISOString()
             };
-           
+          
             const webhookURL = 'https://n8nwebhook.visioncapacita.com.br/webhook/captura-guiacash';
-           
+          
             fetch(webhookURL, {
                 method: 'POST',
                 mode: 'no-cors',
@@ -369,7 +368,7 @@
             startTimer(60 * 15, document.querySelector('#timer'));
             initParticles();
             initScrollReveal();
-           
+          
             window.onclick = function(e) {
                 const modal = document.getElementById('captureModal');
                 if (e.target === modal) closeModal();
